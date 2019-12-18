@@ -1,0 +1,108 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use App\Role;
+use App\User;
+
+
+class UserController extends Controller
+{
+    //
+
+    //mostrar todos los usuarios
+    public function index(){
+        $roles = Role::all();
+        $users = User::all();
+        return view('users.index',['users'=>$users,'roles'=>$roles]);
+    }
+    
+    //agregar un usuario
+    public function store(Request $request){
+
+        $user = new User();
+        $user->identification = $request->input('identification');
+        $user->names = $request->input('names');
+        $user->surnames = $request->input('surnames');
+        $user->email = $request->input('email');
+        $user->role_id = $request->input('role_id');
+        
+        $user->save();
+
+        return Redirect::to('users');
+    }
+
+    //editar un usuario
+    public function update(Request $request){
+
+        $user                 = User::findOrFail($request->id);;
+        $user->identification = $request->input('identification');
+        $user->names          = $request->input('names');
+        $user->surnames       = $request->input('surnames');
+        $user->email          = $request->input('email');
+        $user->role_id         = $request->input('role_id');
+
+        if($request->input('role_id')!=3){
+            $user->password = bcrypt($user->password);
+        }
+        
+        $user->save();
+
+        return Redirect::to('users');
+    }
+
+    //eliminar un usuario
+    public function destroy($id){
+        $user =  User::findOrFail($id);
+        $user->delete();
+        return Redirect::to('users');
+    }
+
+    // agregar contraseña a un usuario por parte del superadmin
+    public function addPassword(Request $request){
+        $user                 = User::findOrFail($request->id);
+        $user->identification = $user->identification;
+        $user->names          = $user->names ;
+        $user->surnames       = $user->surnames;
+        $user->email          = $user->email;
+        $user->role_id         = $user->role_id;
+        $user->password       = bcrypt($request->input('password'));
+
+        $user->save();
+
+        return redirect('users');
+    }
+
+    // ver perfil del  usuario autenticado 
+    public function profile(){
+        $user           = User::findOrFail(2);
+        return view('profile.index',['user'=>$user]);
+    }
+
+    // actualizar la contraseña de un usuario autenticado
+    public function updatePassword(Request $request){
+    
+        $user  = User::findOrFail($request->id);
+        $oldpassword = $request->input('oldpassword');
+        
+        if (Hash::check($oldpassword,$user->password))
+            {
+                $user->identification = $user->identification;
+                $user->names          = $user->names ;
+                $user->surnames       = $user->surnames;
+                $user->email          = $user->email;
+                $user->role_id        = $user->role_id;
+                $user->password       = bcrypt($request->input('newpassword'));
+    
+                $user->save();
+    
+                return redirect('profile')->with('mensajeok', 'Contraseña Actualiza con exito!!!');
+            }
+        else{
+                return redirect('profile')->with('mensajeerror', 'Error al Cambiar contraseña!!');
+        }
+    }
+}
