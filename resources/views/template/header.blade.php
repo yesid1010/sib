@@ -17,7 +17,7 @@
 
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle mr-4 nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <span class="d-md-down-none text-white">usuario </span>
+                <span class="d-md-down-none text-white">{{ Auth::user()->names }} </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right mr-1">
                 <div class="dropdown-header text-center">
@@ -34,15 +34,16 @@
                     {{csrf_field()}} 
                 </form>
 
-                <a  class="dropdown-item" href="" 
+                <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    <i class="fa fa-sign-out text-dark"></i> Cerrar sesión
+                                document.getElementById('logout-form').submit();">
+                   <i class="fa fa-sign-out text-dark"></i> {{ __('Cerrar sesión') }}
                 </a>
 
-                <form id="logout-form" action="" method="POST" style="display: none;">
-                  
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
                 </form>
+
             </div>
         </li>
     </ul>

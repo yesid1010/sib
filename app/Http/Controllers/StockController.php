@@ -10,6 +10,12 @@ use App\Pub;
 class StockController extends Controller
 {
     //
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(){
         $stocks = Stock::all();
         return view('stocks.index',['stocks'=>$stocks]);

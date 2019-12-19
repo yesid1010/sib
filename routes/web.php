@@ -11,8 +11,20 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('index');
+});*/
+
+Route::get('/', function () {
+    if(Auth::check()){
+        if(Auth::user()->role_id != 1){
+            return redirect('products');
+        }else{
+            return redirect('users');
+        }
+    }else{
+        return view('auth.login');
+    }
 });
 
 
@@ -21,13 +33,13 @@ Route::resource('products', 'ProductController');
 Route::post('/add/product','ProductController@AddProduct')->name('addproduct');
 
 // rutas de categorías
-Route::resource('categories', 'CategoryController');
+Route::resource('categories', 'CategoryController')->middleware('auth');
 
 // rutas de bares
-Route::resource('pubs', 'PubController');
+Route::resource('pubs', 'PubController')->middleware('auth');
 
 // rutas de roles
-Route::resource('roles', 'RoleController');
+Route::resource('roles', 'RoleController')->middleware('auth');
 
 // rutas de usuario
 Route::resource('users', 'UserController');
@@ -36,3 +48,7 @@ Route::post('/users/updatepass','UserController@updatePassword')->name('updatepa
 
 // ruta para el perfil de un usuario
 Route::get('profile','UserController@profile')->name('profile');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
