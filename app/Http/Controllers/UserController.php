@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Role;
 use App\User;
@@ -83,14 +84,14 @@ class UserController extends Controller
 
     // ver perfil del  usuario autenticado 
     public function profile(){
-        $user           = User::findOrFail(2);
+        $user           = Auth::user();
         return view('profile.index',['user'=>$user]);
     }
 
     // actualizar la contraseña de un usuario autenticado
     public function updatePassword(Request $request){
     
-        $user  = User::findOrFail($request->id);
+        $user  = Auth::user();
         $oldpassword = $request->input('oldpassword');
         
         if (Hash::check($oldpassword,$user->password))

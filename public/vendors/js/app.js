@@ -4,21 +4,10 @@ $(function () {
     $("#tablaBares").DataTable();
     $("#tablaRols").DataTable();
     $("#tablaUsers").DataTable();
+    $("#tablStock").DataTable();
+
 
     $('#password').val('');
-
-    $('#rol_id').change(function(){
-        var sel = $(this).val();
-        console.log('hubo un cambio')
-        if(sel==1){
-            $('#pass').show()
-            $('#password').val('');
-        }else{
-            $('#pass').hide();
-            $('#password').val('');
-        }
-    });
-
 
    
 });
