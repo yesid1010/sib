@@ -2,7 +2,7 @@
     <nav class="sidebar-nav">
         <ul class="nav">
 
-        <!-- if(1==1) -->
+        @if(Auth::user()->role_id !=1 )
             <li class="nav-item">
                     <a class="nav-link" href="{{url('home')}}" onclick="event.preventDefault(); document.getElementById('home-form').submit();"><i class="icon-speedometer"></i> Dashboard</a>
                     
@@ -51,7 +51,7 @@
                 </form>
             </li>
                 
-        <!-- else -->
+        @else
             <li class="nav-item">
                     <a class="nav-link" href="{{url('users')}}" onclick="event.preventDefault(); document.getElementById('users-form').submit();"><i class="fa fa-user"></i> Usuarios</a>
                     
@@ -67,7 +67,7 @@
                     {{csrf_field()}} 
                     </form>
             </li>
-        <!-- endif -->
+        @endif
                          
         </ul>
     </nav>
