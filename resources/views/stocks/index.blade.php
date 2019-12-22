@@ -25,7 +25,7 @@
                     <td>{{$stock->name}}</td>
                     <td>{{$stock->description}}</td>
                     <td class="text-center">
-                        <button class="btn btn-success">
+                        <button class="btn btn-success" type="button" id="btndetalle">
                             detalle
                         </button>
                     </td>
@@ -52,4 +52,31 @@
         </tbody>
     </table>
 </div> <!-- fin card-body-->
+
+{{-- MODALES --}}
+ <!--Inicio del modal agregar rol-->
+ <div class="modal fade" id="abrirmodalStock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-primary modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Agregar Stock Ideal</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <form action="{{route('stocks.store')}}" method="post" class="form-horizontal">
+                    {{csrf_field()}}
+                    @include('stocks.form')
+                </form>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!--Fin del modal agregar rol-->
+
 @endsection

@@ -14,6 +14,7 @@
         <!-- Main styles for this application -->
         <link href="vendors/css/style.css" rel="stylesheet">
         <!-- DataTables -->
+
         <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -53,7 +54,7 @@
         <!-- DataTables -->
         <script src="plugins/datatables/jquery.dataTables.js"></script>
         <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-    
+        
         <!-- scripts -->
         <script src="vendors/js/app.js"></script>
     </body>

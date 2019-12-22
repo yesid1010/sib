@@ -1,16 +1,53 @@
 $(function () {
+    // DATATABLES
     $("#tablaCategorias").DataTable();
-    $("#tablaProductos").DataTable();
+    $("#tablaProductos").DataTable( {
+        "scrollY":        "250px",
+        "scrollX": "100 px",
+        "scrollCollapse": true,
+    });
     $("#tablaBares").DataTable();
     $("#tablaRols").DataTable();
     $("#tablaUsers").DataTable();
-    $("#tablStock").DataTable();
+    $("#tablaStocks").DataTable();
+    tabla = $('#tablastock').DataTable();
+
+    $('#btnguardar').hide()
 
 
-    $('#password').val('');
+    counter = 0;
 
-   
+    $('#btnadd').on("click",function(){
+        pub_id=$('#pub_id').val();
+        pub = $('#pub_id option:selected').text();
+        product_id = $('#product_id').val();
+        product = $('#product_id option:selected').text()
+
+        tabla.row.add([
+            
+            '<input type="hidden" value="'+product_id+'" name="product[]">',
+            product,
+            '<input type="number" class="form-control col-md-3" value="1" name="quantity[]" id="cantidad">',
+            '<button class="btn btn-danger" type="button">X</button>',
+        ]).draw(false);
+        counter++;
+
+        if(counter > 0){
+            $('#btnguardar').show()
+        }else{
+            $('#btnguardar').hide()
+        }
+    });
 });
+
+//eliminar fila seleccionada por el button eliminar en la tabla tabla stock
+$('#tablastock tbody').on( 'click', 'button', function () {
+    tabla
+        .row( $(this).parents('tr') )
+        .remove()
+        .draw();
+} );
+
 
 $('#abrirmodalEditarProducto').on('show.bs.modal',function(event){
     var button = $(event.relatedTarget)
@@ -128,3 +165,9 @@ $('#abrirmodalAgregarProducto').on('show.bs.modal',function(event){
 })
 
 $(".alert").fadeOut(6000 );
+
+
+function eliminar(id){
+    tabla.row(':eq('+id+')').remove().draw();
+    console.log(id)
+}

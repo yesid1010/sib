@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Stock;
 use App\Pub;
 use App\Product;
+use App\Product_Stock;
 
 class StockController extends Controller
 {
@@ -29,16 +30,33 @@ class StockController extends Controller
         
         $products = Product::all();
         $pubs     = Pub::all();
-        
+
         return view('stocks.index',['stocks'=>$stocks,'products'=>$products,'pubs'=>$pubs]);
     }
 
     public function store(Request $request){
         $stock = new Stock();
-        $stock->name = $request->input('description');
+        $stock->description = $request->input('description');
         $stock->pub_id = $request->input('pub_id');
 
-        // aun falta aqui cosas
+        $stock->save();
+
+        $cont = 0;
+        $products = $request->input('product');
+        $quantity = $request->input('quantity');
+
+        while($cont < count($products)){
+
+            $product_stock = new Product_Stock();
+            $product_stock->stock_id = $stock->id;
+            $product_stock->product_id = $products[$cont];
+            $product_stock->cant_unity = $quantity[$cont];
+
+            $product_stock->save();
+            $cont++;
+        }
+
+        return redirect('stocks');;
 
     }
 }
