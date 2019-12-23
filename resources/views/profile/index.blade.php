@@ -26,7 +26,7 @@
                     <i class="fa fa-plus "></i>&nbsp;&nbsp; Actualizar Contraseña
             </button>
         @endif
-        </div>
+    </div>
 
         <div class="card-body">
             <div class="form-group row">
@@ -60,12 +60,12 @@
                 </div>
             </div>
             <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="text-input">Estado : </label>
-                    <div class="col-md-9">
-                        <label>{{$user->status}}</label>
-                    </div>
+                <label class="col-md-3 form-control-label" for="text-input">Estado : </label>
+                <div class="col-md-9">
+                    <label>{{$user->status}}</label>
+                </div>
             </div>
-    </div>
+        </div>
 
     <!--Inicio del modal Password-->
     <div class="modal fade" id="abrirmodalActualizarPassword" tabindex="-1" usere="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">

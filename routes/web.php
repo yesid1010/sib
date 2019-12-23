@@ -20,6 +20,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('categories', 'CategoryController');
     // rutas de bares
     Route::resource('pubs', 'PubController');
+    // rutas de stock
+    Route::resource('stocks', 'StockController');
 });
 
 Route::group(['middleware' => ['superadmin']], function () {
@@ -35,10 +37,13 @@ Route::post('/users/updatepass','UserController@updatePassword')->name('updatepa
 // ruta para el perfil de un usuario
 Route::get('profile','UserController@profile')->name('profile');
 
+// detalles
+Route::get('detail','StockController@detail')->name('detail');
+Route::any('/edit/editdetail','StockController@EditDetail')->name('editdetail');
+
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-// rutas de stock
-Route::resource('stocks', 'StockController');
+
 

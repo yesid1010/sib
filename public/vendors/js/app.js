@@ -10,6 +10,14 @@ $(function () {
     $("#tablaRols").DataTable();
     $("#tablaUsers").DataTable();
     $("#tablaStocks").DataTable();
+    $('#detallestock').DataTable({
+        "lengthChange": false,
+        "scrollY":        "250px",
+        "info": false,
+        "searching": false,
+        "scrollCollapse": true,
+        "autoWidth": false
+    });
     tabla = $('#tablastock').DataTable();
 
     $('#btnguardar').hide()
@@ -156,6 +164,15 @@ $('#abrirmodalActualizarPassword').on('show.bs.modal',function(event){
 
 
 $('#abrirmodalAgregarProducto').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var id = button.data('id')
+
+    var modal = $(this)
+    modal.find('.modal-body #id').val(id);
+
+})
+
+$('#abrirmodalEditDetail').on('show.bs.modal',function(event){
     var button = $(event.relatedTarget)
     var id = button.data('id')
 

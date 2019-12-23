@@ -25,9 +25,14 @@
                     <td>{{$stock->name}}</td>
                     <td>{{$stock->description}}</td>
                     <td class="text-center">
-                        <button class="btn btn-success" type="button" id="btndetalle">
-                            detalle
-                        </button>
+
+                        <form action="{{route('detail')}}" method="get">
+                            @csrf
+                            <input type="hidden" value="{{$stock->id}}" name="id">
+                            <button class= "btn btn-success" type="submit" id="btndetalle">
+                                detalle
+                            </button>
+                        </form>
                     </td>
                     <td class="text-center">
                         <button class="btn btn-primary" type="button"                                             data-toggle="modal" 
