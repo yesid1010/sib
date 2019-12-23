@@ -40,6 +40,9 @@ Route::get('profile','UserController@profile')->name('profile');
 // detalles
 Route::get('detail','StockController@detail')->name('detail');
 Route::any('/edit/editdetail','StockController@EditDetail')->name('editdetail');
+Route::any('/edit/editdetail','StockController@EditDetail')->name('editdetail');
+//  addproductstock
+Route::post('addproductstock','StockController@addproduct')->name('addproductst');
 
 Auth::routes();
 

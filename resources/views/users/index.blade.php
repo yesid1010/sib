@@ -10,7 +10,7 @@
 
     <div class="card-body">
         <table id="tablaUsers" class="table table-bordered table-striped">
-            <thead>
+            <thead class="bg-primary">
                 <tr>
                     <th>Rol</th>
                     <th>identificación</th>

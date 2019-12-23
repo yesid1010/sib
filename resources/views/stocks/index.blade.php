@@ -9,7 +9,7 @@
 
 <div class="card-body">
     <table id="tablaStocks" class="table table-bordered table-striped">
-        <thead>
+        <thead class="bg-primary">
             <tr>
                 <th>Bar</th>
                 <th>Descripcion</th>

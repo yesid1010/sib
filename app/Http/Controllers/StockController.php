@@ -85,7 +85,10 @@ class StockController extends Controller
                       ->where('stocks.id','=',$request->input('id'))
                       ->get();
 
-        return view('stocks.show',['stock'=>$stock,'detalles'=>$detalles]);
+        $products = Product::all();
+        return view('stocks.show',['stock'=>$stock,
+                                   'detalles'=>$detalles,
+                                   'products'=>$products]);
     }
 
 
@@ -107,6 +110,16 @@ class StockController extends Controller
         $product_stock = Product_Stock::findOrFail($id);
         $product_stock->delete();
 
+        return back();
+    }
+
+    public function addproduct(Request $request){
+        $product_stock = new Product_Stock();
+        $product_stock->stock_id = $request->input('id');
+        $product_stock->product_id = $request->input('product_id'); 
+        $product_stock->cant_unity = $request->input('quantity'); 
+
+        $product_stock->save();
         return back();
     }
 }

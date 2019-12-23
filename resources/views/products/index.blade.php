@@ -8,7 +8,7 @@
     </div>
     <div class="card-body">
         <table id="tablaProductos" class="table table-bordered table-striped">
-            <thead>
+            <thead class="bg-primary">
                 <tr>
                     <th>Categoría</th>
                     <th>Nombre</th>

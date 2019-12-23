@@ -2,6 +2,9 @@
 @section('content')
 <div class="card-header text-center ">     
     <h3 class="float-left text-center"> {{$stock->name}}</h3> 
+    <button class="btn btn-primary float-right mt-1" data-id = "{{$stock->id}}"type="button" data-toggle="modal" data-target="#abrirmodalAddProductD">
+        <i class="fa fa-plus "></i>&nbsp;&nbsp; Agregar Producto
+    </button>
 </div>
 <br>
 <table width="10%" class="table px-5" id="detallestock" >
@@ -43,29 +46,55 @@
 
 {{-- MODALES --}}
 
-        <!--Inicio del modal agregar Producto por unidad-->
-        <div class="modal fade" id="abrirmodalEditDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog modal-primary " role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Editar Cantidad</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    
-                    <div class="modal-body">
-                        <form action="{{route('editdetail')}}" method="post" class="form-horizontal">
-                            {{csrf_field()}}
-                            @include('stocks.addCantDetail')
-                        </form>
-                    </div>
-    
+    <!--Inicio del modal editar Producto de un stock ideal-->
+    <div class="modal fade" id="abrirmodalEditDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-primary " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar Cantidad</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
-                <!-- /.modal-content -->
+                
+                <div class="modal-body">
+                    <form action="{{route('editdetail')}}" method="post" class="form-horizontal">
+                        {{csrf_field()}}
+                        @include('stocks.EditCantDetail')
+                    </form>
+                </div>
+
             </div>
-            <!-- /.modal-dialog -->
+            <!-- /.modal-content -->
         </div>
-        <!--Fin del modal-->
+        <!-- /.modal-dialog -->
+    </div>
+    <!--Fin del modal-->
+
+
+    <!--Inicio del modal Agregar un Producto a un stock ideal ya creado-->
+    <div class="modal fade" id="abrirmodalAddProductD" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-primary " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Agregar Producto</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <form action="{{route('addproductst')}}" method="post" class="form-horizontal">
+                        {{csrf_field()}}
+                        @include('stocks.addproductstock')
+                    </form>
+                </div>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!--Fin del modal-->
 {{-- FIN MODALES --}}
 @endsection

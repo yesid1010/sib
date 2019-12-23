@@ -20,12 +20,10 @@
     @endif
 
     <div class="card-header">     
-        <h3 class="float-left">Perfil de Usuario</h3> 
-        @if($user->rol_id != 3)      
+        <h3 class="float-left">Perfil de Usuario</h3>    
             <button class="btn btn-primary float-right mt-1" data-id = "{{$user->id}}"type="button" data-toggle="modal" data-target="#abrirmodalActualizarPassword">
                     <i class="fa fa-plus "></i>&nbsp;&nbsp; Actualizar Contraseña
             </button>
-        @endif
     </div>
 
         <div class="card-body">

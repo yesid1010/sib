@@ -1,15 +1,31 @@
 $(function () {
     // DATATABLES
-    $("#tablaCategorias").DataTable();
+    $("#tablaCategorias").DataTable({
+        "info": false,
+        "lengthChange": false
+    });
     $("#tablaProductos").DataTable( {
         "scrollY":        "250px",
-        "scrollX": "100 px",
         "scrollCollapse": true,
+        "info": false,
+        "lengthChange": false
     });
-    $("#tablaBares").DataTable();
-    $("#tablaRols").DataTable();
-    $("#tablaUsers").DataTable();
-    $("#tablaStocks").DataTable();
+    $("#tablaBares").DataTable({
+        "info": false,
+        "lengthChange": false
+    });
+    $("#tablaRols").DataTable({
+        "info": false,
+        "lengthChange": false
+    });
+    $("#tablaUsers").DataTable({
+        "info": false,
+        "lengthChange": false
+    });
+    $("#tablaStocks").DataTable({
+        "info": false,
+        "lengthChange": false
+    });
     $('#detallestock').DataTable({
         "lengthChange": false,
         "scrollY":        "250px",
@@ -18,7 +34,10 @@ $(function () {
         "scrollCollapse": true,
         "autoWidth": false
     });
-    tabla = $('#tablastock').DataTable();
+    tabla = $('#tablastock').DataTable({
+        "info": false,
+        "lengthChange": false
+    });
 
     $('#btnguardar').hide()
 
@@ -173,6 +192,15 @@ $('#abrirmodalAgregarProducto').on('show.bs.modal',function(event){
 })
 
 $('#abrirmodalEditDetail').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var id = button.data('id')
+
+    var modal = $(this)
+    modal.find('.modal-body #id').val(id);
+
+})
+
+$('#abrirmodalAddProductD').on('show.bs.modal',function(event){
     var button = $(event.relatedTarget)
     var id = button.data('id')
 
