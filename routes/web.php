@@ -46,6 +46,9 @@ Route::post('addproductstock','StockController@addproduct')->name('addproductst'
 
 Auth::routes();
 
+
+Route::resource('orders', 'OrderController');
+
 // Route::get('/home', 'HomeController@index')->name('home');
 
 

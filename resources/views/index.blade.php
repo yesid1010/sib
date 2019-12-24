@@ -57,6 +57,7 @@
         
         <!-- scripts -->
         <script src="vendors/js/app.js"></script>
+        <script src="vendors/js/modals.js"></script>
     </body>
     
 </html>

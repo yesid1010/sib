@@ -61,7 +61,6 @@ class StockController extends Controller
         }
 
         return redirect('stocks');;
-
     }
 
     // mostrar los detalles de un stock ideal de cierto bar

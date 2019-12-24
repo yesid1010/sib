@@ -30,10 +30,15 @@
                     {{csrf_field()}} 
                     </form>
             </li>
-           
+
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-suitcase"></i> Ordenes</a>
-            </li>
+                <a class="nav-link" href="{{url('orders')}}" onclick="event.preventDefault(); document.getElementById('orders-form').submit();"><i class="fa fa-shopping-basket"></i> Ordenes</a>
+                
+                <form id="orders-form" action="{{url('orders')}}" method="GET" style="display: none;">
+                    {{csrf_field()}} 
+                </form>
+            </li>         
+
 
             <li class="nav-item">
                     <a class="nav-link" href="{{url('pubs')}}" onclick="event.preventDefault(); document.getElementById('pubs-form').submit();"><i class="fa fa-indent" aria-hidden="true"></i> Bares</a>
