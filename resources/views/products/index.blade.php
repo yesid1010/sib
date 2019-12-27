@@ -13,9 +13,9 @@
                     <th>Categoría</th>
                     <th>Nombre</th>
                     <th>unidades</th>
-                    <th>3/4 unidad</th>
+                    {{-- <th>3/4 unidad</th>
                     <th>1/2 unidad</th>
-                    <th>1/4 unidad</th>
+                    <th>1/4 unidad</th> --}}
                     <th>Agregar</th>
                     <th>Editar</th>
                     <th>Eliminar</th>           
@@ -27,9 +27,9 @@
                         <td>{{$product->category->name}}</td>
                         <td>{{$product->name}}</td>
                         <td>{{$product->unity}}</td>
-                        <td>{{$product->three_quarters}}</td>
+                        {{-- <td>{{$product->three_quarters}}</td>
                         <td>{{$product->half}}</td>
-                        <td>{{$product->quater}}</td>
+                        <td>{{$product->quater}}</td> --}}
                         <td class="text-center">
                             <button class="btn btn-dark" type="button"
                                     data-target="#abrirmodalAgregarProducto"

@@ -4,9 +4,9 @@ $('#abrirmodalEditarProducto').on('show.bs.modal',function(event){
     var button                       = $(event.relatedTarget)
     var name_modal_editar            = button.data('name')
     var unity_modal_editar           = button.data('unity')
-    var three_quarters_modal_editar  = button.data('three_quarters')
-    var half_modal_editar            = button.data('half')
-    var quater_modal_editar          = button.data('quater')
+    // var three_quarters_modal_editar  = button.data('three_quarters')
+    // var half_modal_editar            = button.data('half')
+    // var quater_modal_editar          = button.data('quater')
     var category_id_modal_editar     = button.data('category_id')
     var user_id_modal_editar         = button.data('user_id')
     var id                           = button.data('id')
@@ -15,9 +15,9 @@ $('#abrirmodalEditarProducto').on('show.bs.modal',function(event){
 
     modal.find('.modal-body #name').val(name_modal_editar);
     modal.find('.modal-body #unity').val(unity_modal_editar);
-    modal.find('.modal-body #three_quarters').val(three_quarters_modal_editar);
-    modal.find('.modal-body #half').val(half_modal_editar);
-    modal.find('.modal-body #quater').val(quater_modal_editar);
+    // modal.find('.modal-body #three_quarters').val(three_quarters_modal_editar);
+    // modal.find('.modal-body #half').val(half_modal_editar);
+    // modal.find('.modal-body #quater').val(quater_modal_editar);
     modal.find('.modal-body #category_id').val(category_id_modal_editar);
     modal.find('.modal-body #user_id').val(user_id_modal_editar);
     modal.find('.modal-body #id').val(id);
@@ -131,6 +131,17 @@ $('#abrirmodalEditDetail').on('show.bs.modal',function(event){
 })
 
 // evento para traer el id de un stock ideal para agregarle un producto
+$('#abrirmodalAddProductD').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var id = button.data('id')
+
+    var modal = $(this)
+    modal.find('.modal-body #id').val(id);
+
+})
+
+
+// evento para traer el id de una orden  para agregarle un producto
 $('#abrirmodalAddProductD').on('show.bs.modal',function(event){
     var button = $(event.relatedTarget)
     var id = button.data('id')

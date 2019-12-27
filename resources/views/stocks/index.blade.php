@@ -30,7 +30,7 @@
                             @csrf
                             <input type="hidden" value="{{$stock->id}}" name="id">
                             <button class= "btn btn-success" type="submit" id="btndetalle">
-                                detalle
+                                Detalle
                             </button>
                         </form>
                     </td>

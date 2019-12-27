@@ -18,8 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
 </head>
-<body>
+<body style="background-image: url('{{asset('vendors/img/fondo.jpg')}}');">
     <div id="app">
         <main class="py-4 mt-5">
             @yield('content')

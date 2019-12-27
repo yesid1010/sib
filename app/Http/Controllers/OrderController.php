@@ -50,19 +50,19 @@ class OrderController extends Controller
         $cont = 0;
         $products = $request->input('product');
         $quantity = $request->input('quantity');
-        $cant_half = $request->input('cant_half');
-        $cant_quater = $request->input('cant_quater');
-        $cant_three_quarters = $request->input('cant_three_quarters');
+        // $cant_half = $request->input('cant_half');
+        // $cant_quater = $request->input('cant_quater');
+        // $cant_three_quarters = $request->input('cant_three_quarters');
 
 
         while($cont < count($products)){
             $detalle                        =  new Order_product();
-            $detalle->order_id              = $order_id;
+            $detalle->order_id              = $order->id;
             $detalle->product_id            = $products[$cont];
             $detalle->cant_unity            = $quantity[$cont];
-            $detalle->cant_half             = $cant_half[$cont];
-            $detalle->cant_quater           = $cant_quater[$cont];
-            $detalle->cant_three_quarters   = $cant_three_quarters[$cont];
+            // $detalle->cant_half             = $cant_half[$cont];
+            // $detalle->cant_quater           = $cant_quater[$cont];
+            // $detalle->cant_three_quarters   = $cant_three_quarters[$cont];
 
             $detalle->save();
 

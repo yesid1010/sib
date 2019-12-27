@@ -32,9 +32,9 @@ class ProductController extends Controller
         $product = new Product();
         $product->name           = $request->input('name');
         $product->unity          = $request->input('unity');
-        $product->three_quarters = $request->input('three_quarters');
-        $product->half           = $request->input('half');
-        $product->quater         = $request->input('quater');
+        // $product->three_quarters = $request->input('three_quarters');
+        // $product->half           = $request->input('half');
+        // $product->quater         = $request->input('quater');
         $product->category_id    = $request->input('category_id');
  
         $product->save();
@@ -49,9 +49,9 @@ class ProductController extends Controller
 
         $product->name           = $request->input('name');
         $product->unity          = $request->input('unity');
-        $product->three_quarters = $request->input('three_quarters');
-        $product->half           = $request->input('half');
-        $product->quater         = $request->input('quater');
+        // $product->three_quarters = $request->input('three_quarters');
+        // $product->half           = $request->input('half');
+        // $product->quater         = $request->input('quater');
         $product->category_id    = $request->input('category_id');
 
         $product->save();
@@ -73,9 +73,9 @@ class ProductController extends Controller
         $product                 = Product::findOrFail($request->id);
         $product->name           = $product->name;
         $product->unity          = $request->input('unity') + $product->unity;
-        $product->three_quarters = $product->three_quarters;
-        $product->half           = $product->half;
-        $product->quater         = $product->quater;
+        // $product->three_quarters = $product->three_quarters;
+        // $product->half           = $product->half;
+        // $product->quater         = $product->quater;
         $product->category_id    = $product->category_id;
 
         $product->save();
