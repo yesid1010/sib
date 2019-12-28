@@ -29,13 +29,13 @@
                     <td>{{$order->created_at}}</td>
                     <td class="text-center">
 
-                        {{-- <form action="{{route('detail')}}" method="get">
-                            @csrf --}}
+                        <form action="{{route('ordendetail')}}" method="get">
+                            @csrf
                             <input type="hidden" value="{{$order->id}}" name="id">
                             <button class= "btn btn-success" type="submit">
-                                detalle
+                                Detalle
                             </button>
-                        {{-- </form> --}}
+                        </form>
                     </td>
                     <td class="text-center">
                         {{-- <form action="{{route('stocks.destroy',$stock->id)}}" method="post">

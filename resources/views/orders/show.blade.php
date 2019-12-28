@@ -1,8 +1,8 @@
 @extends('index')
 @section('content')
 <div class="card-header text-center ">     
-    <h3 class="float-left text-center"> {{$stock->name}}</h3> 
-    <button class="btn btn-primary float-right mt-1" data-id = "{{$stock->id}}"type="button" data-toggle="modal" data-target="#abrirmodalAddProductD">
+    <h3 class="float-left text-center"> {{$order->nameP}}</h3> 
+    <button class="btn btn-primary float-right mt-1" data-id = "{{$order->id}}"type="button" data-toggle="modal" data-target="#abrirmodalaAddProductOrder">
         <i class="fa fa-plus "></i>&nbsp;&nbsp; Agregar Producto
     </button>
 </div>
@@ -19,20 +19,20 @@
     <tbody>
         @foreach ($detalles as $detalle)
             <tr>
-                <td  width="25%">{{$detalle->name}}</td>
-                <td width = "25%" class="text-center">{{$detalle->quantity}}</td>
+                <td  width="25%">{{$detalle->product_name}}</td>
+                <td width = "25%" class="text-center">{{$detalle->unity}}</td>
                 <td width = "5%" class="text-center">
                     <button class="btn btn-primary" type="button"
-                            data-target="#abrirmodalEditDetail"
+                            data-target="#abrirmodalEditDetailOrder"
                             data-toggle="modal" 
-                            title="Agregar"
+                            title="Editar"
                             data-id="{{$detalle->id}}"
-                            data-unity="{{$detalle->quantity}}">
+                            data-unity="{{$detalle->unity}}">
                             <i class="fa fa-pencil "></i> 
                     </button>          
                 </td>
                 <td width="5%" class="text-center">
-                    <form action="{{route('stocks.destroy',$detalle->id)}}" method="post">
+                    <form action="{{route('orders.destroy',$detalle->id)}}" method="post">
                         @method('DELETE')
                         @csrf
                         <button class="btn btn-danger" type="submit">
@@ -48,7 +48,7 @@
 {{-- MODALES --}}
 
     <!--Inicio del modal editar Producto de un stock ideal-->
-    <div class="modal fade" id="abrirmodalEditDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal fade" id="abrirmodalEditDetailOrder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-primary " role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -59,9 +59,9 @@
                 </div>
                 
                 <div class="modal-body">
-                    <form action="{{route('editdetail')}}" method="post" class="form-horizontal">
+                    <form action="{{route('editorder')}}" method="post" class="form-horizontal">
                         {{csrf_field()}}
-                        @include('stocks.EditCantDetail')
+                        @include('orders.EditCantDetail')
                     </form>
                 </div>
 
@@ -74,7 +74,7 @@
 
 
     <!--Inicio del modal Agregar un Producto a un stock ideal ya creado-->
-    <div class="modal fade" id="abrirmodalAddProductD" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal fade" id="abrirmodalaAddProductOrder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-primary " role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -85,9 +85,9 @@
                 </div>
                 
                 <div class="modal-body">
-                    <form action="{{route('addproductst')}}" method="post" class="form-horizontal">
+                    <form action="{{route('addproductorder')}}" method="post" class="form-horizontal">
                         {{csrf_field()}}
-                        @include('stocks.addproductstock')
+                        @include('orders.addproductorder')
                     </form>
                 </div>
 

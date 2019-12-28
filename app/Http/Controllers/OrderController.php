@@ -17,7 +17,7 @@ class OrderController extends Controller
         $this->middleware('auth');
     }
 
-
+// mostrar los datos necesarios para ver una orden especifica y para crearla
     public function index(){
         $orders   = DB::table('orders')
                     ->join('users','users.id','=','orders.user_id')
@@ -29,7 +29,7 @@ class OrderController extends Controller
                              'orders.created_at as created_at')
                     ->get();
 
-        $products = Product::all();
+        $products = Product::all()->where('unity','>',0);
         $pubs     = Pub::all();
         $users    = User::all()->where('role_id',3);
         return view('orders.index',['orders'    => $orders,
@@ -39,6 +39,7 @@ class OrderController extends Controller
                     );
     }
 
+// metodo para crear una nueva orden
     public function store(Request $request){
         $order              = new Order();
         $order->user_id     = $request->input('user_id');
@@ -71,5 +72,66 @@ class OrderController extends Controller
         }
 
         return redirect('orders');
+    }
+
+    public function DetailOrden(Request $request){
+
+        $order   = DB::table('pubs')
+                    ->join('orders','orders.pub_id','=','pubs.id')
+                    ->join('users','users.id','=','orders.user_id')
+                    ->select('pubs.id as pub_id','pubs.name as nameP',
+                            'orders.description as description',
+                            'orders.id as id','orders.pub_id as pub_id',
+                            'users.id as user_id','users.names as user_name','users.identification as identification',
+                            'users.surnames as surnames'
+                            )
+                    ->where('orders.id','=',$request->input('id'))
+                    ->first();
+
+        $detalles = DB::table('orders')
+                ->join('order_product','order_product.order_id','=','orders.id')
+                ->join('products','products.id','=','order_product.product_id')
+                ->select('products.id as product_id','products.name as product_name',
+                        'order_product.cant_unity as unity','order_product.id as id')
+                ->where('orders.id','=',$request->input('id'))
+                ->get();
+        
+        $products = Product::all();
+        return view('orders.show',['order'=>$order,
+                    'detalles'=>$detalles,
+                    'products'=>$products]);
+    }
+
+
+    // eliminar un producto de una orden 
+    public function destroy($id){
+        $order_product = Order_product::findOrFail($id);
+        $order_product->delete();
+
+        return back();
+    }
+
+
+    public function Addproduct(Request $request){
+        $order_product = new Order_Product();
+        $order_product->order_id = $request->input('id');
+        $order_product->product_id = $request->input('product_id'); 
+        $order_product->cant_unity = $request->input('quantity'); 
+
+        $order_product->save();
+        return back();
+    }
+
+
+    // editar la cantidad de un producto de cierta orden
+    public function EditDetailOrder(Request $request){
+        $order_product = Order_Product::findOrFail($request->id);
+        $order_product->order_id =  $order_product->order_id;
+        $order_product->product_id =  $order_product->product_id;
+        $order_product->cant_unity =  $request->input('cantProduct');
+
+        $order_product->save();
+
+        return back();
     }
 }

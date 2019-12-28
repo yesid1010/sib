@@ -16,12 +16,25 @@ Route::group(['middleware' => 'admin'], function () {
     // rutas de productos
     Route::resource('products', 'ProductController');
     Route::any('/add/product','ProductController@AddProduct')->name('addproduct');
+    
     // rutas de categorías
     Route::resource('categories', 'CategoryController');
     // rutas de bares
     Route::resource('pubs', 'PubController');
     // rutas de stock
     Route::resource('stocks', 'StockController');
+    // detalles de stock ideales
+    Route::get('detailstock','StockController@detailStock')->name('detail');
+    Route::any('/edit/editdetail','StockController@EditDetail')->name('editdetail');
+    //  addproductstock
+    Route::post('addproductstock','StockController@addproduct')->name('addproductst');
+
+    //ORDENES
+    Route::resource('orders', 'OrderController');
+    Route::get('detailorden','OrderController@DetailOrden')->name('ordendetail');
+    Route::post('addproductorder','OrderController@Addproduct')->name('addproductorder');
+    Route::any('/edit/editorder','OrderController@EditDetailOrder')->name('editorder');
+
 });
 
 Route::group(['middleware' => ['superadmin']], function () {
@@ -37,17 +50,13 @@ Route::post('/users/updatepass','UserController@updatePassword')->name('updatepa
 // ruta para el perfil de un usuario
 Route::get('profile','UserController@profile')->name('profile');
 
-// detalles
-Route::get('detail','StockController@detail')->name('detail');
-Route::any('/edit/editdetail','StockController@EditDetail')->name('editdetail');
-Route::any('/edit/editdetail','StockController@EditDetail')->name('editdetail');
-//  addproductstock
-Route::post('addproductstock','StockController@addproduct')->name('addproductst');
+
+
 
 Auth::routes();
 
 
-Route::resource('orders', 'OrderController');
+
 
 // Route::get('/home', 'HomeController@index')->name('home');
 

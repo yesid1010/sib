@@ -124,9 +124,10 @@ $('#abrirmodalAgregarProducto').on('show.bs.modal',function(event){
 $('#abrirmodalEditDetail').on('show.bs.modal',function(event){
     var button = $(event.relatedTarget)
     var id = button.data('id')
-
+    var unity = button.data('unity')
     var modal = $(this)
     modal.find('.modal-body #id').val(id);
+    modal.find('.modal-body #unity').val(unity)
 
 })
 
@@ -142,11 +143,22 @@ $('#abrirmodalAddProductD').on('show.bs.modal',function(event){
 
 
 // evento para traer el id de una orden  para agregarle un producto
-$('#abrirmodalAddProductD').on('show.bs.modal',function(event){
+$('#abrirmodalaAddProductOrder').on('show.bs.modal',function(event){
     var button = $(event.relatedTarget)
     var id = button.data('id')
 
     var modal = $(this)
     modal.find('.modal-body #id').val(id);
+
+})
+
+// evento traer el id de un producto para editar su cantidad  en una orden especifica
+$('#abrirmodalEditDetailOrder').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var id = button.data('id')
+    var unity = button.data('unity')
+    var modal = $(this)
+    modal.find('.modal-body #id').val(id);
+    modal.find('.modal-body #unity').val(unity)
 
 })

@@ -60,8 +60,7 @@ $(function () {
     //evento en el boton btnadd para ir agregrando los productos a la tabla tablastock
     counter = 0;
     $('#btnadd').on("click",function(){
-        pub_id      =$('#pub_id').val();
-        pub         = $('#pub_id option:selected').text();
+
         product_id  = $('#product_id').val();
         product     = $('#product_id option:selected').text()
 
@@ -112,8 +111,6 @@ $(function () {
 
     countorden = 0;
     $('#btnaddorden').on("click",function(){
-        // pub_idorden      =$('#pub_idorden').val();
-        // puborden         = $('#pub_idorden option:selected').text();
         product_idorden  = $('#product_idorden').val();
         productorden     = $('#product_idorden option:selected').text()
 

@@ -64,7 +64,7 @@ class StockController extends Controller
     }
 
     // mostrar los detalles de un stock ideal de cierto bar
-    public function detail(Request $request){
+    public function detailStock(Request $request){
         $stock   = DB::table('stocks')
         ->join('pubs','pubs.id','=','stocks.pub_id')
         ->select('pubs.name as name',
