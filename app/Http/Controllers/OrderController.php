@@ -26,7 +26,9 @@ class OrderController extends Controller
                              'pubs.name as nameP',
                              'orders.id as id',
                              'orders.description as description',
+                             'orders.status as status',
                              'orders.created_at as created_at')
+                    ->orderBy('id', 'desc')
                     ->get();
 
         $products = Product::all()->where('unity','>',0);
@@ -83,7 +85,8 @@ class OrderController extends Controller
                             'orders.description as description',
                             'orders.id as id','orders.pub_id as pub_id',
                             'users.id as user_id','users.names as user_name','users.identification as identification',
-                            'users.surnames as surnames'
+                            'users.surnames as surnames',
+                            'orders.status as status','orders.created_at as created_at'
                             )
                     ->where('orders.id','=',$request->input('id'))
                     ->first();
@@ -131,6 +134,19 @@ class OrderController extends Controller
         $order_product->cant_unity =  $request->input('cantProduct');
 
         $order_product->save();
+
+        return back();
+    }
+
+    // cambiar de estado
+    public function Status($id){
+        $order = Order::findOrFail($id);
+        $order->user_id     = $order->user_id ;
+        $order->pub_id      = $order->pub_id;
+        $order->description = $order->description;
+        $order->status      = '0';
+
+        $order->save();
 
         return back();
     }

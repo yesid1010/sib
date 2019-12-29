@@ -34,6 +34,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('detailorden','OrderController@DetailOrden')->name('ordendetail');
     Route::post('addproductorder','OrderController@Addproduct')->name('addproductorder');
     Route::any('/edit/editorder','OrderController@EditDetailOrder')->name('editorder');
+    Route::get('status/{id}','OrderController@Status')->name('status');
 
 });
 

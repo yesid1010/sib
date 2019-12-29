@@ -14,7 +14,8 @@
                 <th>Bar</th>
                 <th>Barman</th>
                 <th>Descripción</th>
-                <th>Fecha</th>
+                <th>Fecha Inicio</th>
+                <th>Estado</th>
                 <th>Detalles</th>
                 <th>Anular</th>
                 
@@ -27,6 +28,21 @@
                     <td>{{$order->nameU}}</td>
                     <td>{{$order->description}}</td>
                     <td>{{$order->created_at}}</td>
+                    <td class="text-center">
+                       @if($order->status == 1) 
+                            <form action="{{route('status',$order->id)}}" method="get">
+                                @csrf
+                                <button class= "btn btn-info" type="submit">
+                                    Abierto
+                                </button>
+                            </form>
+                        @else 
+                            <button title="Cerrado" class= "btn btn-secondary" disabled type="submit">
+                                Cerrado
+                            </button>
+                        @endif
+
+                    </td>
                     <td class="text-center">
 
                         <form action="{{route('ordendetail')}}" method="get">

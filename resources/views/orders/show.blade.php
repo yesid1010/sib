@@ -1,10 +1,12 @@
 @extends('index')
 @section('content')
 <div class="card-header text-center ">     
-    <h3 class="float-left text-center"> {{$order->nameP}}</h3> 
-    <button class="btn btn-primary float-right mt-1" data-id = "{{$order->id}}"type="button" data-toggle="modal" data-target="#abrirmodalaAddProductOrder">
-        <i class="fa fa-plus "></i>&nbsp;&nbsp; Agregar Producto
-    </button>
+<h3 class="float-left text-center"> {{$order->nameP}} - {{$order->created_at}}</h3> 
+    @if($order->status == 1)
+        <button class="btn btn-primary float-right mt-1" data-id = "{{$order->id}}"type="button" data-toggle="modal" data-target="#abrirmodalaAddProductOrder">
+            <i class="fa fa-plus "></i>&nbsp;&nbsp; Agregar Producto
+        </button>
+    @endif
 </div>
 <br>
 <table width="10%" class="table px-5" id="detallestock" >
@@ -12,8 +14,10 @@
         <tr>
             <td class="text-center">Producto</td>
             <td class="text-center">Cantidad</td>
-            <td class="text-center">Editar</td>
-            <td class="text-center">Eliminar</td>
+            @if($order->status == 1)
+                <td class="text-center">Editar</td>
+                <td class="text-center">Eliminar</td>
+            @endif
         </tr>
     </thead>
     <tbody>
@@ -21,25 +25,27 @@
             <tr>
                 <td  width="25%">{{$detalle->product_name}}</td>
                 <td width = "25%" class="text-center">{{$detalle->unity}}</td>
-                <td width = "5%" class="text-center">
-                    <button class="btn btn-primary" type="button"
-                            data-target="#abrirmodalEditDetailOrder"
-                            data-toggle="modal" 
-                            title="Editar"
-                            data-id="{{$detalle->id}}"
-                            data-unity="{{$detalle->unity}}">
-                            <i class="fa fa-pencil "></i> 
-                    </button>          
-                </td>
-                <td width="5%" class="text-center">
-                    <form action="{{route('orders.destroy',$detalle->id)}}" method="post">
-                        @method('DELETE')
-                        @csrf
-                        <button class="btn btn-danger" type="submit">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                        </button>
-                    </form>
-                </td>
+                @if($order->status == 1)
+                    <td width = "5%" class="text-center">
+                        <button class="btn btn-primary" type="button"
+                                data-target="#abrirmodalEditDetailOrder"
+                                data-toggle="modal" 
+                                title="Editar"
+                                data-id="{{$detalle->id}}"
+                                data-unity="{{$detalle->unity}}">
+                                <i class="fa fa-pencil "></i> 
+                        </button>          
+                    </td>
+                    <td width="5%" class="text-center">
+                        <form action="{{route('orders.destroy',$detalle->id)}}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <button class="btn btn-danger" type="submit">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </td>
+                @endif
             </tr>
         @endforeach
     </tbody>

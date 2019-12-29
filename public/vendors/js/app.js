@@ -84,10 +84,11 @@ $(function () {
     // TABLAS ORDENES //
     $('#tablaOrden').DataTable({
         "lengthChange"   : false,
-        "scrollY"        : "250px",
+        "scrollY"        : "350px",
         "info"           : false,
         "scrollCollapse" : true,
-        "autoWidth"      : false
+        "autoWidth"      : false,
+        "ordering": false
     });
 
 
