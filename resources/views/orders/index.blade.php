@@ -57,7 +57,7 @@
                         {{-- <form action="{{route('stocks.destroy',$stock->id)}}" method="post">
                             @method('DELETE')
                             @csrf --}}
-                            <button class="btn btn-danger" type="submit">
+                            <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#abrirmodalEliminar">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         {{-- </form> --}}

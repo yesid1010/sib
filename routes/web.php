@@ -16,9 +16,10 @@ Route::group(['middleware' => 'admin'], function () {
     // rutas de productos
     Route::resource('products', 'ProductController');
     Route::any('/add/product','ProductController@AddProduct')->name('addproduct');
-    
+    Route::post('deleted','ProductController@destroy')->name('destroys');
     // rutas de categorías
     Route::resource('categories', 'CategoryController');
+    Route::post('deletedcategories','CategoryController@destroy')->name('destroycategories');
     // rutas de bares
     Route::resource('pubs', 'PubController');
     // rutas de stock

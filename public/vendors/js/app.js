@@ -3,7 +3,8 @@ $(function () {
     //tabla categorias
     $("#tablaCategorias").DataTable({
         "info"          : false,
-        "lengthChange"  : false
+        "lengthChange"  : false,
+        "ordering": false
     });
 
     //tabla productos
@@ -11,13 +12,15 @@ $(function () {
         "scrollY"       : "250px",
         "scrollCollapse": true,
         "info"          : false,
-        "lengthChange"  : false
+        "lengthChange"  : false,
+        "ordering": false
     });
 
     //tabla bares
     $("#tablaBares").DataTable({
         "info"          : false,
-        "lengthChange"  : false
+        "lengthChange"  : false,
+        "ordering": false
     });
 
     //tabla de roles

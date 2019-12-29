@@ -33,13 +33,13 @@ class CategoryController extends Controller
         $category->name        = $request->input('name');
         $category->description = $request->input('description');
         $category->save();
-        return Redirect::to('categories');
+        return back();
     }
 
-    public function destroy( $id )
+    public function destroy(Request $request )
     {
-        $category =  Category::findOrFail($id);
+        $category =  Category::findOrFail($request->id);
         $category->delete();
-        return Redirect::to('categories');
+        return back();
     }
 }

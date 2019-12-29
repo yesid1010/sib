@@ -162,3 +162,25 @@ $('#abrirmodalEditDetailOrder').on('show.bs.modal',function(event){
     modal.find('.modal-body #unity').val(unity)
 
 })
+
+
+// pruebas de modales
+
+// evento para traer el id de un stock ideal para agregarle un producto
+$('#abrirmodalEliminarProducto').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var id = button.data('id')
+
+    var modal = $(this)
+    modal.find('.modal-body #id').val(id);
+
+})
+
+$('#abrirmodalEliminarCategoria').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var id = button.data('id')
+
+    var modal = $(this)
+    modal.find('.modal-body #id').val(id);
+
+})

@@ -20,7 +20,7 @@ class ProductController extends Controller
     {
         //
         $categories = Category::all();
-        $products   = Product::all();
+        $products   = Product::orderBy('id','desc')->get();
 
         return view('products.index',['products'=>$products,'categories'=>$categories]);
     }
@@ -60,12 +60,12 @@ class ProductController extends Controller
 
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
-        $product =  Product::findOrFail($id);
+        $product =  Product::findOrFail($request->id);
         $product->delete();
-        return Redirect::to('products');
+
+        return back();
     }
 
     public function AddProduct(Request $request){
