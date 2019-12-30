@@ -47,6 +47,10 @@ Route::group(['middleware' => ['superadmin']], function () {
     Route::post('/users/password','UserController@addPassword')->name('password');
 
     Route::get('statususers/{id}','UserController@State')->name('statuser');
+
+
+    Route::post('deletedrole','RoleController@destroy')->name('destroyrole');
+
 });
 
 Route::post('/users/updatepass','UserController@updatePassword')->name('updatepass');

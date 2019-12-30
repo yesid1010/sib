@@ -133,25 +133,18 @@ class OrderController extends Controller
     // editar la cantidad de un producto de cierta orden
     public function EditDetailOrder(Request $request){
         $order_product = Order_Product::findOrFail($request->id);
-        $order_product->order_id =  $order_product->order_id;
-        $order_product->product_id =  $order_product->product_id;
         $order_product->cant_unity =  $request->input('cantProduct');
 
         $order_product->save();
-
         return back();
     }
 
     // cambiar de estado
     public function Status($id){
-        $order = Order::findOrFail($id);
-        $order->user_id     = $order->user_id ;
-        $order->pub_id      = $order->pub_id;
-        $order->description = $order->description;
-        $order->status      = '0';
-
+        $order          = Order::findOrFail($id);
+        $order->status  = '0';
+        
         $order->save();
-
-        return back();
+        return $order;
     }
 }

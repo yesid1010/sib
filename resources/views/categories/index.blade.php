@@ -30,9 +30,11 @@
                         </button>
                     </td>
                     <td class="text-center">
-                    <button class="btn btn-danger" data-id="{{$category->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarCategoria">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                        </button>
+                        @if(count($category->products)==0)
+                            <button class="btn btn-danger" data-id="{{$category->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarCategoria">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        @endif
                     </td>
                 </tr>
             @endforeach
@@ -97,9 +99,9 @@
 
 <!--Inicio del modal de eliminar-->
     <div class="modal fade" id="abrirmodalEliminarCategoria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-warning " role="document">
+        <div class="modal-dialog modal-primary " role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-primary">
                     <h4 class="modal-title">¿ Está seguro de realizar esta acción?</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>

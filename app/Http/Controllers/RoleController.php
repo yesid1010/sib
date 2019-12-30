@@ -40,9 +40,9 @@ class RoleController extends Controller
         return Redirect::to('roles');
     }
 
-    public function destroy( $id )
+    public function destroy( Request $request  )
     {
-        $role =  Role::findOrFail($id);
+        $role =  Role::findOrFail($request->id);
         $role->delete();
         return Redirect::to('roles');
     }

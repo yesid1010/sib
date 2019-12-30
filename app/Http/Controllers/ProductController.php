@@ -71,13 +71,10 @@ class ProductController extends Controller
     public function AddProduct(Request $request){
 
         $product                 = Product::findOrFail($request->id);
-        $product->name           = $product->name;
         $product->unity          = $request->input('unity') + $product->unity;
         // $product->three_quarters = $product->three_quarters;
         // $product->half           = $product->half;
         // $product->quater         = $product->quater;
-        $product->category_id    = $product->category_id;
-
         $product->save();
 
         return redirect('products');
