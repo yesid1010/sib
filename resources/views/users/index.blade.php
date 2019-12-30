@@ -30,7 +30,21 @@
                     <td>{{$user->names}}</td>
                     <td>{{$user->surnames}}</td>
                     <td> 
-                        <button class="btn btn-primary">{{$user->status}}</button>
+                        @if($user->status == 'ENABLED') 
+                            <form action="{{route('statuser',$user->id)}}" method="get">
+                                @csrf
+                                <button class= "btn btn-info" type="submit">
+                                    Habilitado
+                                </button>
+                            </form>
+                         @else 
+                            <form action="{{route('statuser',$user->id)}}" method="get">
+                                @csrf
+                                <button class= "btn btn-secondary" type="submit">
+                                    Deshabilitado
+                                </button>
+                            </form>
+                        @endif
                     </td>
                     <td class="text-center">
                         <button class="btn btn-primary editar" type="button"
@@ -47,13 +61,15 @@
                         </button>
                     </td>
                     <td class="text-center">
-                        <form action="{{route('users.destroy',$user->id)}}" method="post">
-                                @method('DELETE')
-                                @csrf
-                                <button class="btn btn-danger" type="submit">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                </button>
-                        </form>
+                        @if(count($user->orders)== 0)
+                            <form action="{{route('users.destroy',$user->id)}}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn btn-danger" type="submit">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </button>
+                            </form>
+                        @endif
                     </td>
                     <td class="text-center">
                         @if($user->password=='' && $user->role_id != 3)

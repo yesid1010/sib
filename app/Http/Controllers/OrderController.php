@@ -33,7 +33,11 @@ class OrderController extends Controller
 
         $products = Product::all()->where('unity','>',0);
         $pubs     = Pub::all();
-        $users    = User::all()->where('role_id',3);
+        $users    = User::where([
+                                  ['role_id','=','3'],
+                                  ['status','=','ENABLED'],
+                                ])->get();
+
         return view('orders.index',['orders'    => $orders,
                                     'products'  => $products,
                                     'pubs'      => $pubs,

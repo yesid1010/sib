@@ -22,7 +22,7 @@ class UserController extends Controller
     //mostrar todos los usuarios
     public function index(){
         $roles = Role::all();
-        $users = User::all();
+        $users = User::all()->where('role_id','!=','1');
         return view('users.index',['users'=>$users,'roles'=>$roles]);
     }
     
@@ -110,5 +110,23 @@ class UserController extends Controller
         else{
                 return redirect('profile')->with('mensajeerror', 'Error al Cambiar contraseña!!');
         }
+    }
+
+
+    public function State($id){
+        $user = User::findOrFail($id);
+
+        if($user->status == 'ENABLED'){
+
+            $user->status = 'DISABLED';
+
+        }else{
+
+            $user->status = 'ENABLED';
+            
+        }
+        
+        $user->save();
+        return back();
     }
 }
