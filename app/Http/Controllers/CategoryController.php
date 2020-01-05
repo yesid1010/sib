@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\CategoryStoreRequest;
 use App\Category;
 
 class CategoryController extends Controller
@@ -12,11 +13,11 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('id','desc')->get();
         return view('categories.index',['categories'=>$categories]);
     }
 
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
         //
         $category              = new Category;
