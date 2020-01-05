@@ -84,7 +84,7 @@
                             data-target="#abrirmodalPassword"
                             data-id="{{$user->id}}"
                             >
-                            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                            <i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbspCrear
                         </button>
                         @else 
                             @if($user->role_id != 3  )
