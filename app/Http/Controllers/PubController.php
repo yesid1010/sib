@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+
+use App\Http\Requests\PubStoreRequest;
 use App\Pub;
 
 class PubController extends Controller
@@ -21,7 +23,7 @@ class PubController extends Controller
         return view('pubs.index',['pubs'=>$pubs]);
     }
 
-    public function store(Request $request)
+    public function store(PubStoreRequest $request)
     {
         //
         $pub              = new Pub();
@@ -47,9 +49,9 @@ class PubController extends Controller
         return Redirect::to('pubs');
     }
 
-    public function destroy( $id )
+    public function destroy( Request $request )
     {
-        $pub =  Pub::findOrFail($id);
+        $pub =  Pub::findOrFail($request->id);
         $pub->delete();
         return Redirect::to('pubs');
     }

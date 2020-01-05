@@ -22,6 +22,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('deletedcategories','CategoryController@destroy')->name('destroycategories')->middleware('password.confirm');
     // rutas de bares
     Route::resource('pubs', 'PubController');
+    Route::post('deletedpub','PubController@destroy')->name('destroypub')->middleware('password.confirm');
+
     // rutas de stock
     Route::resource('stocks', 'StockController');
     // detalles de stock ideales
