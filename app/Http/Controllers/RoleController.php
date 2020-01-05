@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\RolStoreRequest;
 use App\Role;
 class RoleController extends Controller
 {
@@ -20,7 +21,7 @@ class RoleController extends Controller
         return view('roles.index',['roles'=>$roles]);
     }
 
-    public function store(Request $request)
+    public function store(RolStoreRequest $request)
     {
         //
         $role              = new Role();

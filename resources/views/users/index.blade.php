@@ -7,6 +7,16 @@
             <i class="fa fa-plus "></i>&nbsp;&nbsp;Agregar Usuario
         </button>
     </div>
+    @if(count($errors))
+
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 
     <div class="card-body">
         <table id="tablaUsers" class="table table-bordered table-striped">

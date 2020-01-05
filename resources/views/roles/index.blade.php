@@ -6,7 +6,18 @@
             <i class="fa fa-plus "></i>&nbsp;&nbsp;Agregar Rol
         </button>
     </div>
+    {{-- manejo de errores de campos --}}
+    @if(count($errors))
 
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    {{-- fin manejo de errores de campos --}}
     <div class="card-body">
         <table id="tablaRols" class="table table-bordered table-striped">
             <thead class="bg-primary">

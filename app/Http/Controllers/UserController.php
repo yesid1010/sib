@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserStoreRequest;
 use App\Role;
 use App\User;
 
@@ -27,9 +28,11 @@ class UserController extends Controller
     }
     
     //agregar un usuario
-    public function store(Request $request){
+    public function store(UserStoreRequest $request){
 
         $user = new User();
+
+
         $user->identification = $request->input('identification');
         $user->names = $request->input('names');
         $user->surnames = $request->input('surnames');
