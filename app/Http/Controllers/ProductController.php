@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\ProductStoreRequest;
 use App\Product;
 use App\Category;
 class ProductController extends Controller
@@ -26,7 +27,7 @@ class ProductController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(ProductStoreRequest $request)
     {
         //
         $product = new Product();

@@ -73,15 +73,8 @@ class UserController extends Controller
     // agregar contraseña a un usuario por parte del superadmin
     public function addPassword(Request $request){
         $user                 = User::findOrFail($request->id);
-        $user->identification = $user->identification;
-        $user->names          = $user->names ;
-        $user->surnames       = $user->surnames;
-        $user->email          = $user->email;
-        $user->role_id         = $user->role_id;
         $user->password       = bcrypt($request->input('password'));
-
         $user->save();
-
         return redirect('users');
     }
 
@@ -93,25 +86,16 @@ class UserController extends Controller
 
     // actualizar la contraseña de un usuario autenticado
     public function updatePassword(Request $request){
-    
         $user  = Auth::user();
         $oldpassword = $request->input('oldpassword');
-        
-        if (Hash::check($oldpassword,$user->password))
-            {
-                $user->identification = $user->identification;
-                $user->names          = $user->names ;
-                $user->surnames       = $user->surnames;
-                $user->email          = $user->email;
-                $user->role_id        = $user->role_id;
-                $user->password       = bcrypt($request->input('newpassword'));
-    
-                $user->save();
-    
-                return redirect('profile')->with('mensajeok', 'Contraseña Actualiza con exito!!!');
-            }
+
+        if (Hash::check($oldpassword,$user->password)){
+            $user->password = bcrypt($request->input('newpassword'));
+            $user->save();
+            return redirect('profile')->with('mensajeok', 'Contraseña Actualiza con exito!!!');
+        }
         else{
-                return redirect('profile')->with('mensajeerror', 'Error al Cambiar contraseña!!');
+            return redirect('profile')->with('mensajeerror', 'Error al Cambiar contraseña!!');
         }
     }
 
