@@ -29,6 +29,7 @@ class StockController extends Controller
                             'stocks.description as description',
                             'stocks.id as id',
                             'stocks.pub_id as pub_id')
+                    ->orderBy('id', 'desc')
                     ->get();
         
         $products = Product::all();

@@ -26,20 +26,23 @@ $(function () {
     //tabla de roles
     $("#tablaRols").DataTable({
         "info"          : false,
-        "lengthChange"  : false
+        "lengthChange"  : false,
+        "ordering": false
     });
 
     //tabla de usuarios
     $("#tablaUsers").DataTable({
         "info"          : false,
-        "lengthChange"  : false
+        "lengthChange"  : false,
+        "ordering": false
     });
 
 // TABLAS STOCK //
     // tabla de todos los stocks ideales
     $("#tablaStocks").DataTable({
         "info"          : false,
-        "lengthChange"  : false
+        "lengthChange"  : false,
+        "ordering": false
     });
 
     // tabla para mostrar un stock ideal de un bar en especifico
@@ -49,13 +52,15 @@ $(function () {
         "info"           : false,
         "searching"      : false,
         "scrollCollapse" : true,
-        "autoWidth"      : false
+        "autoWidth"      : false,
+        "ordering": false
     });
 
     // tabla para ingresar los detalles de un stock ideal de un bar
     tabla = $('#tablastock').DataTable({
         "info"          : false,
-        "lengthChange"  : false
+        "lengthChange"  : false,
+        "ordering": false
     });
 
     $('#btnguardar').hide()
@@ -102,13 +107,15 @@ $(function () {
         "info"           : false,
         "searching"      : false,
         "scrollCollapse" : true,
-        "autoWidth"      : false
+        "autoWidth"      : false,
+        "ordering": false
     });
 
     // tabla para ingresar los detalles de un stock ideal de un bar
     tablaorders = $('#tablaorders').DataTable({
         "info"          : false,
-        "lengthChange"  : false
+        "lengthChange"  : false,
+        "ordering": false
     });
 
     $('#btnguardarorden').hide()

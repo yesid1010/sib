@@ -42,14 +42,14 @@ Route::group(['middleware' => 'admin'], function () {
 Route::group(['middleware' => ['superadmin']], function () {
     // rutas de roles
     Route::resource('roles', 'RoleController');
-    Route::post('deletedrole','RoleController@destroy')->name('destroyrole');
+    Route::post('deletedrole','RoleController@destroy')->name('destroyrole')->middleware('password.confirm');
     // rutas de usuario
     Route::resource('users', 'UserController');
     Route::post('/users/password','UserController@addPassword')->name('password');
 
     Route::get('statususers/{id}','UserController@State')->name('statuser');
 
-    Route::post('deleteduser','UserController@destroy')->name('destroyuser');
+    Route::post('deleteduser','UserController@destroy')->name('destroyuser')->middleware('password.confirm');
 
 
 });

@@ -23,7 +23,7 @@ class UserController extends Controller
     //mostrar todos los usuarios
     public function index(){
         $roles = Role::all();
-        $users = User::all()->where('role_id','!=','1');
+        $users = User::where('role_id','!=','1')->orderBy('id','desc')->get();
         return view('users.index',['users'=>$users,'roles'=>$roles]);
     }
     

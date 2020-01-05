@@ -17,7 +17,7 @@ class PubController extends Controller
     
     public function index()
     {
-        $pubs = Pub::all();
+        $pubs = Pub::orderBy('id','desc')->get();
         return view('pubs.index',['pubs'=>$pubs]);
     }
 
