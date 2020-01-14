@@ -90,6 +90,24 @@ $('#abrirmodalEditarUser').on('show.bs.modal',function(event){
     modal.find('.modal-body #password').val('');
 })
 
+
+// evento para agregar editar una orden
+$('#abrirmodalEditarOrden').on('show.bs.modal',function(event){
+    var button                       = $(event.relatedTarget)
+    var description_modal_editar            = button.data('description')
+    var pub_id_modal_editar     = button.data('pub_id')
+    var user_id_modal_editar         = button.data('user_id')
+    var id                           = button.data('id')
+
+    var modal = $(this)
+
+    modal.find('.modal-body #description').val(description_modal_editar);
+    modal.find('.modal-body #pub_id').val(pub_id_modal_editar);
+    modal.find('.modal-body #user_id').val(user_id_modal_editar);
+    modal.find('.modal-body #id').val(id);
+
+})
+
 // evento para traer el id de un usuario para crearle una contraseña
 $('#abrirmodalPassword').on('show.bs.modal',function(event){
     var button = $(event.relatedTarget)

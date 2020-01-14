@@ -1,5 +1,5 @@
 <div class="form-group row">
-        <label class="col-md-5 form-control-label" for="unity">Contraseña Antigua: </label>
+        <label class="col-md-5 form-control-label" for="unity">Contraseña Actual: </label>
         <div class="col-md-7">
             <input type="password" name="oldpassword" id="oldpassword" required class="form-control" >    
         </div>

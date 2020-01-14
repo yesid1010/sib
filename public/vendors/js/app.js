@@ -92,7 +92,7 @@ $(function () {
     // TABLAS ORDENES //
     $('#tablaOrden').DataTable({
         "lengthChange"   : false,
-        "scrollY"        : "350px",
+        "scrollY"        : "250px",
         "info"           : false,
         "scrollCollapse" : true,
         "autoWidth"      : false,
@@ -107,7 +107,7 @@ $(function () {
         "info"           : false,
         "searching"      : false,
         "scrollCollapse" : true,
-        "autoWidth"      : false,
+        
         "ordering": false
     });
 

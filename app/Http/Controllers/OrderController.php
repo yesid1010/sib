@@ -22,8 +22,8 @@ class OrderController extends Controller
         $orders   = DB::table('orders')
                     ->join('users','users.id','=','orders.user_id')
                     ->join('pubs','pubs.id','=','orders.pub_id')
-                    ->select('users.names as nameU',
-                             'pubs.name as nameP',
+                    ->select('users.id as user_id','users.names as nameU',
+                             'pubs.id as pub_id','pubs.name as nameP',
                              'orders.id as id',
                              'orders.description as description',
                              'orders.status as status',
@@ -145,6 +145,19 @@ class OrderController extends Controller
         $order->status  = '0';
         
         $order->save();
-        return $order;
+        return back();
+    }
+
+    public function update(Request $request)
+    {
+        //
+        $order              =  Order::findOrFail($request->id);
+        $order->user_id     = $request->input('user_id');
+        $order->pub_id     = $request->input('pub_id');
+        $order->description = $request->input('description');
+
+        
+        $order->save();
+        return back();
     }
 }

@@ -9,7 +9,7 @@
     @endif
 </div>
 <br>
-<table width="10%" class="table px-5" id="detallestock" >
+<table class="table px-5" id="detalleorden" >
     <thead class=" bg-primary">
         <tr>
             <td class="text-center">Producto</td>
@@ -23,10 +23,10 @@
     <tbody>
         @foreach ($detalles as $detalle)
             <tr>
-                <td  width="25%">{{$detalle->product_name}}</td>
-                <td width = "25%" class="text-center">{{$detalle->unity}}</td>
+                <td class="text-center" >{{$detalle->product_name}}</td>
+                <td class="text-center">{{$detalle->unity}}</td>
                 @if($order->status == 1)
-                    <td width = "5%" class="text-center">
+                    <td class="text-center">
                         <button class="btn btn-primary" type="button"
                                 data-target="#abrirmodalEditDetailOrder"
                                 data-toggle="modal" 

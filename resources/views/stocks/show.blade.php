@@ -7,7 +7,7 @@
     </button>
 </div>
 <br>
-<table width="10%" class="table px-5" id="detallestock" >
+<table class="table px-5" id="detallestock" >
     <thead class=" bg-primary">
         <tr>
             <td class="text-center">Producto</td>
@@ -19,9 +19,9 @@
     <tbody>
         @foreach ($detalles as $detalle)
             <tr>
-                <td  width="25%">{{$detalle->name}}</td>
-                <td width = "25%" class="text-center">{{$detalle->quantity}}</td>
-                <td width = "5%" class="text-center">
+                <td  >{{$detalle->name}}</td>
+                <td  class="text-center">{{$detalle->quantity}}</td>
+                <td  class="text-center">
                     <button class="btn btn-primary" type="button"
                             data-target="#abrirmodalEditDetail"
                             data-toggle="modal" 

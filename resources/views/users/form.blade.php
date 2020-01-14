@@ -1,7 +1,7 @@
 <div class="form-group row">
     <label class="col-md-4 form-control-label" for="unity">Identificación : </label>
     <div class="col-md-8">
-        <input type="text" name="identification" id="identification" required class="form-control" >    
+        <input type="number" name="identification" id="identification" required class="form-control" >    
     </div>
 </div>
 <div class="form-group row">
