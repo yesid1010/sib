@@ -73,6 +73,7 @@
                 <div class="modal-body">
                     <form action="{{route('editorder')}}" method="post" class="form-horizontal">
                         {{csrf_field()}}
+                        
                         @include('orders.EditCantDetail')
                     </form>
                 </div>

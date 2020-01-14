@@ -1,4 +1,5 @@
 <input type="hidden" name="id" id="id" value="">
+<input type="hidden" name="id_an" id="id_an" value="">
 <div class="form-group row">
     <label class="col-md-3 form-control-label" for="unity">Cantidad</label>
     <div class="col-md-3">

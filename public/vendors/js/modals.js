@@ -176,8 +176,9 @@ $('#abrirmodalEditDetailOrder').on('show.bs.modal',function(event){
     var id = button.data('id')
     var unity = button.data('unity')
     var modal = $(this)
-    modal.find('.modal-body #id').val(id);
+    modal.find('.modal-body #id').val(id)
     modal.find('.modal-body #unity').val(unity)
+    modal.find('.modal-body #id_an').val(unity)
 
 })
 

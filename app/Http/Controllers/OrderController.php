@@ -113,6 +113,12 @@ class OrderController extends Controller
     // eliminar un producto de una orden 
     public function destroy($id){
         $order_product = Order_product::findOrFail($id);
+        
+        $product = Product::findOrFail($order_product->product_id);
+
+        $product->unity = $product->unity + $order_product->cant_unity;
+
+        $product->save();
         $order_product->delete();
 
         return back();
@@ -133,9 +139,23 @@ class OrderController extends Controller
     // editar la cantidad de un producto de cierta orden
     public function EditDetailOrder(Request $request){
         $order_product = Order_Product::findOrFail($request->id);
-        $order_product->cant_unity =  $request->input('cantProduct');
 
+        $cant_anterior = $request->id_an;
+        $cant_nueva    = $request->cantProduct;
+
+        $order_product->cant_unity =  $cant_nueva;
         $order_product->save();
+
+        $product = Product::findOrFail($order_product->product_id);
+
+        $stockAntiguo = $product->unity;
+
+        $stockNuevo = $stockAntiguo + $cant_anterior - $cant_nueva;
+
+        $product->unity = $stockNuevo;
+
+        $product->save();
+
         return back();
     }
 
@@ -161,14 +181,14 @@ class OrderController extends Controller
         return back();
     }
 
-
+    // generar pdf de una orden 
     public function pdf($id){
         $order   = $this->getOrder($id);
         $user    = $this->getUser($id);
         $pub     = $this->getPub($id);
         $admin   = $this->getAdmin($id);
         $details = $this->getDetail($id);
-        
+
         $pdf = \PDF::setOptions([
             'logOutputFile' => storage_path('logs/log.htm'),
             'tempDir' => storage_path('logs/')
@@ -181,12 +201,13 @@ class OrderController extends Controller
         return $pdf->stream('orden'.$id.'.pdf');
     }
 
-
+    //Obtener una orden
     public function getOrder($id){
         $order =  Order::findOrFail($id);
         return $order;
     }
 
+    //Obtener el usuario barman que mandaron para una orden
     public function getUser($id){
         $user = DB::table('users')
                     ->join('orders','orders.user_id','=','users.id')
@@ -195,6 +216,7 @@ class OrderController extends Controller
         return $user;
     }
 
+    //Obtener el usuario admin que creó una orden
     public function getAdmin($id){
         $admin = DB::table('users')
                     ->join('orders','orders.idadmin','=','users.id')
@@ -203,6 +225,7 @@ class OrderController extends Controller
         return $admin;
     }
 
+    //Obtener el bar de una orden
     public function getPub($id){
         $pub = DB::table('pubs')
                     ->join('orders','orders.pub_id','=','pubs.id')
@@ -211,6 +234,7 @@ class OrderController extends Controller
         return $pub;
     }
 
+    //Obtener los detalles de una orden
     public function getDetail($id){
         $detalles = DB::table('orders')
                 ->join('order_product','order_product.order_id','=','orders.id')
