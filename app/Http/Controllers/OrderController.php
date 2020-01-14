@@ -6,6 +6,7 @@ use App\Product;
 use App\Pub;
 use App\User;
 use App\Order_Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -51,7 +52,7 @@ class OrderController extends Controller
         $order->user_id     = $request->input('user_id');
         $order->pub_id      = $request->input('pub_id');
         $order->description = $request->input('description');
-
+        $order->idadmin     = Auth::user()->id;
         $order->save();
 
         $cont = 0;
@@ -82,31 +83,30 @@ class OrderController extends Controller
 
     public function DetailOrden(Request $request){
 
-        $order   = DB::table('pubs')
-                    ->join('orders','orders.pub_id','=','pubs.id')
-                    ->join('users','users.id','=','orders.user_id')
-                    ->select('pubs.id as pub_id','pubs.name as nameP',
-                            'orders.description as description',
-                            'orders.id as id','orders.pub_id as pub_id',
-                            'users.id as user_id','users.names as user_name','users.identification as identification',
-                            'users.surnames as surnames',
-                            'orders.status as status','orders.created_at as created_at'
-                            )
-                    ->where('orders.id','=',$request->input('id'))
-                    ->first();
+        $order   = $this->getOrder($request->input('id'));
+        //$user    = $this->getUser($request->input('id'));
+        $pub     = $this->getPub($request->input('id'));
 
-        $detalles = DB::table('orders')
-                ->join('order_product','order_product.order_id','=','orders.id')
-                ->join('products','products.id','=','order_product.product_id')
-                ->select('products.id as product_id','products.name as product_name',
-                        'order_product.cant_unity as unity','order_product.id as id')
-                ->where('orders.id','=',$request->input('id'))
-                ->get();
+        // $order   = DB::table('pubs')
+        //             ->join('orders','orders.pub_id','=','pubs.id')
+        //             ->join('users','users.id','=','orders.user_id')
+        //             ->select('pubs.id as pub_id','pubs.name as nameP',
+        //                     'orders.description as description',
+        //                     'orders.id as id','orders.pub_id as pub_id',
+        //                     'users.id as user_id','users.names as user_name','users.identification as identification',
+        //                     'users.surnames as surnames',
+        //                     'orders.status as status','orders.created_at as created_at'
+        //                     )
+        //             ->where('orders.id','=',$request->input('id'))
+        //             ->first();
+
+        $detalles = $this->getDetail($request->input('id'));
         
         $products = Product::all();
         return view('orders.show',['order'=>$order,
                     'detalles'=>$detalles,
-                    'products'=>$products]);
+                    'products'=>$products,
+                    'pub'=>$pub]);
     }
 
 
@@ -159,5 +159,67 @@ class OrderController extends Controller
         
         $order->save();
         return back();
+    }
+
+
+    public function pdf($id){
+        $order   = $this->getOrder($id);
+        $user    = $this->getUser($id);
+        $pub     = $this->getPub($id);
+        $admin   = $this->getAdmin($id);
+        $details = $this->getDetail($id);
+        
+        $pdf = \PDF::setOptions([
+            'logOutputFile' => storage_path('logs/log.htm'),
+            'tempDir' => storage_path('logs/')
+            ])->loadView('pdf.orders',['order'=>$order,
+                                       'user'=>$user,
+                                       'pub'=>$pub,
+                                       'admin'=>$admin,
+                                       'details'=>$details
+                                       ]);
+        return $pdf->stream('orden'.$id.'.pdf');
+    }
+
+
+    public function getOrder($id){
+        $order =  Order::findOrFail($id);
+        return $order;
+    }
+
+    public function getUser($id){
+        $user = DB::table('users')
+                    ->join('orders','orders.user_id','=','users.id')
+                    ->where('orders.id','=',$id)
+                    ->first();
+        return $user;
+    }
+
+    public function getAdmin($id){
+        $admin = DB::table('users')
+                    ->join('orders','orders.idadmin','=','users.id')
+                    ->where('orders.id','=',$id)
+                    ->first();
+        return $admin;
+    }
+
+    public function getPub($id){
+        $pub = DB::table('pubs')
+                    ->join('orders','orders.pub_id','=','pubs.id')
+                    ->where('orders.id','=',$id)
+                    ->first();
+        return $pub;
+    }
+
+    public function getDetail($id){
+        $detalles = DB::table('orders')
+                ->join('order_product','order_product.order_id','=','orders.id')
+                ->join('products','products.id','=','order_product.product_id')
+                ->select('products.id as product_id','products.name as product_name',
+                        'order_product.cant_unity as unity','order_product.id as id')
+                ->where('orders.id','=',$id)
+                ->get();
+
+        return $detalles;
     }
 }

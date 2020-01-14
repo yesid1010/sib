@@ -39,6 +39,9 @@ Route::group(['middleware' => 'admin'], function () {
     Route::any('/edit/editorder','OrderController@EditDetailOrder')->name('editorder');
     Route::get('status/{id}','OrderController@Status')->name('status');
 
+
+    Route::get('pdf/{id}','OrderController@pdf')->name('pdf');
+
 });
 
 Route::group(['middleware' => ['superadmin']], function () {

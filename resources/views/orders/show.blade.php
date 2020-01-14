@@ -1,15 +1,21 @@
 @extends('index')
 @section('content')
 <div class="card-header text-center ">     
-<h3 class="float-left text-center"> {{$order->nameP}} - {{$order->created_at}}</h3> 
+<h3 class="float-left text-center"> {{$pub->name}} - {{$order->created_at}}</h3> 
     @if($order->status == 1)
         <button class="btn btn-primary float-right mt-1" data-id = "{{$order->id}}"type="button" data-toggle="modal" data-target="#abrirmodalaAddProductOrder">
             <i class="fa fa-plus "></i>&nbsp;&nbsp; Agregar Producto
         </button>
     @endif
 </div>
-<br>
-<table class="table px-5" id="detalleorden" >
+<div class="row">
+    <label class="form-control-label col-md-12 px-5 py-2">{{$order->description}}</label>
+</div>
+
+<hr>
+    
+
+<table class="table px-5 col-md-8" id="detalleorden" >
     <thead class=" bg-primary">
         <tr>
             <td class="text-center">Producto</td>

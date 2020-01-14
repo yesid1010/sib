@@ -13,11 +13,12 @@
             <tr>
                 <th>Bar</th>
                 <th>Barman</th>
-                <th>Descripción</th>
-                <th>Fecha Inicio</th>
+                
+                <th>Fecha </th>
                 <th>Estado</th>
                 <th>Detalles</th>
                 <th>Editar</th>
+                <th>imprimir</th>
                 
             </tr>
         </thead>
@@ -26,7 +27,7 @@
                 <tr>
                     <td>{{$order->nameP}}</td>
                     <td>{{$order->nameU}}</td>
-                    <td>{{$order->description}}</td>
+                   
                     <td>{{$order->created_at}}</td>
                     <td class="text-center">
                        @if($order->status == 1) 
@@ -54,20 +55,36 @@
                         </form>
                     </td>
                     <td class="text-center">
-                        {{-- <form action="{{route('stocks.destroy',$stock->id)}}" method="post">
-                            @method('DELETE')
-                            @csrf --}}
-                        <button class            ="btn btn-primary"
-                                type             ="button" 
-                                data-id          ="{{$order->id}}"
-                                data-user_id     ="{{$order->user_id}}"
-                                data-pub_id      ="{{$order->pub_id}}"
-                                data-description ="{{$order->description}}"
-                                data-toggle      ="modal" 
-                                data-target      ="#abrirmodalEditarOrden">
+                        @if($order->status == 1)
+                            <button class            ="btn btn-primary"
+                                    type             ="button" 
+                                    data-id          ="{{$order->id}}"
+                                    data-user_id     ="{{$order->user_id}}"
+                                    data-pub_id      ="{{$order->pub_id}}"
+                                    data-description ="{{$order->description}}"
+                                    data-toggle      ="modal" 
+                                    data-target      ="#abrirmodalEditarOrden">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+                        @else
+                            <button class="btn btn-secondary" disabled="disabled">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </button>
-                        {{-- </form> --}}
+                        @endif
+                    </td>
+                    <td class="text-center">
+                        @if($order->status == 0)  
+                        <form target="_blank" action="{{route('pdf',$order->id)}}" method="get">
+                            
+                            <button class= "btn btn-danger" type="submit">
+                                <i class="fa fa-print" aria-hidden="true"></i>
+                            </button> 
+                        </form>
+                      @else
+                        <button disabled class= "btn btn-secondary" type="submit">
+                            <i class="fa fa-print" aria-hidden="true"></i>
+                        </button> 
+                    @endif
                     </td>
                 </tr>
             @endforeach

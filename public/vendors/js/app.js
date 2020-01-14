@@ -107,7 +107,7 @@ $(function () {
         "info"           : false,
         "searching"      : false,
         "scrollCollapse" : true,
-        
+        "autoWidth"      : false,
         "ordering": false
     });
 

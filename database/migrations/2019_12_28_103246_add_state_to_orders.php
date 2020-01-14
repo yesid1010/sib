@@ -14,8 +14,9 @@ class AddStateToOrders extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->enum('status',['0','1'])->default('1')->after('description');
-            
+           
+            $table->unsignedBigInteger('idadmin')->after('status');
+
         });
     }
 
