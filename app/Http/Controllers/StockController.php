@@ -107,10 +107,6 @@ class StockController extends Controller
 
     // eliminar un stock ideal de cierto bar
     public function destroy(Request $request){
-        // $product_stock = Product_Stock::findOrFail($id);
-        // $product_stock->delete();
-
-        // return back();
 
         $stock = Stock::findOrFail($request->id);
         $stock->delete();
@@ -120,9 +116,9 @@ class StockController extends Controller
 
     
     // eliminar un producto de un stock ideal de cierto bar
-    public function destroypub(Request $request){
-        $stock = Stock::findOrFail($request->id);
-        $stock->delete();
+    public function destroyproduct(Request $request){
+        $product_stock = Product_Stock::findOrFail($request->id);
+        $product_stock->delete();
 
         return back();
     }
