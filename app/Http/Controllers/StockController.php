@@ -105,14 +105,27 @@ class StockController extends Controller
     }
 
 
-    // eliminar un producto de un stock ideal de cierto bar
-    public function destroy($id){
-        $product_stock = Product_Stock::findOrFail($id);
-        $product_stock->delete();
+    // eliminar un stock ideal de cierto bar
+    public function destroy(Request $request){
+        // $product_stock = Product_Stock::findOrFail($id);
+        // $product_stock->delete();
+
+        // return back();
+
+        $stock = Stock::findOrFail($request->id);
+        $stock->delete();
 
         return back();
     }
 
+    
+    // eliminar un producto de un stock ideal de cierto bar
+    public function destroypub(Request $request){
+        $stock = Stock::findOrFail($request->id);
+        $stock->delete();
+
+        return back();
+    }
     public function addproduct(Request $request){
         $product_stock = new Product_Stock();
         $product_stock->stock_id = $request->input('id');
@@ -120,6 +133,18 @@ class StockController extends Controller
         $product_stock->cant_unity = $request->input('quantity'); 
 
         $product_stock->save();
+        return back();
+    }
+
+    public function update(Request $request)
+    {
+        //
+        $stock              =  Stock::findOrFail($request->id);
+        $stock->pub_id      = $request->input('pub_id');
+        $stock->description = $request->input('description');
+
+        
+        $stock->save();
         return back();
     }
 }

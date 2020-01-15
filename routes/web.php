@@ -31,6 +31,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::any('/edit/editdetail','StockController@EditDetail')->name('editdetail');
     //  addproductstock
     Route::post('addproductstock','StockController@addproduct')->name('addproductst');
+    Route::post('deletedstock','StockController@destroy')->name('destroystock')->middleware('password.confirm');
 
     //ORDENES
     Route::resource('orders', 'OrderController');

@@ -91,19 +91,34 @@ $('#abrirmodalEditarUser').on('show.bs.modal',function(event){
 })
 
 
-// evento para agregar editar una orden
+// evento para  editar una orden
 $('#abrirmodalEditarOrden').on('show.bs.modal',function(event){
-    var button                       = $(event.relatedTarget)
-    var description_modal_editar            = button.data('description')
-    var pub_id_modal_editar     = button.data('pub_id')
-    var user_id_modal_editar         = button.data('user_id')
-    var id                           = button.data('id')
+    var button                   = $(event.relatedTarget)
+    var description_modal_editar = button.data('description')
+    var pub_id_modal_editar      = button.data('pub_id')
+    var user_id_modal_editar     = button.data('user_id')
+    var id                       = button.data('id')
 
     var modal = $(this)
 
     modal.find('.modal-body #description').val(description_modal_editar);
     modal.find('.modal-body #pub_id').val(pub_id_modal_editar);
     modal.find('.modal-body #user_id').val(user_id_modal_editar);
+    modal.find('.modal-body #id').val(id);
+
+})
+
+// evento para  editar un stock ideal
+$('#abrirmodalEditarStock').on('show.bs.modal',function(event){
+    var button                   = $(event.relatedTarget)
+    var description_modal_editar = button.data('description')
+    var pub_id_modal_editar      = button.data('pub_id')
+    var id                       = button.data('id')
+
+    var modal = $(this)
+
+    modal.find('.modal-body #description').val(description_modal_editar);
+    modal.find('.modal-body #pub_id').val(pub_id_modal_editar);
     modal.find('.modal-body #id').val(id);
 
 })
@@ -226,6 +241,15 @@ $('#abrirmodalEliminarUser').on('show.bs.modal',function(event){
 
 
 $('#abrirmodalEliminarPub').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var id = button.data('id')
+
+    var modal = $(this)
+    modal.find('.modal-body #id').val(id);
+
+})
+
+$('#abrirmodalEliminarStock').on('show.bs.modal',function(event){
     var button = $(event.relatedTarget)
     var id = button.data('id')
 
