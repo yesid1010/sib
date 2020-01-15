@@ -41,6 +41,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('addproductorder','OrderController@Addproduct')->name('addproductorder');
     Route::any('/edit/editorder','OrderController@EditDetailOrder')->name('editorder');
     Route::get('status/{id}','OrderController@Status')->name('status');
+    Route::post('deletedproductorder','OrderController@destroy')->name('destroyorderp')->middleware('password.confirm');
 
 
 

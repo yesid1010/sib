@@ -84,25 +84,11 @@ class OrderController extends Controller
     public function DetailOrden(Request $request){
 
         $order   = $this->getOrder($request->input('id'));
-        //$user    = $this->getUser($request->input('id'));
         $pub     = $this->getPub($request->input('id'));
-
-        // $order   = DB::table('pubs')
-        //             ->join('orders','orders.pub_id','=','pubs.id')
-        //             ->join('users','users.id','=','orders.user_id')
-        //             ->select('pubs.id as pub_id','pubs.name as nameP',
-        //                     'orders.description as description',
-        //                     'orders.id as id','orders.pub_id as pub_id',
-        //                     'users.id as user_id','users.names as user_name','users.identification as identification',
-        //                     'users.surnames as surnames',
-        //                     'orders.status as status','orders.created_at as created_at'
-        //                     )
-        //             ->where('orders.id','=',$request->input('id'))
-        //             ->first();
-
         $detalles = $this->getDetail($request->input('id'));
         
         $products = Product::all();
+
         return view('orders.show',['order'=>$order,
                     'detalles'=>$detalles,
                     'products'=>$products,
@@ -111,14 +97,15 @@ class OrderController extends Controller
 
 
     // eliminar un producto de una orden 
-    public function destroy($id){
-        $order_product = Order_product::findOrFail($id);
+    public function destroy(Request $request){
+        $order_product = Order_product::findOrFail($request->id);
         
         $product = Product::findOrFail($order_product->product_id);
 
         $product->unity = $product->unity + $order_product->cant_unity;
 
         $product->save();
+        
         $order_product->delete();
 
         return back();
