@@ -23,6 +23,7 @@ Route::group(['middleware' => 'admin'], function () {
     // rutas de bares
     Route::resource('pubs', 'PubController');
     Route::post('deletedpub','PubController@destroy')->name('destroypub')->middleware('password.confirm');
+    Route::get('orderspubs','PubController@OrderPub')->name('orderspub');
 
     // rutas de stock
     Route::resource('stocks', 'StockController');

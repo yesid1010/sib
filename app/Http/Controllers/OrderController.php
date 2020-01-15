@@ -249,8 +249,6 @@ class OrderController extends Controller
 
     public function OrderBarman(Request $request){
         $user = User::findOrFail($request->id);
-        //$orders = $user->orders;
-
         $orders   = DB::table('orders')
         ->join('users','users.id','=','orders.user_id')
         ->join('pubs','pubs.id','=','orders.pub_id')

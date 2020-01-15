@@ -25,6 +25,7 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Descripcion</th>
+                    <th>Historial</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -34,6 +35,15 @@
                     <tr>
                         <td>{{$pub->name}}</td>
                         <td>{{$pub->description}}</td>
+                        <td class="text-center"> 
+                            <form action="{{route('orderspub')}}" method="get">
+                                @csrf
+                                <input type="hidden" value="{{$pub->id}}" name="id">
+                                <button class= "btn btn-success" type="submit">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Ver
+                                </button> 
+                            </form>
+                        </td>
                         <td class="text-center"><button class="btn btn-primary" type="button"                                             
                                     data-toggle="modal" 
                                     data-target="#abrirmodalEditarBar"
