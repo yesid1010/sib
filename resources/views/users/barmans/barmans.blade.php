@@ -34,9 +34,13 @@
                     <td>{{$user->names}}</td>
                     <td>{{$user->surnames}}</td>
                     <td class="text-center"> 
-                        <button class="btn btn-primary">
-                            <i class="fa fa-pencil" aria-hidden="true"></i> &nbsp;Ver
-                        </button>
+                        <form action="{{route('ordersbarman')}}" method="get">
+                            @csrf
+                            <input type="hidden" value="{{$user->id}}" name="id">
+                            <button class= "btn btn-success" type="submit">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Ver
+                            </button> 
+                        </form>
                     </td>
                 </tr>
             @endforeach

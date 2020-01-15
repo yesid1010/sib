@@ -120,6 +120,6 @@ class UserController extends Controller
     public function barmans(){
         $roles = Role::all();
         $users = User::where('role_id','=','3')->orderBy('id','desc')->get();
-        return view('users.barmans',['users'=>$users,'roles'=>$roles]);
+        return view('users.barmans.barmans',['users'=>$users,'roles'=>$roles]);
     }
 }

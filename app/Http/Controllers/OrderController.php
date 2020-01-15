@@ -246,4 +246,24 @@ class OrderController extends Controller
 
         return $detalles;
     }
+
+    public function OrderBarman(Request $request){
+        $user = User::findOrFail($request->id);
+        //$orders = $user->orders;
+
+        $orders   = DB::table('orders')
+        ->join('users','users.id','=','orders.user_id')
+        ->join('pubs','pubs.id','=','orders.pub_id')
+        ->select('users.id as user_id','users.names as nameU',
+                 'pubs.name as nameP',
+                 'orders.id as id',
+                 'orders.description as description',
+                 'orders.status as status',
+                 'orders.created_at as created_at')
+        ->orderBy('id', 'desc')
+        ->where('user_id','=',$user->id)
+        ->get();
+        
+        return view('users.barmans.orders',['orders'=>$orders]);
+    }
 }

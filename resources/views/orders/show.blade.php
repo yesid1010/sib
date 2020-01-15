@@ -15,7 +15,7 @@
 <hr>
     
 
-<table class="table px-5 col-md-8" id="detalleorden" >
+<table class="table px-5 col-md-8  table-striped" id="detalleorden" >
     <thead class=" bg-primary">
         <tr>
             <td class="text-center">Producto</td>
