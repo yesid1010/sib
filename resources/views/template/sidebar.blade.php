@@ -55,6 +55,13 @@
                 {{csrf_field()}} 
                 </form>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('usersb')}}" onclick="event.preventDefault(); document.getElementById('users-form').submit();"><i class="fa fa-user"></i> Usuarios</a>
+                
+                <form id="users-form" action="{{url('usersb')}}" method="GET" style="display: none;">
+                {{csrf_field()}} 
+                </form>
+            </li>
                 
         @else
             <li class="nav-item">

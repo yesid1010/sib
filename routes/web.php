@@ -44,6 +44,8 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('pdf/{id}','OrderController@pdf')->name('pdf');
 
+    Route::get('usersb','UserController@barmans')->name('usersb');
+
 });
 
 Route::group(['middleware' => ['superadmin']], function () {
