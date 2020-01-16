@@ -6,7 +6,14 @@
         <i class="fa fa-plus "></i>&nbsp;&nbsp;Agregar Stock Ideal
     </button>
 </div>
-
+@if (session('mensajestock'))
+<div class="alert alert-success">
+    {{ session('mensajestock') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
 <div class="card-body">
     <table id="tablaStocks" class="table table-bordered table-striped">
         <thead class="bg-primary">

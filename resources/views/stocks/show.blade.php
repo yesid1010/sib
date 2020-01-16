@@ -6,6 +6,14 @@
         <i class="fa fa-plus "></i>&nbsp;&nbsp; Agregar Producto
     </button>
 </div>
+@if (session('mensajestock'))
+<div class="alert alert-success">
+    {{ session('mensajestock') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
 <br>
 <table class="table px-5" id="detallestock" >
     <thead class=" bg-primary">

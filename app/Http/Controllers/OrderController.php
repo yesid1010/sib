@@ -78,7 +78,7 @@ class OrderController extends Controller
 
         }
 
-        return redirect('orders');
+        return back()->with('mensajesorder','!! Orden Agregada con exito!!');
     }
 
     public function DetailOrden(Request $request){
@@ -108,7 +108,7 @@ class OrderController extends Controller
         
         $order_product->delete();
 
-        return back();
+        return back()->with('mensajesorder','!! Producto eliminado con exito!!');
     }
 
 
@@ -119,7 +119,7 @@ class OrderController extends Controller
         $order_product->cant_unity = $request->input('quantity'); 
 
         $order_product->save();
-        return back();
+        return back()->with('mensajesorder','!! producto Agregado con exito!!');
     }
 
 
@@ -143,7 +143,7 @@ class OrderController extends Controller
 
         $product->save();
 
-        return back();
+        return back()->with('mensajesorder','!! Cantidad actualizada con exito!!');
     }
 
     // cambiar de estado
@@ -152,7 +152,7 @@ class OrderController extends Controller
         $order->status  = '0';
         
         $order->save();
-        return back();
+        return back()->with('mensajesorder','!! Estado Actualizado con exito!!');
     }
 
     public function update(Request $request)
@@ -165,7 +165,7 @@ class OrderController extends Controller
 
         
         $order->save();
-        return back();
+        return back()->with('mensajesorder','!! Orden actualizada con exito!!');
     }
 
     // generar pdf de una orden 

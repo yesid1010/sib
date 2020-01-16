@@ -24,7 +24,7 @@ class CategoryController extends Controller
         $category->name        = $request->input('name');
         $category->description = $request->input('description');
         $category->save();
-        return Redirect::to('categories');
+        return back()->with('mensajecat','!! categoría agregada con exito!!');
     }
 
     public function update(Request $request)
@@ -34,13 +34,13 @@ class CategoryController extends Controller
         $category->name        = $request->input('name');
         $category->description = $request->input('description');
         $category->save();
-        return back();
+        return back()->with('mensajecat','!! categoría Actualizada con exito!!');
     }
 
     public function destroy(Request $request )
     {
         $category =  Category::findOrFail($request->id);
         $category->delete();
-        return back();
+        return back()->with('mensajecat','!! categoría eliminada con exito!!');
     }
 }

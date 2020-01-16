@@ -30,7 +30,7 @@ class PubController extends Controller
         $pub->name        = $request->input('name');
         $pub->description = $request->input('description');
         $pub->save();
-        return Redirect::to('pubs');
+        return back()->with('mensajepub','!! Bar agregado con exito!!');
     }
 
 
@@ -46,14 +46,14 @@ class PubController extends Controller
         $pub->name        = $request->input('name');
         $pub->description = $request->input('description');
         $pub->save();
-        return Redirect::to('pubs');
+        return back()->with('mensajepub','!! Bar actualizado con exito!!');
     }
 
     public function destroy( Request $request )
     {
         $pub =  Pub::findOrFail($request->id);
         $pub->delete();
-        return Redirect::to('pubs');
+        return back()->with('mensajepub','!! Bar Eliminado con exito!!');
     }
 
     public function OrderPub(Request $request){

@@ -27,5 +27,12 @@ bottom:0px;
 height:30px;
 width:100%;
 ">@yield('footer')</footer>
+
+<script type="text/php">
+    if (isset($pdf)){
+        $font = Font_Metrics::get_font("Arial", "bold");
+        $pdf->page_text(765, 550, "Pagina {PAGE_NUM} de {PAGE_COUNT}", $font, 9, array(0, 0, 0));
+    }
+</script>
 </body>
 </html>

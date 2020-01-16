@@ -6,6 +6,14 @@
             <i class="fa fa-plus "></i>&nbsp;&nbsp;Agregar Producto
         </button>
     </div>
+    @if (session('mensajepro'))
+        <div class="alert alert-success">
+            {{ session('mensajepro') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     {{-- manejo de errores de campos --}}
     @if(count($errors))
 

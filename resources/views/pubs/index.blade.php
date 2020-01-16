@@ -7,6 +7,14 @@
             <i class="fa fa-plus "></i>&nbsp;&nbsp;Agregar Bar
         </button>
     </div>
+    @if (session('mensajepub'))
+        <div class="alert alert-success">
+            {{ session('mensajepub') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     {{-- manejo de errores de campos --}}
     @if(count($errors))
 

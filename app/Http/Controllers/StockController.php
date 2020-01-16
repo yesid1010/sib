@@ -61,7 +61,7 @@ class StockController extends Controller
             $cont++;
         }
 
-        return redirect('stocks');;
+        return back()->with('mensajestock','!! Stock agregado con exito!!');
     }
 
     // mostrar los detalles de un stock ideal de cierto bar
@@ -101,7 +101,8 @@ class StockController extends Controller
 
         $product_stock->save();
 
-        return back();
+       return back()->with('mensajestock','!! cantidad editada con exito!!');
+    
     }
 
 
@@ -111,7 +112,7 @@ class StockController extends Controller
         $stock = Stock::findOrFail($request->id);
         $stock->delete();
 
-        return back();
+        return back()->with('mensajestock','!! Stock Eliminado con exito!!');
     }
 
     
@@ -120,8 +121,9 @@ class StockController extends Controller
         $product_stock = Product_Stock::findOrFail($request->id);
         $product_stock->delete();
 
-        return back();
+        return back()->with('mensajestock','!! Producto Eliminado con exito!!');
     }
+
     public function addproduct(Request $request){
         $product_stock = new Product_Stock();
         $product_stock->stock_id = $request->input('id');
@@ -129,7 +131,7 @@ class StockController extends Controller
         $product_stock->cant_unity = $request->input('quantity'); 
 
         $product_stock->save();
-        return back();
+         return back()->with('mensajestock','!! Producto agregado con exito!!');
     }
 
     public function update(Request $request)
@@ -141,6 +143,6 @@ class StockController extends Controller
 
         
         $stock->save();
-        return back();
+        return back()->with('mensajestock','!! Stock Actualizado con exito!!');
     }
 }

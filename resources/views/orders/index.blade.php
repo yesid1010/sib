@@ -6,7 +6,14 @@
         <i class="fa fa-plus "></i>&nbsp;&nbsp;Agregar Orden
     </button>
 </div>
-
+@if (session('mensajesorder'))
+    <div class="alert alert-success">
+        {{ session('mensajesorder') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 <div class="card-body">
     <table id="tablaOrden" class="table table-bordered table-striped">
         <thead class="bg-primary">

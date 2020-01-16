@@ -40,7 +40,7 @@ class ProductController extends Controller
  
         $product->save();
 
-        return Redirect::to('products');
+        return back()->with('mensajepro','!! Producto agregado con exito!!');
     }
 
     public function update(Request $request)
@@ -57,7 +57,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return Redirect::to('products');
+        return back()->with('mensajepro','!! producto actualizado con exito!!');
 
     }
 
@@ -66,7 +66,7 @@ class ProductController extends Controller
         $product =  Product::findOrFail($request->id);
         $product->delete();
 
-        return back();
+        return back()->with('mensajepro','!! producto eliminado con exito!!');
     }
 
     public function AddProduct(Request $request){
@@ -78,7 +78,7 @@ class ProductController extends Controller
         // $product->quater         = $product->quater;
         $product->save();
 
-        return redirect('products');
+        return back()->with('mensajepro','!! cantidad agregada con exito!!');
     }
 
 

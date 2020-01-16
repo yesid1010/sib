@@ -13,7 +13,14 @@
 </div>
 
 <hr>
-    
+@if (session('mensajesorder'))
+<div class="alert alert-success">
+    {{ session('mensajesorder') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif 
 
 <table class="table px-5 col-md-8  table-striped" id="detalleorden" >
     <thead class=" bg-primary">

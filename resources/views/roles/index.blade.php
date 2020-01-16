@@ -6,6 +6,15 @@
             <i class="fa fa-plus "></i>&nbsp;&nbsp;Agregar Rol
         </button>
     </div>
+
+    @if (session('mensajesrol'))
+        <div class="alert alert-success">
+            {{ session('mensajesrol') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     {{-- manejo de errores de campos --}}
     @if(count($errors))
 

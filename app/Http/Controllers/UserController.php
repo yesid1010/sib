@@ -41,7 +41,7 @@ class UserController extends Controller
         
         $user->save();
 
-        return Redirect::to('users');
+        return back()->with('mensajesuser','!! Usuario Agregado con exito!!');
     }
 
     //editar un usuario
@@ -60,14 +60,14 @@ class UserController extends Controller
         
         $user->save();
 
-        return Redirect::to('users');
+        return back()->with('mensajesuser','!! Usuario actualizado con exito!!');
     }
 
     //eliminar un usuario
     public function destroy(Request $request){
         $user =  User::findOrFail($request->id);
         $user->delete();
-        return Redirect::to('users');
+        return back()->with('mensajesuser','!! Usuario eliminado con exito!!');
     }
 
     // agregar contraseña a un usuario por parte del superadmin
@@ -75,7 +75,7 @@ class UserController extends Controller
         $user                 = User::findOrFail($request->id);
         $user->password       = bcrypt($request->input('password'));
         $user->save();
-        return redirect('users');
+        return back()->with('mensajesuser','!! Contraseña Agregada con exito!!');
     }
 
     // ver perfil del  usuario autenticado 
@@ -113,7 +113,7 @@ class UserController extends Controller
             
         }
         
-        $user->save();
+        return back()->with('mensajesuser','!! estado actualizado con exito!!');
         return back();
     }
 
