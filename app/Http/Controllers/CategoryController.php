@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Category;
+use Carbon\Carbon;
 
 class CategoryController extends Controller
 {
@@ -14,6 +15,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::orderBy('id','desc')->get();
+        // $fecha = Carbon::now()->format('d-m-Y');
+        // $fechaA = Carbon::now()->format('d-m-Y');
         return view('categories.index',['categories'=>$categories]);
     }
 

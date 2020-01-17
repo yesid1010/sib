@@ -72,6 +72,8 @@ class OrderController extends Controller
             // $detalle->cant_quater           = $cant_quater[$cont];
             // $detalle->cant_three_quarters   = $cant_three_quarters[$cont];
 
+            //disminuir stock de este producto
+            $this->disStock($detalle->product_id,$detalle->cant_unity);
             $detalle->save();
 
             $cont++;
@@ -250,5 +252,16 @@ class OrderController extends Controller
         ->get();
         
         return view('users.barmans.orders',['orders'=>$orders]);
+    }
+
+
+    public function disStock($id,$cant){
+        $product = Product:: findOrFail($id);
+
+        $product->unity = $product->unity - $cant;
+
+        $product->save();
+
+        return $product;
     }
 }
