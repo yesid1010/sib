@@ -36,7 +36,7 @@
                     {{-- <th>3/4 unidad</th>
                     <th>1/2 unidad</th>
                     <th>1/4 unidad</th> --}}
-                    <th>Agregar</th>
+                    {{-- <th>Agregar</th> --}}
                     <th>Editar</th>
                     <th>Eliminar</th>           
                 </tr>
@@ -50,7 +50,7 @@
                         {{-- <td>{{$product->three_quarters}}</td>
                         <td>{{$product->half}}</td>
                         <td>{{$product->quater}}</td> --}}
-                        <td class="text-center">
+                        {{-- <td class="text-center">
                             <button class="btn btn-dark" type="button"
                                     data-target="#abrirmodalAgregarProducto"
                                     data-toggle="modal" 
@@ -59,7 +59,7 @@
                                     <i class="fa fa-plus "></i> 
                             </button>
                                     
-                        </td>
+                        </td> --}}
                         <td class="text-center">
                             <button class="btn btn-primary" type="button"                                             
                                     data-toggle="modal" 

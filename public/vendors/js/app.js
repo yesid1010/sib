@@ -7,6 +7,24 @@ $(function () {
         "ordering": false
     });
 
+    //tablakardexdetail
+    $("#tablakardexdetail").DataTable({
+        "info"          : false,
+        "lengthChange"  : false,
+        "ordering": false,
+        "autoWidth"      : false,
+        "scrollY"       : "250px"
+    });
+
+    //tablakardexs
+    $("#tablakardexs").DataTable({
+        "info"          : false,
+        "lengthChange"  : false,
+        "ordering": false,
+        "autoWidth"      : false,
+        "scrollY"       : "300px"
+    });
+
     //tabla productos
     $("#tablaProductos").DataTable( {
         "scrollY"       : "250px",

@@ -32,7 +32,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{url('orders')}}" onclick="event.preventDefault(); document.getElementById('orders-form').submit();"><i class="fa fa-shopping-basket"></i> Ordenes</a>
+                <a class="nav-link" href="{{url('orders')}}" onclick="event.preventDefault(); document.getElementById('orders-form').submit();"><i class="fa fa-cart-plus"></i> Ordenes</a>
                 
                 <form id="orders-form" action="{{url('orders')}}" method="GET" style="display: none;">
                     {{csrf_field()}} 
@@ -59,6 +59,13 @@
                 <a class="nav-link" href="{{url('usersb')}}" onclick="event.preventDefault(); document.getElementById('users-form').submit();"><i class="fa fa-user"></i> Usuarios</a>
                 
                 <form id="users-form" action="{{url('usersb')}}" method="GET" style="display: none;">
+                {{csrf_field()}} 
+                </form>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('kardexs')}}" onclick="event.preventDefault(); document.getElementById('kardex-form').submit();"><i class="fa fa-list-alt"></i> Kardex</a>
+                
+                <form id="kardex-form" action="{{url('kardexs')}}" method="GET" style="display: none;">
                 {{csrf_field()}} 
                 </form>
             </li>
