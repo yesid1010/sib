@@ -55,6 +55,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::resource('kardexs', 'KardexController');
     Route::get('kardexshow','KardexController@shows')->name('kardexshow');
+    Route::get('distribution','KardexController@distribution')->name('distribution');
 
     Route::resource('home', 'HomeController');
 });

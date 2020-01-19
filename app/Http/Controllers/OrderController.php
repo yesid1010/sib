@@ -257,7 +257,7 @@ class OrderController extends Controller
         ->where('user_id','=',$user->id)
         ->get();
         
-        return view('users.barmans.orders',['orders'=>$orders]);
+        return view('users.barmans.orders',['orders'=>$orders,'user'=>$user]);
     }
 
 

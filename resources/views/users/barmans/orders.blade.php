@@ -1,7 +1,14 @@
 @extends('index')
 @section('content')
-<div class="card-header">     
-    <h3 class="float-left">Listado de Ordenes</h3>    
+<div class="card-header">  
+    <div class="row">
+        <div class="col-md-2">
+        <a class="btn btn-success py-2 mt-1 float-left" href="{{url('usersb')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Atras</a>
+        </div>
+        <div class="col-md-4">
+            <h3 class="float-left mt-1">{{$user->names}} {{$user->surnames}}</h3> 
+        </div>
+    </div>
 </div>
 
 <div class="card-body">

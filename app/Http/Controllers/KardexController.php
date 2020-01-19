@@ -152,4 +152,28 @@ class KardexController extends Controller
                   ->where('kardex_product.kardex_id','=',$id)->get();
         return $detalles;
     }
+
+
+    public function distribution(Request $request){
+
+        $product = Product::findOrFail($request->product_id);
+        $kardex = Kardex::findOrFail($request->kardex_id);
+        
+        $detalles = DB::table('kardexes')
+        ->join('orders','orders.kardex_id','=','kardexes.id')
+        ->join('order_product','order_product.order_id','=','orders.id')
+        ->join('products','products.id','=','order_product.product_id')
+        ->join('pubs','pubs.id','=','orders.pub_id')
+        ->select('products.name as producto','pubs.name as bar',
+                  DB::raw('SUM(order_product.cant_unity) as cantidad'),
+                  'order_product.product_id as product_id',
+                  'orders.kardex_id as kardex')
+        ->where('orders.kardex_id','=',$kardex->id)
+        ->where('products.id','=',$product->id)
+        ->groupBy('products.name','order_product.product_id','orders.kardex_id','pubs.name')
+        ->get();
+
+        return view('kardex.pubs',['detalles'=>$detalles,'kardex'=>$kardex]); 
+        
+    }
 }

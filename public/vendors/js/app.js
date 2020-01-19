@@ -22,7 +22,7 @@ $(function () {
         "lengthChange"  : false,
         "ordering": false,
         "autoWidth"      : false,
-        "scrollY"       : "300px"
+        "scrollY"       : "250px"
     });
 
     //tabla productos
