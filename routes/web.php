@@ -3,7 +3,7 @@
 Route::get('/', function () {
     if(Auth::check()){
         if(Auth::user()->role_id != 1){
-            return redirect('products');
+            return redirect('home');
         }else{
             return redirect('users');
         }
@@ -53,6 +53,8 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('usersb','UserController@barmans')->name('usersb');
 
+    Route::resource('kardexs', 'KardexController');
+    Route::resource('home', 'HomeController');
 });
 
 Route::group(['middleware' => ['superadmin']], function () {

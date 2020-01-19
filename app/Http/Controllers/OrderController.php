@@ -5,7 +5,9 @@ use App\Order;
 use App\Product;
 use App\Pub;
 use App\User;
+use App\Kardex;
 use App\Order_Product;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -48,11 +50,14 @@ class OrderController extends Controller
 
 // metodo para crear una nueva orden
     public function store(Request $request){
+
+        $kardex = Kardex::where('date','=',Carbon::now()->format('Y-m-d'))->first();
         $order              = new Order();
         $order->user_id     = $request->input('user_id');
         $order->pub_id      = $request->input('pub_id');
         $order->description = $request->input('description');
         $order->idadmin     = Auth::user()->id;
+        $order->kardex_id   = $kardex->id;
         $order->save();
 
         $cont = 0;
