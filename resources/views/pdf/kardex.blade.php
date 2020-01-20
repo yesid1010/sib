@@ -40,25 +40,28 @@
                     @foreach ($detallesBares as $item)
                         @if ($item->product_id == $detalle->product_id)
                             @if ($item->pub_id == $pub->id )
-                                    <td>{{$item->cantidad}}</td>
+                                    <td><strong>{{$item->cantidad}}</strong></td>
                                     @break
                             @else 
                                 @php
                                     $bar = $pub->id;
                                     $producto = $detalle->product_id;
                                     $encontrado = 0;
+                                    $cantidad = 0;
                                     foreach ($detallesBares as $ite) {
                                         if($bar == $ite->pub_id && $producto == $ite->product_id ){
                                             $encontrado = 1;
+                                            $cantidad = $ite->cantidad;
                                         }
                                     }
 
                                     if($encontrado == 1){ 
-                                       echo '<td>'.$item->cantidad.'</td>';
+                                       echo '<td> <strong>'.$cantidad.'</strong> </td>';
                                     }else{
                                         echo '<td>0</td>';
                                     }
                                 @endphp
+
                                 @break
                             @endif
                         @endif
