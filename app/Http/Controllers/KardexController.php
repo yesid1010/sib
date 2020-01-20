@@ -108,7 +108,7 @@ class KardexController extends Controller
     // metodo para crear el pedido diario de los productos
     public function update(Request $request)
     {
-        //$previous_date = new Carbon('yesterday') ;
+        $previous_date = new Carbon('yesterday') ;
         $cont = 0;
         $products = $request->input('product');
         $quantity = $request->input('quantity');
@@ -189,7 +189,7 @@ class KardexController extends Controller
                                         'kardex'=>$kardex,
                                         'pubs'=>$pubs,
                                         'detallesBares'=>$detallesBares])
-                                        ;
+                                        ->setPaper('a4', 'landscape');
         return $pdf->stream('kardex'.$id.'.pdf');
     }
 
@@ -213,6 +213,7 @@ class KardexController extends Controller
                       'order_product.product_id',
                       'orders.kardex_id',
                       'pubs.name','pubs.id')
+            ->orderBy('pub_id')
             ->get();
         return $detalles;
     }

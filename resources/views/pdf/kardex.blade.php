@@ -20,9 +20,9 @@
                 <th>Bodega</th>
                 <th>Entrada</th>
                 <th>Total</th>
-            {{-- @foreach ($pubs as $pub)
+            @foreach ($pubs as $pub)
                 <th>{{$pub->name}}</th>
-            @endforeach --}}
+            @endforeach
                 <th>Salida</th>
                 <th>Stock</th>
 
@@ -35,20 +35,35 @@
                 <td class="text-center">{{$detalle->stock_ini}}</td>
                 <td class="text-success text-center"><strong>{{$detalle->input_product}}</strong> </td>
                 <td class="text-center ">{{$detalle->total}}</td>
-                {{-- @foreach ($pubs as $pub)
+
+                @foreach ($pubs as $pub)
                     @foreach ($detallesBares as $item)
-                        @if ($item->pub_id == $pub->id)
-                            @if ($item->product_id == $detalle->product_id)
-                                <td>{{$item->cantidad}}</td>
-                                @break
+                        @if ($item->product_id == $detalle->product_id)
+                            @if ($item->pub_id == $pub->id )
+                                    <td>{{$item->cantidad}}</td>
+                                    @break
                             @else 
-                                <td>0</td>
+                                @php
+                                    $bar = $pub->id;
+                                    $producto = $detalle->product_id;
+                                    $encontrado = 0;
+                                    foreach ($detallesBares as $ite) {
+                                        if($bar == $ite->pub_id && $producto == $ite->product_id ){
+                                            $encontrado = 1;
+                                        }
+                                    }
+
+                                    if($encontrado == 1){ 
+                                       echo '<td>'.$item->cantidad.'</td>';
+                                    }else{
+                                        echo '<td>0</td>';
+                                    }
+                                @endphp
                                 @break
                             @endif
-                    
                         @endif
                     @endforeach               
-                @endforeach --}}
+                @endforeach
                 <td class="text-danger text-center"> <strong>{{$detalle->output_product}}</strong> </td>
                 <td class="text-center">{{$detalle->stock_end}}</td>   
             </tr>
