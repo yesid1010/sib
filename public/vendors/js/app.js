@@ -38,7 +38,8 @@ $(function () {
     $("#tablaBares").DataTable({
         "info"          : false,
         "lengthChange"  : false,
-        "ordering": false
+        "ordering": false,
+        "scrollY"       : "250px"
     });
 
     //tabla de roles

@@ -28,8 +28,7 @@
                             </form>
                         </td>
                         <td class="text-center">
-                            <form target="_blank" action="{{route('pdf',$kardex->id)}}" method="get">
-                                
+                            <form target="_blank" action="{{route('pdfkardex',$kardex->id)}}" method="get">                               
                                 <button class= "btn btn-danger" type="submit">
                                     <i class="fa fa-print" aria-hidden="true"></i>
                                 </button> 

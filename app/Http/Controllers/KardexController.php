@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Kardex;
+use App\Pub;
 use App\Product;
 use App\Order;
 use App\Kardex_Product;
@@ -12,12 +13,10 @@ use Illuminate\Support\Facades\DB;
 class KardexController extends Controller
 {
 
+    // mostrar todos los kardex cerrados
     public function index()
     {
-        //
         $kardexs = Kardex::where('status','1')->get();
-
-
         return view('kardex.index',['kardexs'=>$kardexs]);
     }
 
@@ -41,7 +40,7 @@ class KardexController extends Controller
        
     }
 
-    // funcion para crear los detalles de un cardex dependiendo el kardex_id
+    // funcion para crear los detalles de un kardex
     public function detail($id_kardex){
         $products = Product::all();
         $kardex  = Kardex::findOrFail($id_kardex);
@@ -71,7 +70,7 @@ class KardexController extends Controller
         $kardex->status = '1';
         $kardex->save();
 
-        $detalles = $this->getDetail($kardex->id);
+        $detalles = $this->getCantidad($kardex->id);
 
         foreach ($detalles as $detalle) {
             $kardex_product= Kardex_Product::where('product_id','=',$detalle->product_id)
@@ -89,7 +88,7 @@ class KardexController extends Controller
     }
 
     //Obtener la cantidad total de cada producto vendido
-    public function getDetail($id){
+    public function getCantidad($id){
 
         $detalles = DB::table('kardexes')
                  ->join('orders','orders.kardex_id','=','kardexes.id')
@@ -109,13 +108,13 @@ class KardexController extends Controller
     // metodo para crear el pedido diario de los productos
     public function update(Request $request)
     {
-        $previous_date = new Carbon('yesterday') ;
+        //$previous_date = new Carbon('yesterday') ;
         $cont = 0;
         $products = $request->input('product');
         $quantity = $request->input('quantity');
 
-       // $kardex = Kardex::where('date','=',Carbon::now()->format('Y-m-d'))->first();
-       $kardex = Kardex::where('date','=',$previous_date)->first();
+       $kardex = Kardex::where('date','=',Carbon::now()->format('Y-m-d'))->first();
+      // $kardex = Kardex::where('date','=',$previous_date)->first();
         while($cont < count($products)){
             $product = Product::findOrFail($products[$cont]);
             $detail= Kardex_Product::where('product_id','=',$products[$cont])
@@ -135,16 +134,15 @@ class KardexController extends Controller
        return back()->with('mensaje','pedido Guardado exitosamente');
     }
 
-
+   // metodo que llama a la funcion getDetalles() para mostrar
+   // los detalles de un kardex en especifico
     public function shows(Request $request){
         $kardex = Kardex::findOrFail($request->id);
         $detalles = $this->getDetalles($kardex->id);
-
-
         return view('kardex.show',['detalles'=>$detalles,'kardex'=>$kardex]);
     }
 
-
+    // funcion para traer los detalles de un kardex
     public function getDetalles($id){
         $detalles = DB::table('kardex_product')
                   ->join('products','products.id','=','kardex_product.product_id')
@@ -153,7 +151,8 @@ class KardexController extends Controller
         return $detalles;
     }
 
-
+    // funcion para mostrar como fue distribuido la cantidad gastada de un producto
+    // en los diferentes bares
     public function distribution(Request $request){
 
         $product = Product::findOrFail($request->product_id);
@@ -175,5 +174,46 @@ class KardexController extends Controller
 
         return view('kardex.pubs',['detalles'=>$detalles,'kardex'=>$kardex]); 
         
+    }
+
+    //generar pdf de un kardex
+    public function pdf($id){
+        $kardex = Kardex::findOrFail($id);
+        $pubs = Pub::all();
+        $detalles   = $this->getDetalles($kardex->id);
+        $detallesBares = $this->getPubs($kardex->id);
+        $pdf = \PDF::setOptions([
+            'logOutputFile' => storage_path('logs/log.htm'),
+            'tempDir' => storage_path('logs/')
+            ])->loadView('pdf.kardex',['detalles'=>$detalles,
+                                        'kardex'=>$kardex,
+                                        'pubs'=>$pubs,
+                                        'detallesBares'=>$detallesBares])
+                                        ;
+        return $pdf->stream('kardex'.$id.'.pdf');
+    }
+
+
+   // devuelve los bares con la cantidad de cada producto de un kardex 
+    public function getPubs($id){
+        $kardex = Kardex::findOrFail($id);
+        
+        $detalles = DB::table('kardexes')
+            ->join('orders','orders.kardex_id','=','kardexes.id')
+            ->join('order_product','order_product.order_id','=','orders.id')
+            ->join('products','products.id','=','order_product.product_id')
+            ->join('pubs','pubs.id','=','orders.pub_id')
+            ->select('products.name as producto','pubs.name as bar',
+                    DB::raw('SUM(order_product.cant_unity) as cantidad'),
+                    'order_product.product_id as product_id',
+                    'orders.kardex_id as kardex',
+                    'pubs.id as pub_id')
+            ->where('orders.kardex_id','=',$kardex->id)
+            ->groupBy('products.name',
+                      'order_product.product_id',
+                      'orders.kardex_id',
+                      'pubs.name','pubs.id')
+            ->get();
+        return $detalles;
     }
 }
