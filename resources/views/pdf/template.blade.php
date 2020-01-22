@@ -11,9 +11,17 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4 ">
-            <img width= "30%" class="img-fluid" src="vendors/img/logo.png">  
-        </div>
+        <table style="width:100%">
+            <tr >
+                <th> &nbsp;</th>
+                <th>
+                    <img width="200px" src="vendors/img/logo.png">                
+                </th>
+                <th>
+                    @yield('title')
+                </th>
+            </tr>
+        </table>
     </div>
     <br>
     <hr>

@@ -1,11 +1,12 @@
 @extends('pdf.template')
 
 @section('content')
-<div class="row">
-    <div class="col-md-6">
-        Fecha : {{$order->created_at}}
-    </div>
-</div>
+
+@section('title')
+Fecha : {{$order->created_at}}
+@endsection
+
+
 <div class="row">
     <div class="col-md-6">
         Barman : {{$user->names}} {{$user->surnames}}
@@ -23,7 +24,7 @@
 </div>
 
 <table class="table table-bordered table-striped mt-2">
-    <thead>
+    <thead class="bg-primary">
         <tr>
             <th>Producto</th>
             <th>Cantidad</th>

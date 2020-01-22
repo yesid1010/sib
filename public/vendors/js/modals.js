@@ -44,12 +44,14 @@ $('#abrirmodalEditarBar').on('show.bs.modal',function(event){
     var button = $(event.relatedTarget)
     var name_modal_editarBar = button.data('name')
     var description_modal_editarBar = button.data('description')
+    var category_modal_editarBar    = button.data('category');
     var id = button.data('id')
 
     var modal = $(this)
 
     modal.find('.modal-body #name').val(name_modal_editarBar);
     modal.find('.modal-body #description').val(description_modal_editarBar);
+    modal.find('.modal-body #category').val(category_modal_editarBar);
     modal.find('.modal-body #id').val(id);
 
 })

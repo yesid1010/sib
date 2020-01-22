@@ -8,8 +8,20 @@
 <div class="form-group row">
     <label class="col-md-3 form-control-label" for="des">Descripción</label>
     <div class="col-md-9">
-    <textarea  name="description" id="description" rows ="3" class="form-control" placeholder="Ingrese descripcion"></textarea>
+        <textarea  name="description" id="description" rows ="3" class="form-control" placeholder="Ingrese descripcion"></textarea>
+    </div>
 </div>
+
+
+
+<div class="form-group row">
+  <label for="categoria" class="col-md-3 form-control-label">Tipo</label>
+  <div class="col-md-9">
+    <select class="form-control" name="category" id="category">
+        <option value="0">Bar</option>
+        <option value="1">Restaurante</option>
+    </select>
+  </div>
 </div>
 
 

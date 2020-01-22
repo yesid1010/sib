@@ -112,9 +112,8 @@ class UserController extends Controller
             $user->status = 'ENABLED';
             
         }
-        
+        $user->save();
         return back()->with('mensajesuser','!! estado actualizado con exito!!');
-        return back();
     }
 
     public function barmans(){

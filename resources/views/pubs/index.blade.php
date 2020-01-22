@@ -31,6 +31,7 @@
         <table id="tablaBares" class="table table-bordered table-striped">
             <thead class="bg-primary">
                 <tr>
+                    <th>Tipo</th>
                     <th>Nombre</th>
                     <th>Descripcion</th>
                     <th>Historial</th>
@@ -41,6 +42,11 @@
             <tbody>
                 @foreach($pubs as $pub)
                     <tr>
+                        @if ($pub->category == 0)
+                            <td>Bar</td>
+                        @else 
+                            <td>Restaurante</td>
+                        @endif
                         <td>{{$pub->name}}</td>
                         <td>{{$pub->description}}</td>
                         <td class="text-center"> 
@@ -57,7 +63,8 @@
                                     data-target="#abrirmodalEditarBar"
                                     data-id="{{$pub->id}}"
                                     data-name="{{$pub->name}}"
-                                    data-description="{{$pub->description}}">
+                                    data-description="{{$pub->description}}"
+                                    data-category = "{{$pub->category}}">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                             </button>
                         </td>
@@ -103,7 +110,7 @@
     
     <!--Inicio del modal Editar bar-->
     <div class="modal fade" id="abrirmodalEditarBar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-primary modal-lg" role="document">
+        <div class="modal-dialog modal-primary modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Actualizar Bar</h4>

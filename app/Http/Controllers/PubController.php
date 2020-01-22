@@ -29,6 +29,7 @@ class PubController extends Controller
         $pub              = new Pub();
         $pub->name        = $request->input('name');
         $pub->description = $request->input('description');
+        $pub->category    = $request->input('category');
         $pub->save();
         return back()->with('mensajepub','!! Bar agregado con exito!!');
     }
@@ -45,6 +46,7 @@ class PubController extends Controller
         $pub              =  Pub::findOrFail($request->id);
         $pub->name        = $request->input('name');
         $pub->description = $request->input('description');
+        $pub->category    = $request->input('category');
         $pub->save();
         return back()->with('mensajepub','!! Bar actualizado con exito!!');
     }

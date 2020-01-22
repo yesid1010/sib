@@ -2,17 +2,12 @@
 
 @section('content')
     
-<div class="row">
-    <div class="col-md-6">
-        KARDEX
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        Fecha : {{$kardex->date}}
-    </div>
-</div>
-<hr>
+@section('title')
+Fecha : {{$kardex->date}}
+@endsection
+
+<label class=" label" for="">Bares</label>
+
 <table class="table table-bordered table-striped mt-2">
         <thead class="bg-primary">
             <tr>
@@ -21,7 +16,9 @@
                 <th>Entrada</th>
                 <th>Total</th>
             @foreach ($pubs as $pub)
-                <th>{{$pub->name}}</th>
+                    @if ($pub->category == 0)
+                     <th>{{$pub->name}}</th>  
+                    @endif
             @endforeach
                 <th>Salida</th>
                 <th>Stock</th>
@@ -38,7 +35,7 @@
 
                 @foreach ($pubs as $pub)
                     @foreach ($detallesBares as $item)
-                        @if ($item->product_id == $detalle->product_id)
+                        @if ($item->product_id == $detalle->product_id  && $pub->category == 0)
                             @if ($item->pub_id == $pub->id )
                                     <td><strong>{{$item->cantidad}}</strong></td>
                                     @break
@@ -69,6 +66,67 @@
                 @endforeach
                 <td class="text-danger text-center"> <strong>{{$detalle->output_product}}</strong> </td>
                 <td class="text-center">{{$detalle->stock_end}}</td>   
+            </tr>
+        @endforeach
+        
+    </tbody>
+</table>
+
+<div style="page-break-after:always;"></div>
+
+<label class=" label" for="">Restaurantes</label>
+<hr>
+<table class="table table-bordered table-striped mt-2">
+        <thead class="bg-primary">
+            <tr>
+                <th>producto</th>
+
+            @foreach ($pubs as $pub)
+                    @if ($pub->category == 1)
+                     <th>{{$pub->name}}</th>  
+                    @endif
+            @endforeach
+
+            </tr>
+        </thead>
+    <tbody>
+        @foreach ($detalles as $detalle)
+            <tr>
+                <td>{{$detalle->name}}</td>
+      
+
+                @foreach ($pubs as $pub)
+                    @foreach ($detallesBares as $item)
+                        @if ($item->product_id == $detalle->product_id  && $pub->category == 1)
+                            @if ($item->pub_id == $pub->id )
+                                    <td><strong>{{$item->cantidad}}</strong></td>
+                                    @break
+                            @else 
+                                @php
+                                    $bar = $pub->id;
+                                    $producto = $detalle->product_id;
+                                    $encontrado = 0;
+                                    $cantidad = 0;
+                                    foreach ($detallesBares as $ite) {
+                                        if($bar == $ite->pub_id && $producto == $ite->product_id ){
+                                            $encontrado = 1;
+                                            $cantidad = $ite->cantidad;
+                                        }
+                                    }
+
+                                    if($encontrado == 1){ 
+                                       echo '<td> <strong>'.$cantidad.'</strong> </td>';
+                                    }else{
+                                        echo '<td>0</td>';
+                                    }
+                                @endphp
+
+                                @break
+                            @endif
+                        @endif
+                    @endforeach               
+                @endforeach
+  
             </tr>
         @endforeach
         
