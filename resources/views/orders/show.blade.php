@@ -10,15 +10,16 @@
         <div class="col-md-8">
             <h3 class="float-left mt-1">{{$pub->name}} &nbsp;&nbsp;{{$order->created_at}}</h3> 
         </div>
-    </div>
-
-
-
-    @if($order->status == 1)
+        @if($order->status == 1)
         <button class="btn btn-primary float-right mt-1" data-id = "{{$order->id}}"type="button" data-toggle="modal" data-target="#abrirmodalaAddProductOrder">
             <i class="fa fa-plus "></i>&nbsp;&nbsp; Agregar Producto
         </button>
     @endif
+    </div>
+
+
+
+
 </div>
 <div class="row">
     <label class="form-control-label col-md-12 px-5 py-2">{{$order->description}}</label>

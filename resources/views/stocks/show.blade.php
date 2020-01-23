@@ -1,10 +1,18 @@
 @extends('index')
 @section('content')
-<div class="card-header text-center ">     
-    <h3 class="float-left text-center"> {{$stock->name}}</h3> 
-    <button class="btn btn-primary float-right mt-1" data-id = "{{$stock->id}}"type="button" data-toggle="modal" data-target="#abrirmodalAddProductD">
-        <i class="fa fa-plus "></i>&nbsp;&nbsp; Agregar Producto
-    </button>
+<div class="card-header text-center ">    
+    
+    <div class="row">
+        <div class="col-md-2">
+        <a class="btn btn-success py-2 mt-1 float-left" href="{{url('stocks')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Atras</a>
+        </div>
+        <div class="col-md-8">
+            <h3 class="float-left mt-1"> {{$stock->name}}</h3> 
+        </div>
+        <button class="btn btn-primary float-right mt-1" data-id = "{{$stock->id}}"type="button" data-toggle="modal" data-target="#abrirmodalAddProductD">
+            <i class="fa fa-plus "></i>&nbsp;&nbsp; Agregar Producto
+        </button>
+    </div> 
 </div>
 @if (session('mensajestock'))
 <div class="alert alert-success">
