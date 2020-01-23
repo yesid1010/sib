@@ -1,10 +1,12 @@
 @extends('index')
 @section('content')
     <div class="card-header">     
-        <h3 class="float-left">Listado de Productos</h3>       
+        <h3 class="float-left">Listado de Productos</h3>
         <button class="btn btn-primary float-right mt-1" type="button" data-toggle="modal" data-target="#abrirmodalProducto">
             <i class="fa fa-plus "></i>&nbsp;&nbsp;Agregar Producto
         </button>
+        <a target="_blank" class="btn btn-danger px-2 mt-1 mx-3 float-right" href="{{url('pdfproducts')}}"><i class="fa fa-print" aria-hidden="true"></i> Imprimir Stock</a>       
+
     </div>
     @if (session('mensajepro'))
         <div class="alert alert-success">

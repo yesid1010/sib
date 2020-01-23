@@ -260,7 +260,7 @@ class OrderController extends Controller
         return view('users.barmans.orders',['orders'=>$orders,'user'=>$user]);
     }
 
-
+//funcion para disminuir el stock de un producto agregado a una orden
     public function disStock($id,$cant){
         $product = Product:: findOrFail($id);
 

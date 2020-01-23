@@ -5,8 +5,14 @@
 @section('title')
 Fecha : {{$kardex->date}}
 @endsection
+<div class="row ">
+    <div class="col-md-6 mt-3">
+       <h3 class="text-center">INVENTARIO DIARIO</h3>
+    </div>
+</div>
+<hr>
 
-<label class=" label" for="">Bares</label>
+<label class=" text-center label" for="">Bares</label>
 
 <table class="table table-bordered table-striped mt-2">
         <thead class="bg-primary">

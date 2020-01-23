@@ -82,5 +82,17 @@ class ProductController extends Controller
     }
 
 
+        // generar pdf del stock de todos los productos
+        public function pdf(){
+            $products=Product::all();
+    
+            $pdf = \PDF::setOptions([
+                'logOutputFile' => storage_path('logs/log.htm'),
+                'tempDir' => storage_path('logs/')
+                ])->loadView('pdf.products',['products'=>$products]);
+            return $pdf->stream('stock'.now().'.pdf');
+        }
+
+
 
 }
