@@ -1,29 +1,51 @@
 @extends('index')
 @section('content')
 <div class="card-header"> 
-    
+    @php
+        $encontrado = false;
+        foreach ($kardexs as $kardex){
+
+            if($kardex->date == $fecha){
+                $encontrado = true;
+            }
+        }
+    @endphp
+
     <form  action="{{route('kardexs.create')}}" method="get">
-                            
-        <button class="btn btn-primary mx-3 mt-1" type="submit" >
+        @if (!$encontrado)
+            <button class="btn btn-primary mx-3 mt-1" id="btniniciarkardex" type="submit" >
             <h3 class="float-left">Iniciar Kardex</h3>  
-        </button>
-        <button class="btn btn-primary mx-3 mt-1" type="button" data-toggle="modal" data-target="#abrirmodalKardex">
-            <h3 class="float-left">Ingresar Pedido</h3>  
-        </button>
-        <button class="btn btn-danger mx-3 mt-1" type="button" data-toggle="modal" data-target="#cerrarkardex">
-            <h3 class="float-left">Cerrar Kardex</h3> 
-        </button>
+            </button>
+        @endif
+
+            <button class="btn btn-primary mx-3 mt-1" id="btningresarpedido" type="button" data-toggle="modal" data-target="#abrirmodalKardex">
+                <h3 class="float-left">Ingresar Pedido</h3>  
+            </button>
+            <button class="btn btn-danger mx-3 mt-1" id="btncerrarkardex" type="button" data-toggle="modal" data-target="#cerrarkardex">
+                <h3 class="float-left">Cerrar Kardex</h3> 
+            </button>
+
+
     </form>
 
 </div>
 
 @if (session('mensaje'))
-<div class="alert alert-success">
-    {{ session('mensaje') }}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-    </button>
-</div>
+    <div class="alert alert-success">
+        {{ session('mensaje') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if (session('mensajeerror'))
+    <div class="alert alert-danger">
+        {{ session('mensajeerror') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 @endif
 
     <!--Inicio del modal agregar pedido-->

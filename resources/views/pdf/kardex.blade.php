@@ -33,37 +33,59 @@ Fecha : {{$kardex->date}}
                 <td class="text-success text-center"><strong>{{$detalle->input_product}}</strong> </td>
                 <td class="text-center ">{{$detalle->total}}</td>
 
-                @foreach ($pubs as $pub)
-                    @foreach ($detallesBares as $item)
-                        @if ($item->product_id == $detalle->product_id  && $pub->category == 0)
-                            @if ($item->pub_id == $pub->id )
+                @php
+                    $product_id = $detalle->product_id;
+                    $encontrado = false;
+                    foreach ($detallesBares as $item) {
+                       if($item->product_id == $product_id){
+                           $encontrado = true;
+                           break;
+                       }
+                    }
+                @endphp
+
+                @if ($encontrado)
+                    @foreach ($pubs as $pub)
+                        @foreach ($detallesBares as $item)
+                            @if ($item->product_id == $detalle->product_id  && $pub->category == 0)
+                                @if ($item->pub_id == $pub->id )
                                     <td><strong>{{$item->cantidad}}</strong></td>
                                     @break
-                            @else 
-                                @php
-                                    $bar = $pub->id;
-                                    $producto = $detalle->product_id;
-                                    $encontrado = 0;
-                                    $cantidad = 0;
-                                    foreach ($detallesBares as $ite) {
-                                        if($bar == $ite->pub_id && $producto == $ite->product_id ){
-                                            $encontrado = 1;
-                                            $cantidad = $ite->cantidad;
+                                @else 
+                                    @php
+                                        $bar = $pub->id;
+                                        $producto = $detalle->product_id;
+                                        $encontrado = 0;
+                                        $cantidad = 0;
+                                        foreach ($detallesBares as $ite) {
+                                            if($bar == $ite->pub_id && $producto == $ite->product_id ){
+                                                $encontrado = 1;
+                                                $cantidad = $ite->cantidad;
+                                            break;
+                                            }
                                         }
-                                    }
 
-                                    if($encontrado == 1){ 
-                                       echo '<td> <strong>'.$cantidad.'</strong> </td>';
-                                    }else{
-                                        echo '<td>0</td>';
-                                    }
-                                @endphp
+                                        if($encontrado == 1){ 
+                                        echo '<td> <strong>'.$cantidad.'</strong> </td>';
+                                        }else{
+                                            echo '<td>0</td>';
+                                        }
+                                    @endphp
 
-                                @break
+                                    @break
+                                @endif
                             @endif
+                        @endforeach
+                    @endforeach
+   
+                @else 
+                    @foreach ($pubs as $pub)
+                        @if ($pub->category == 0)
+                            <td>0</td>
                         @endif
-                    @endforeach               
-                @endforeach
+                    @endforeach
+                @endif
+
                 <td class="text-danger text-center"> <strong>{{$detalle->output_product}}</strong> </td>
                 <td class="text-center">{{$detalle->stock_end}}</td>   
             </tr>
@@ -90,17 +112,30 @@ Fecha : {{$kardex->date}}
             </tr>
         </thead>
     <tbody>
+        
         @foreach ($detalles as $detalle)
-            <tr>
-                <td>{{$detalle->name}}</td>
-      
+        <tr>
+            <td>{{$detalle->name}}</td>
 
+
+            @php
+                $product_id = $detalle->product_id;
+                $encontrado = false;
+                foreach ($detallesBares as $item) {
+                   if($item->product_id == $product_id){
+                       $encontrado = true;
+                       break;
+                   }
+                }
+            @endphp
+
+            @if ($encontrado)
                 @foreach ($pubs as $pub)
                     @foreach ($detallesBares as $item)
                         @if ($item->product_id == $detalle->product_id  && $pub->category == 1)
                             @if ($item->pub_id == $pub->id )
-                                    <td><strong>{{$item->cantidad}}</strong></td>
-                                    @break
+                                <td><strong>{{$item->cantidad}}</strong></td>
+                                @break
                             @else 
                                 @php
                                     $bar = $pub->id;
@@ -111,11 +146,12 @@ Fecha : {{$kardex->date}}
                                         if($bar == $ite->pub_id && $producto == $ite->product_id ){
                                             $encontrado = 1;
                                             $cantidad = $ite->cantidad;
+                                        break;
                                         }
                                     }
 
                                     if($encontrado == 1){ 
-                                       echo '<td> <strong>'.$cantidad.'</strong> </td>';
+                                    echo '<td> <strong>'.$cantidad.'</strong> </td>';
                                     }else{
                                         echo '<td>0</td>';
                                     }
@@ -124,12 +160,18 @@ Fecha : {{$kardex->date}}
                                 @break
                             @endif
                         @endif
-                    @endforeach               
+                    @endforeach
                 @endforeach
-  
-            </tr>
-        @endforeach
-        
+
+            @else 
+                @foreach ($pubs as $pub)
+                    @if ($pub->category == 1)
+                        <td>0</td>
+                    @endif
+                @endforeach
+            @endif
+        </tr>
+    @endforeach
     </tbody>
 </table>
 

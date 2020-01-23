@@ -16,7 +16,7 @@ class KardexController extends Controller
     // mostrar todos los kardex cerrados
     public function index()
     {
-        $kardexs = Kardex::where('status','1')->get();
+        $kardexs = Kardex::where('status','1')->orderBy('id','desc')->get();
         return view('kardex.index',['kardexs'=>$kardexs]);
     }
 
@@ -54,7 +54,6 @@ class KardexController extends Controller
             $detail->output_product = 0;
             $detail->total          = $detail->stock_ini + $detail->input_product;
             $detail->stock_end      = $detail->total - $detail->output_product ;
-            //$detail->date           = Carbon::now();
             $detail->date           = $kardex->date;
             $detail->save();
             
@@ -62,7 +61,8 @@ class KardexController extends Controller
 
     }
 
-    // funcion para editar el campo output_product de todos los detalles del dia anterior
+    // funcion para editar el campo output_product con  todos los detalles del dia anterior
+    //cerrar kardex
     public function edit()
     {
         $previous_date = new Carbon('yesterday') ;
@@ -84,7 +84,7 @@ class KardexController extends Controller
             $kardex_product->save();
         }
 
-       return $detalles;
+        return back()->with('mensaje','Kardex Cerrado con exito');
     }
 
     //Obtener la cantidad total de cada producto vendido
@@ -170,6 +170,7 @@ class KardexController extends Controller
         ->where('orders.kardex_id','=',$kardex->id)
         ->where('products.id','=',$product->id)
         ->groupBy('products.name','order_product.product_id','orders.kardex_id','pubs.name')
+
         ->get();
 
         return view('kardex.pubs',['detalles'=>$detalles,'kardex'=>$kardex]); 
@@ -213,7 +214,7 @@ class KardexController extends Controller
                       'order_product.product_id',
                       'orders.kardex_id',
                       'pubs.name','pubs.id')
-            ->orderBy('pub_id')
+            ->orderBy('product_id')
             ->get();
         return $detalles;
     }

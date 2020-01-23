@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Kardex;
+use Carbon\Carbon;
 class HomeController extends Controller
 {
     /**
@@ -24,6 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('home.index',['products'=>$products]);
+        $kardexs = Kardex::all();
+        $fecha =  Carbon::now()->format('Y-m-d');
+        return view('home.index',['products'=>$products,'kardexs'=>$kardexs,'fecha'=>$fecha]);
     }
 }

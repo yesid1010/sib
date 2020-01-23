@@ -4,7 +4,10 @@ $(function () {
     $("#tablaCategorias").DataTable({
         "info"          : false,
         "lengthChange"  : false,
-        "ordering": false
+        "ordering": false,
+        "language":{
+            "search":"Buscar"
+        }
     });
 
     //tablakardexdetail
@@ -13,7 +16,10 @@ $(function () {
         "lengthChange"  : false,
         "ordering": false,
         "autoWidth"      : false,
-        "scrollY"       : "250px"
+        "scrollY"       : "250px",
+        "language":{
+            "search":"Buscar"
+        }
     });
 
     //tablakardexs
@@ -22,7 +28,10 @@ $(function () {
         "lengthChange"  : false,
         "ordering": false,
         "autoWidth"      : false,
-        "scrollY"       : "250px"
+        "scrollY"       : "250px",
+        "language":{
+            "search":"Buscar"
+        }
     });
 
     //tabla productos
@@ -31,7 +40,10 @@ $(function () {
         "scrollCollapse": true,
         "info"          : false,
         "lengthChange"  : false,
-        "ordering": false
+        "ordering": false,
+        "language":{
+            "search":"Buscar"
+        }
     });
 
     //tabla bares
@@ -39,21 +51,30 @@ $(function () {
         "info"          : false,
         "lengthChange"  : false,
         "ordering": false,
-        "scrollY"       : "250px"
+        "scrollY"       : "250px",
+        "language":{
+            "search":"Buscar"
+        }
     });
 
     //tabla de roles
     $("#tablaRols").DataTable({
         "info"          : false,
         "lengthChange"  : false,
-        "ordering": false
+        "ordering": false,
+        "language":{
+            "search":"Buscar"
+        }
     });
 
     //tabla de usuarios
     $("#tablaUsers").DataTable({
         "info"          : false,
         "lengthChange"  : false,
-        "ordering": false
+        "ordering": false,
+        "language":{
+            "search":"Buscar"
+        }
     });
 
 // TABLAS STOCK //
@@ -61,7 +82,10 @@ $(function () {
     $("#tablaStocks").DataTable({
         "info"          : false,
         "lengthChange"  : false,
-        "ordering": false
+        "ordering": false,
+        "language":{
+            "search":"Buscar"
+        }
     });
 
     // tabla para mostrar un stock ideal de un bar en especifico
@@ -72,14 +96,20 @@ $(function () {
         "searching"      : false,
         "scrollCollapse" : true,
         "autoWidth"      : false,
-        "ordering": false
+        "ordering"       : false,
+        "language":{
+            "search":"Buscar"
+        }
     });
 
     // tabla para ingresar los detalles de un stock ideal de un bar
     tabla = $('#tablastock').DataTable({
         "info"          : false,
         "lengthChange"  : false,
-        "ordering": false
+        "ordering": false,
+        "language":{
+            "search":"Buscar"
+        }
     });
 
     $('#btnguardar').hide()
@@ -115,7 +145,10 @@ $(function () {
         "info"           : false,
         "scrollCollapse" : true,
         "autoWidth"      : false,
-        "ordering": false
+        "ordering": false,
+        "language":{
+            "search":"Buscar"
+        }
     });
 
 
@@ -127,7 +160,10 @@ $(function () {
         "searching"      : false,
         "scrollCollapse" : true,
         "autoWidth"      : false,
-        "ordering": false
+        "ordering": false,
+        "language":{
+            "search":"Buscar"
+        }
     });
 
      // tabla para ingresar los pedidos kardex
@@ -135,6 +171,9 @@ $(function () {
         "info"          : false,
         "lengthChange"  : false,
         "ordering": false,
+        "language":{
+            "search":"Buscar"
+        }
     });
     $('#btnguardark').hide()
     countk= 0;
@@ -161,7 +200,10 @@ $(function () {
     tablaorders = $('#tablaorders').DataTable({
         "info"          : false,
         "lengthChange"  : false,
-        "ordering": false
+        "ordering": false,
+        "language":{
+            "search":"Buscar"
+        }
     });
     
 
@@ -218,4 +260,6 @@ $(function () {
 
 //evento para desvanecer las alertas en 5 segundos
 $(".alert").fadeOut(5000 );
+
+
 
