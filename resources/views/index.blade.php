@@ -56,6 +56,7 @@
         <script src="plugins/datatables/jquery.dataTables.js"></script>
         <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
         {{-- <script src="plugins/buttons/js/buttons.bootstrap4.min.js"></script> --}}
+        <script src="vendors/js/sweetalert2.all.min.js"></script>
         <!-- scripts -->
         <script src="vendors/js/app.js"></script>
         <script src="vendors/js/modals.js"></script>

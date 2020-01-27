@@ -215,21 +215,35 @@ $(function () {
 
     countorden = 0;
     $('#btnaddorden').on("click",function(){
-        product_idorden  = $('#product_idorden').val();
-        productorden     = $('#product_idorden option:selected').text()
 
-        tablaorders.row.add([
-            '<input type="hidden" value="'+product_idorden+'" name="product[]">',
-            productorden,
-            '<input type="number" class="form-control col-md-3" value="1" name="quantity[]">',
-            '<button class="btn btn-danger" type="button">X</button>',
-        ]).draw(false);
-        countorden++;
+        producto = document.getElementById('product_idorden').value.split('_');
+        cantidad = $('#cantidad').val();
+        product_idorden  = producto[0];
+        stock = producto[1];
 
-        if(countorden > 0){
-            $('#btnguardarorden').show()
+        if(parseInt(cantidad)>=parseInt(stock)){
+            Swal.fire({
+                type: 'error',
+                //title: 'Oops...',
+                text: 'La cantidad escogida supera el stock',
+            
+                })
         }else{
-            $('#btnguardarorden').hide()
+            productorden = $('#product_idorden option:selected').text()
+
+            tablaorders.row.add([
+                '<input type="hidden" value="'+product_idorden+'" name="product[]">',
+                productorden,
+                '<input type="number" readonly="readonly" class="form-control col-md-3" value="'+cantidad+'" name="quantity[]">',
+                '<button class="btn btn-danger" type="button">X</button>',
+            ]).draw(false);
+            countorden++;
+    
+            if(countorden > 0){
+                $('#btnguardarorden').show()
+            }else{
+                $('#btnguardarorden').hide()
+            }
         }
     });
 
@@ -261,6 +275,14 @@ $(function () {
             .draw();
     });
 
+
+
+$('#product_idorden').change(mostrarvalores);
+
+function mostrarvalores(){
+    datosproducto = document.getElementById('product_idorden').value.split('_');
+    $("#stock").val(datosproducto[1]);
+}
 
 //evento para desvanecer las alertas en 5 segundos
 $(".alert").fadeOut(5000 );

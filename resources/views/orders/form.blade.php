@@ -29,18 +29,24 @@
 <hr>
 <div class="form-group row">
     <label class="col-md-2 form-control-label" for="unity">Producto : </label>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <select class="form-control" name="product_id[]" id="product_idorden">
+            <option value="0" selected>Seleccione</option>
             @foreach ($products as $product)
-                <option value="{{$product->id}}">{{$product->name}}</option>
+                <option value="{{$product->id}}_{{$product->unity}}">{{$product->name}}</option>
             @endforeach
         </select>
     </div>
+
+</div>
+<div class="form-group row">
+    <label class="col-md-2 form-control-label" for="unity">Stock : </label>
+    <input type="text" disabled class="form-control col-md-2 mx-3" name="stock" id="stock">
+    <input type="number" value="1" class="form-control col-md-2 mx-3" placeholder="cantidad" name="cantidad" id="cantidad">
     <button class="btn btn-success col-md-1" id="btnaddorden" type="button">
         <i class="fa fa-plus "></i>
     </button>
 </div>
-
 <hr>
 
     <table id="tablaorders" class="table ">

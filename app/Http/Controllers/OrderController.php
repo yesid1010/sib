@@ -72,6 +72,8 @@ class OrderController extends Controller
     public function store(Request $request){
         // $previous_date = new Carbon('yesterday') ;
         // $kardex = Kardex::where('date','=',$previous_date)->first();
+
+        
         $kardex = Kardex::where('date','=',Carbon::now()->format('Y-m-d'))->first();
         $order              = new Order();
         $order->user_id     = $request->input('user_id');
