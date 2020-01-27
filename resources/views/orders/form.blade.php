@@ -43,8 +43,8 @@
 
 <hr>
 
-    <table id="tablaorders" class="table">
-        <thead class="bg-info">
+    <table id="tablaorders" class="table ">
+        <thead class="thead-dark">
             <tr>
                 <th class="text-center"></th>
                 <th  class="text-center">Producto</th>

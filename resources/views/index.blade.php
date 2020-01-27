@@ -16,6 +16,7 @@
         <!-- DataTables -->
 
         <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+        {{-- <link rel="stylesheet" href="plugins/buttons/css/buttons.bootstrap4.min.css"> --}}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     </head>
@@ -29,8 +30,8 @@
             @include('template.sidebar')
             <main class="main mt-2">
                 <div class="container-fluid">
-                    <!-- Ejemplo de tabla Listado -->
-                    <div class="card mt-3">
+              
+                    <div class="card mt-2">
                         <!-- Contenido Principal -->
                         @yield('content')
                     </div>
@@ -54,7 +55,7 @@
         <!-- DataTables -->
         <script src="plugins/datatables/jquery.dataTables.js"></script>
         <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-        
+        {{-- <script src="plugins/buttons/js/buttons.bootstrap4.min.js"></script> --}}
         <!-- scripts -->
         <script src="vendors/js/app.js"></script>
         <script src="vendors/js/modals.js"></script>

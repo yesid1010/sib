@@ -108,7 +108,7 @@ class KardexController extends Controller
     // metodo para crear el pedido diario de los productos
     public function update(Request $request)
     {
-        $previous_date = new Carbon('yesterday') ;
+        //$previous_date = new Carbon('yesterday') ;
         $cont = 0;
         $products = $request->input('product');
         $quantity = $request->input('quantity');

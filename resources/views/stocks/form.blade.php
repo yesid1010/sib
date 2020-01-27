@@ -33,7 +33,7 @@
 
 <hr>
 
-    <table id="tablastock" class="table table-bordered table-striped">
+    <table id="tablastock" class="table ">
         <thead class="thead-dark">
             <tr>
                 <th class="text-center"></th>

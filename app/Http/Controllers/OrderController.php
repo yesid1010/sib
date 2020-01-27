@@ -124,7 +124,9 @@ class OrderController extends Controller
         $order_product = new Order_Product();
         $order_product->order_id = $request->input('id');
         $order_product->product_id = $request->input('product_id'); 
-        $order_product->cant_unity = $request->input('quantity'); 
+        $order_product->cant_unity = $request->input('quantity');
+
+        $this->disStock($order_product->product_id,$order_product->cant_unity);
 
         $order_product->save();
         return back()->with('mensajesorder','!! producto Agregado con exito!!');

@@ -34,45 +34,45 @@
     </button>
 </div>
 @endif 
-
-<table class="table px-5 col-md-8  table-striped" id="detalleorden" >
-    <thead class=" bg-primary">
-        <tr>
-            <td class="text-center">Producto</td>
-            <td class="text-center">Cantidad</td>
-            @if($order->status == 1)
-                <td class="text-center">Editar</td>
-                <td class="text-center">Eliminar</td>
-            @endif
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($detalles as $detalle)
+<div class="card-body">
+    <table class="table   table-striped" id="detalleorden" >
+        <thead class=" bg-primary">
             <tr>
-                <td class="text-center" >{{$detalle->product_name}}</td>
-                <td class="text-center">{{$detalle->unity}}</td>
+                <td class="text-center">Producto</td>
+                <td class="text-center">Cantidad</td>
                 @if($order->status == 1)
-                    <td class="text-center">
-                        <button class="btn btn-primary" type="button"
-                                data-target="#abrirmodalEditDetailOrder"
-                                data-toggle="modal" 
-                                title="Editar"
-                                data-id="{{$detalle->id}}"
-                                data-unity="{{$detalle->unity}}">
-                                <i class="fa fa-pencil "></i> 
-                        </button>          
-                    </td>
-                    <td width="5%" class="text-center">
-                        <button class="btn btn-danger" data-id="{{$detalle->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarProductOrder">
-                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                        </button>
-                    </td>
+                    <td class="text-center">Editar</td>
+                    <td class="text-center">Eliminar</td>
                 @endif
             </tr>
-        @endforeach
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            @foreach ($detalles as $detalle)
+                <tr>
+                    <td class="text-center" >{{$detalle->product_name}}</td>
+                    <td class="text-center">{{$detalle->unity}}</td>
+                    @if($order->status == 1)
+                        <td class="text-center">
+                            <button class="btn btn-primary" type="button"
+                                    data-target="#abrirmodalEditDetailOrder"
+                                    data-toggle="modal" 
+                                    title="Editar"
+                                    data-id="{{$detalle->id}}"
+                                    data-unity="{{$detalle->unity}}">
+                                    <i class="fa fa-pencil "></i> 
+                            </button>          
+                        </td>
+                        <td width="5%" class="text-center">
+                            <button class="btn btn-danger" data-id="{{$detalle->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarProductOrder">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    @endif
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 {{-- MODALES --}}
 
     <!--Inicio del modal editar Producto de un stock ideal-->

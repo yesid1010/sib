@@ -13,10 +13,10 @@ $(function () {
     //tablakardexdetail
     $("#tablakardexdetail").DataTable({
         "info"          : false,
-        "lengthChange"  : false,
+       // "lengthChange"  : false,
         "ordering": false,
         "autoWidth"      : false,
-        "scrollY"       : "250px",
+        //"scrollY"       : "250px",
         "language":{
             "search":"Buscar"
         }
@@ -25,10 +25,10 @@ $(function () {
     //tablakardexs
     $("#tablakardexs").DataTable({
         "info"          : false,
-        "lengthChange"  : false,
+        //"lengthChange"  : false,
         "ordering": false,
         "autoWidth"      : false,
-        "scrollY"       : "250px",
+        //"scrollY"       : "250px",
         "language":{
             "search":"Buscar"
         }
@@ -36,10 +36,10 @@ $(function () {
 
     //tabla productos
     $("#tablaProductos").DataTable( {
-        "scrollY"       : "250px",
+        //"scrollY"       : "250px",
         "scrollCollapse": true,
         "info"          : false,
-        "lengthChange"  : false,
+       // "lengthChange"  : false,
         "ordering": false,
         "language":{
             "search":"Buscar"
@@ -49,12 +49,14 @@ $(function () {
     //tabla bares
     $("#tablaBares").DataTable({
         "info"          : false,
-        "lengthChange"  : false,
+        //"lengthChange"  : false,
         "ordering": false,
-        "scrollY"       : "250px",
+       // "scrollY"       : 250,
+        responsive: true,
         "language":{
             "search":"Buscar"
-        }
+        },
+        
     });
 
     //tabla de roles
@@ -70,7 +72,7 @@ $(function () {
     //tabla de usuarios
     $("#tablaUsers").DataTable({
         "info"          : false,
-        "lengthChange"  : false,
+       // "lengthChange"  : false,
         "ordering": false,
         "language":{
             "search":"Buscar"
@@ -90,10 +92,10 @@ $(function () {
 
     // tabla para mostrar un stock ideal de un bar en especifico
     $('#detallestock').DataTable({
-        "lengthChange"   : false,
-        "scrollY"        : "250px",
+        //"lengthChange"   : false,
+        //"scrollY"        : "250px",
         "info"           : false,
-        "searching"      : false,
+        //"searching"      : false,
         "scrollCollapse" : true,
         "autoWidth"      : false,
         "ordering"       : false,
@@ -140,10 +142,10 @@ $(function () {
 
     // TABLAS ORDENES //
     $('#tablaOrden').DataTable({
-        "lengthChange"   : false,
-        "scrollY"        : "250px",
+        //"lengthChange"   : false,
+        //"scrollY"        : "250px",
         "info"           : false,
-        "scrollCollapse" : true,
+        //"scrollCollapse" : true,
         "autoWidth"      : false,
         "ordering": false,
         "language":{
@@ -154,11 +156,11 @@ $(function () {
 
     // tabla para mostrar los productos de una orden en especifico
     $('#detalleorden').DataTable({
-        "lengthChange"   : false,
-        "scrollY"        : "250px",
+        //"lengthChange"   : false,
+        //"scrollY"        : "250px",
         "info"           : false,
-        "searching"      : false,
-        "scrollCollapse" : true,
+        //"searching"      : false,
+        //"scrollCollapse" : true,
         "autoWidth"      : false,
         "ordering": false,
         "language":{

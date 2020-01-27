@@ -27,8 +27,8 @@
     </div>
     @endif
     {{-- fin manejo de errores de campos --}}
-    <div class="card-body">
-        <table id="tablaBares" class="table table-bordered table-striped">
+    <div class="card-body" >
+        <table id="tablaBares"  class="table table-bordered table-striped">
             <thead class="bg-primary">
                 <tr>
                     <th>Tipo</th>

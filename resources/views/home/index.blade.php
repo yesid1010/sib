@@ -5,26 +5,29 @@
         $encontrado = false;
         foreach ($kardexs as $kardex){
 
-            if($kardex->date == $fecha){
+            if($kardex->date == $today){
                 $encontrado = true;
             }
         }
     @endphp
 
     <form  action="{{route('kardexs.create')}}" method="get">
-        @if (!$encontrado)
+        @if (!$encontrado && $last_state == 1)
             <button class="btn btn-primary mx-3 mt-1" id="btniniciarkardex" type="submit" >
-            <h3 class="float-left">Iniciar Kardex</h3>  
+                <h3 class="float-left">Iniciar Kardex</h3>  
             </button>
         @endif
 
+        @if ($encontrado)
             <button class="btn btn-primary mx-3 mt-1" id="btningresarpedido" type="button" data-toggle="modal" data-target="#abrirmodalKardex">
                 <h3 class="float-left">Ingresar Pedido</h3>  
             </button>
+        @endif
+        @if (!$encontrado  && $last_state == 0)
             <button class="btn btn-danger mx-3 mt-1" id="btncerrarkardex" type="button" data-toggle="modal" data-target="#cerrarkardex">
                 <h3 class="float-left">Cerrar Kardex</h3> 
             </button>
-
+        @endif
 
     </form>
 
