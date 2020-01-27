@@ -221,7 +221,7 @@ $(function () {
         product_idorden  = producto[0];
         stock = producto[1];
 
-        if(parseInt(cantidad)>=parseInt(stock)){
+        if(parseInt(cantidad) > parseInt(stock)){
             Swal.fire({
                 type: 'error',
                 //title: 'Oops...',

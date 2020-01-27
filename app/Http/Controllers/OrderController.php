@@ -111,6 +111,7 @@ class OrderController extends Controller
         return back()->with('mensajesorder','!! Orden Agregada con exito!!');
     }
 
+    // mostrar los detalles de una orden en especifico
     public function DetailOrden(Request $request){
 
         $order   = $this->getOrder($request->input('id'));
@@ -159,19 +160,19 @@ class OrderController extends Controller
     public function EditDetailOrder(Request $request){
         $order_product = Order_Product::findOrFail($request->id);
 
-        $cant_anterior = $request->id_an;
+        // $cant_anterior = $request->id_an;
         $cant_nueva    = $request->cantProduct;
 
-        $order_product->cant_unity =  $cant_nueva;
+        $order_product->cant_unity =  $order_product->cant_unity + $cant_nueva;
         $order_product->save();
 
         $product = Product::findOrFail($order_product->product_id);
 
-        $stockAntiguo = $product->unity;
+        // $stockAntiguo = $product->unity;
 
-        $stockNuevo = $stockAntiguo + $cant_anterior - $cant_nueva;
+        // $stockNuevo = $stockAntiguo + $cant_anterior - $cant_nueva;
 
-        $product->unity = $stockNuevo;
+        $product->unity = $product->unity - $cant_nueva;
 
         $product->save();
 

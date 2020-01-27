@@ -41,7 +41,7 @@
                 <td class="text-center">Producto</td>
                 <td class="text-center">Cantidad</td>
                 @if($order->status == 1)
-                    <td class="text-center">Editar</td>
+                    <td class="text-center">Agregar</td>
                     <td class="text-center">Eliminar</td>
                 @endif
             </tr>
@@ -56,10 +56,9 @@
                             <button class="btn btn-primary" type="button"
                                     data-target="#abrirmodalEditDetailOrder"
                                     data-toggle="modal" 
-                                    title="Editar"
                                     data-id="{{$detalle->id}}"
                                     data-unity="{{$detalle->unity}}">
-                                    <i class="fa fa-pencil "></i> 
+                                    <i class="fa fa-plus "></i> 
                             </button>          
                         </td>
                         <td width="5%" class="text-center">
@@ -80,7 +79,7 @@
         <div class="modal-dialog modal-primary " role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Editar Cantidad</h4>
+                    <h4 class="modal-title">Agregar Cantidad</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
