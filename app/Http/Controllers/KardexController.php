@@ -14,10 +14,22 @@ class KardexController extends Controller
 {
 
     // mostrar todos los kardex cerrados
-    public function index()
+    public function index(Request $request)
     {
-        $kardexs = Kardex::where('status','1')->orderBy('id','desc')->get();
-        return view('kardex.index',['kardexs'=>$kardexs]);
+
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+
+        if($start_date == '' && $end_date == ''){
+            $kardexs = Kardex::where('status','1')->orderBy('id','desc')->get();
+            return view('kardex.index',['kardexs'=>$kardexs]);
+        }else{
+            $kardexs = Kardex::where('status','1')
+                                ->whereBetween('date', [$start_date, $end_date])
+                                ->orderBy('id','desc')->get();
+            return view('kardex.index',['kardexs'=>$kardexs]);
+        }
+
     }
 
     // funcion que llama al metodo store() y detail() para crear un kardex

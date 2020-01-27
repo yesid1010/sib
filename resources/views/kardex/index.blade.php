@@ -5,8 +5,28 @@
         <h3 class="float-left">Listado de Kardex</h3>       
     </div>
 
-    <div class="card-body">
-        <table id="tablakardexs" class="table table-bordered table-striped ">
+    <div class="card-body ">
+     
+
+            <form  action="{{route('kardexs.index','test')}}" method="get">                               
+                <div class="row ">
+                    <div class="col-md-4"> 
+                        <input type="text" class="form-control col-md-10" name="start_date" id="start_date" placeholder="Fecha inicial" onfocus="(this.type='date')" onblur="(this.type='text')" >
+
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control col-md-10" name="end_date" id="end_date"placeholder="Fecha final" onfocus="(this.type='date')" onblur="(this.type='text')" >
+                        
+                    </div>
+                    <div class="col-md-4">
+                        <button class= "btn btn-danger" type="submit">
+                            Filtrar
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <hr>
+        <table id="tablakardexs" class="table table-bordered table-striped">
             <thead class="bg-primary">
                 <tr>
                     <th>Fecha</th>

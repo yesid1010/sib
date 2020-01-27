@@ -21,18 +21,38 @@ class OrderController extends Controller
     }
 
 // mostrar los datos necesarios para ver una orden especifica y para crearla
-    public function index(){
-        $orders   = DB::table('orders')
+    public function index(Request $request){
+
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+
+        if($start_date == '' && $end_date == ''){
+            $orders = DB::table('orders')
                     ->join('users','users.id','=','orders.user_id')
                     ->join('pubs','pubs.id','=','orders.pub_id')
                     ->select('users.id as user_id','users.names as nameU',
-                             'pubs.id as pub_id','pubs.name as nameP',
-                             'orders.id as id',
-                             'orders.description as description',
-                             'orders.status as status',
-                             'orders.created_at as created_at')
+                            'pubs.id as pub_id','pubs.name as nameP',
+                            'orders.id as id',
+                            'orders.description as description',
+                            'orders.status as status',
+                            'orders.created_at as created_at')
                     ->orderBy('id', 'desc')
                     ->get();
+        }else{
+            $orders = DB::table('orders')
+                    ->join('users','users.id','=','orders.user_id')
+                    ->join('pubs','pubs.id','=','orders.pub_id')
+                    ->select('users.id as user_id','users.names as nameU',
+                            'pubs.id as pub_id','pubs.name as nameP',
+                            'orders.id as id',
+                            'orders.description as description',
+                            'orders.status as status',
+                            'orders.created_at as created_at')
+                    ->whereBetween('orders.created_at', [$start_date, $end_date])
+                    ->orderBy('id', 'desc')
+                    ->get();
+
+        }
 
         $products = Product::all()->where('unity','>',0);
         $pubs     = Pub::all();

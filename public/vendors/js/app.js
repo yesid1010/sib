@@ -1,3 +1,5 @@
+
+
 $(function () {
 
     //tabla categorias
@@ -126,7 +128,7 @@ $(function () {
         tabla.row.add([
             '<input type="hidden" value="'+product_id+'" name="product[]">',
             product,
-            '<input type="number" class="form-control col-md-3" value="1" name="quantity[]" id="cantidad">',
+            '<input type="number" class="form-control col-md-3" value="1" name="quantity[]">',
             '<button class="btn btn-danger" type="button">X</button>',
         ]).draw(false);
         counter++;
