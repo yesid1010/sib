@@ -4,23 +4,33 @@ $(function () {
 
     //tabla categorias
     $("#tablaCategorias").DataTable({
-        "info"          : false,
-        "lengthChange"  : false,
+        "info"    : false,
         "ordering": false,
         "language":{
-            "search":"Buscar"
+            "search":"Buscar",
+            "emptyTable":     "No hay datos disponibles en la tabla",
+            "lengthMenu":     "mostrar _MENU_ registros",
+            "paginate": {
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
         }
     });
 
     //tablakardexdetail
     $("#tablakardexdetail").DataTable({
         "info"          : false,
-       // "lengthChange"  : false,
-        "ordering": false,
-        "autoWidth"      : false,
-        //"scrollY"       : "250px",
+        "ordering"      : false,
+        "autoWidth"     : false,
+       
         "language":{
-            "search":"Buscar"
+            "search":"Buscar",
+            "emptyTable":     "No hay datos disponibles en la tabla",
+            "lengthMenu":     "mostrar _MENU_ registros",
+            "paginate": {
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
         }
     });
 
@@ -32,7 +42,13 @@ $(function () {
         "autoWidth"      : false,
         //"scrollY"       : "250px",
         "language":{
-            "search":"Buscar"
+            "search":"Buscar",
+            "emptyTable":     "No hay datos disponibles en la tabla",
+            "lengthMenu":     "mostrar _MENU_ registros",
+            "paginate": {
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
         }
     });
 
@@ -44,7 +60,13 @@ $(function () {
        // "lengthChange"  : false,
         "ordering": false,
         "language":{
-            "search":"Buscar"
+            "search":"Buscar",
+            "emptyTable":     "No hay datos disponibles en la tabla",
+            "lengthMenu":     "mostrar _MENU_ registros",
+            "paginate": {
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
         }
     });
 
@@ -56,8 +78,14 @@ $(function () {
        // "scrollY"       : 250,
         responsive: true,
         "language":{
-            "search":"Buscar"
-        },
+            "search":"Buscar",
+            "emptyTable":     "No hay datos disponibles en la tabla",
+            "lengthMenu":     "mostrar _MENU_ registros",
+            "paginate": {
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
+        }
         
     });
 
@@ -67,7 +95,13 @@ $(function () {
         "lengthChange"  : false,
         "ordering": false,
         "language":{
-            "search":"Buscar"
+            "search":"Buscar",
+            "emptyTable":     "No hay datos disponibles en la tabla",
+            "lengthMenu":     "mostrar _MENU_ registros",
+            "paginate": {
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
         }
     });
 
@@ -77,7 +111,13 @@ $(function () {
        // "lengthChange"  : false,
         "ordering": false,
         "language":{
-            "search":"Buscar"
+            "search":"Buscar",
+            "emptyTable":     "No hay datos disponibles en la tabla",
+            "lengthMenu":     "mostrar _MENU_ registros",
+            "paginate": {
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
         }
     });
 
@@ -85,10 +125,15 @@ $(function () {
     // tabla de todos los stocks ideales
     $("#tablaStocks").DataTable({
         "info"          : false,
-        "lengthChange"  : false,
         "ordering": false,
         "language":{
-            "search":"Buscar"
+            "search":"Buscar",
+            "emptyTable":     "No hay datos disponibles en la tabla",
+            "lengthMenu":     "mostrar _MENU_ registros",
+            "paginate": {
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
         }
     });
 
@@ -102,7 +147,13 @@ $(function () {
         "autoWidth"      : false,
         "ordering"       : false,
         "language":{
-            "search":"Buscar"
+            "search":"Buscar",
+            "emptyTable":     "No hay datos disponibles en la tabla",
+            "lengthMenu":     "mostrar _MENU_ registros",
+            "paginate": {
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
         }
     });
 
@@ -112,7 +163,13 @@ $(function () {
         "lengthChange"  : false,
         "ordering": false,
         "language":{
-            "search":"Buscar"
+            "search":"Buscar",
+            "emptyTable":     "No hay datos disponibles en la tabla",
+            "lengthMenu":     "mostrar _MENU_ registros",
+            "paginate": {
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
         }
     });
 
@@ -151,7 +208,15 @@ $(function () {
         "autoWidth"      : false,
         "ordering": false,
         "language":{
-            "search":"Buscar"
+            "search":"Buscar",
+            "emptyTable":     "No hay datos disponibles en la tabla",
+            "lengthMenu":     "mostrar _MENU_ registros",
+            "paginate": {
+                "first":      "First",
+                "last":       "Last",
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
         }
     });
 
@@ -166,7 +231,13 @@ $(function () {
         "autoWidth"      : false,
         "ordering": false,
         "language":{
-            "search":"Buscar"
+            "search":"Buscar",
+            "emptyTable":     "No hay datos disponibles en la tabla",
+            "lengthMenu":     "mostrar _MENU_ registros",
+            "paginate": {
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
         }
     });
 
@@ -176,7 +247,13 @@ $(function () {
         "lengthChange"  : false,
         "ordering": false,
         "language":{
-            "search":"Buscar"
+            "search":"Buscar",
+            "emptyTable":     "No hay datos disponibles en la tabla",
+            "lengthMenu":     "mostrar _MENU_ registros",
+            "paginate": {
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
         }
     });
     $('#btnguardark').hide()
@@ -206,7 +283,13 @@ $(function () {
         "lengthChange"  : false,
         "ordering": false,
         "language":{
-            "search":"Buscar"
+            "search":"Buscar",
+            "emptyTable":     "No hay datos disponibles en la tabla",
+            "lengthMenu":     "mostrar _MENU_ registros",
+            "paginate": {
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
         }
     });
     
