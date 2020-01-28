@@ -137,32 +137,6 @@
         </div>
         <!--Fin del modal Editar producto-->
 
-        <!--Inicio del modal agregar Producto por unidad-->
-        <div class="modal fade" id="abrirmodalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog modal-primary " role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Agregar Producto</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    
-                    <div class="modal-body">
-                        <form action="{{route('addproduct')}}" method="post" class="form-horizontal">
-                            {{csrf_field()}}
-                            @include('products.addproduct')
-                        </form>
-                    </div>
-    
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!--Fin del modal-->
-
-
         <!--Inicio del modal de eliminar-->
     <div class="modal fade" id="abrirmodalEliminarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-primary " role="document">

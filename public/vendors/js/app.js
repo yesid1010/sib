@@ -185,7 +185,7 @@ $(function () {
         tabla.row.add([
             '<input type="hidden" value="'+product_id+'" name="product[]">',
             product,
-            '<input type="number" class="form-control col-md-3" value="1" name="quantity[]">',
+            '<input type="number"  min="1"  class="form-control col-md-3 input-number" value="1" name="quantity[]">',
             '<button class="btn btn-danger" type="button">X</button>',
         ]).draw(false);
         counter++;
@@ -265,7 +265,7 @@ $(function () {
         tablakardex.row.add([
             '<input type="hidden" value="'+product_idk+'" name="product[]">',
             productk,
-            '<input type="number" class="form-control col-md-3" value="1" name="quantity[]">',
+            '<input type="number" min="1" class="form-control col-md-3 input-number" value="1" name="quantity[]">',
             '<button class="btn btn-danger" type="button">X</button>',
         ]).draw(false);
         countk++;
@@ -317,7 +317,7 @@ $(function () {
             tablaorders.row.add([
                 '<input type="hidden" value="'+product_idorden+'" name="product[]">',
                 productorden,
-                '<input type="number" readonly="readonly" class="form-control col-md-3" value="'+cantidad+'" name="quantity[]">',
+                '<input type="number" min="1"  readonly="readonly" class="form-control col-md-3" value="'+cantidad+'" name="quantity[]">',
                 '<button class="btn btn-danger" type="button">X</button>',
             ]).draw(false);
             countorden++;
@@ -367,8 +367,6 @@ function mostrarvalores(){
     $("#stock").val(datosproducto[1]);
 }
 
-//evento para desvanecer las alertas en 5 segundos
-$(".alert").fadeOut(5000 );
-
-
-
+$('.input-number').on('input', function () { 
+    this.value = this.value.replace(/[^0-9]/g,'');
+});

@@ -7,9 +7,14 @@
 
     <ul class="nav navbar-nav d-md-down-none">
         <li class="nav-item px-3">
-            <a class="nav-link " href="#">
+
+            <a class="nav-link" href="{{url('home')}}" onclick="event.preventDefault(); document.getElementById('home-form').submit();">
                 <img src="https://www.decameron.com/images/logos/logo-decameron-all-inclusive.png" alt="" srcset="">
             </a>
+                    
+            <form id="home-form" action="{{url('home')}}" method="GET" style="display: none;">
+            {{csrf_field()}} 
+            </form>
         </li>
        
     </ul>

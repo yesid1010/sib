@@ -7,7 +7,7 @@
             @endforeach
         </select>
     </div>
-    <input type="number" class="form-control col-md-3" value="1" name="quantity">
+    <input type="number" class="form-control col-md-3 input-number" min="1" value="1" name="quantity">
 </div>
 
 <div class="modal-footer">

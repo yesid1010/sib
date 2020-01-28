@@ -3,7 +3,7 @@
 <div class="form-group row">
     <label class="col-md-3 form-control-label" for="unity">Cantidad</label>
     <div class="col-md-3">
-        <input type="number" name="cantProduct" id="unity" class="form-control" value='0'>
+        <input type="number" min="1"  name="cantProduct" id="unity" class="form-control input-number" value='0'>
     </div>
 </div>
 

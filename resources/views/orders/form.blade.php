@@ -42,7 +42,7 @@
 <div class="form-group row">
     <label class="col-md-2 form-control-label" for="unity">Stock : </label>
     <input type="text" disabled class="form-control col-md-2 mx-3" name="stock" id="stock">
-    <input type="number" value="1" class="form-control col-md-2 mx-3" placeholder="cantidad" name="cantidad" id="cantidad">
+    <input type="number" min="1"  value="1" class="form-control col-md-2 mx-3 input-number" placeholder="cantidad" name="cantidad" id="cantidad">
     <button class="btn btn-success col-md-1" id="btnaddorden" type="button">
         <i class="fa fa-plus "></i>
     </button>
