@@ -49,12 +49,17 @@
                     <td>{{$order->created_at}}</td>
                     <td class="text-center">
                        @if($order->status == 1) 
-                            <form action="{{route('status',$order->id)}}" method="get">
+                            <button class="btn btn-info mx-3 mt-1" type="button"
+                                    data-toggle="modal" data-target="#cerrarorden"
+                                    data-id = "{{$order->id}}">
+                                Abierto
+                            </button>
+                            {{-- <form action="{{route('status',$order->id)}}" method="get">
                                 @csrf
                                 <button class= "btn btn-info" type="submit">
                                     Abierto
                                 </button>
-                            </form>
+                            </form> --}}
                         @else 
                             <button title="Cerrado" class= "btn btn-secondary" disabled type="submit">
                                 Cerrado
@@ -163,5 +168,35 @@
     <!-- /.modal-dialog -->
 </div>
 <!--Fin del modal agregar orden-->
+
+<!--Inicio del modal de cerrar orden-->
+<div class="modal fade" id="cerrarorden" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-primary " role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title">¿ Está seguro de cerrar esta orden?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <h5>Al dar click en Aceptar, No se podrá deshacer esta acción.</h5>
+                <form action="{{route('status','test')}}" method="get">
+                    {{csrf_field()}}   
+                    <input type="hidden" name="id" id="id" value="">  
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Aceptar</button> 
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!--Fin del modal-->
 
 @endsection

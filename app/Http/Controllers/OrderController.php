@@ -118,7 +118,7 @@ class OrderController extends Controller
         $pub     = $this->getPub($request->input('id'));
         $detalles = $this->getDetail($request->input('id'));
         
-        $products = Product::all();
+        $products = Product::all()->where('unity','>',0);
 
         return view('orders.show',['order'=>$order,
                     'detalles'=>$detalles,
@@ -142,51 +142,69 @@ class OrderController extends Controller
         return back();
     }
 
-
+// agregar un producto a una orden creada
     public function Addproduct(Request $request){
-        $order_product = new Order_Product();
-        $order_product->order_id = $request->input('id');
-        $order_product->product_id = $request->input('product_id'); 
-        $order_product->cant_unity = $request->input('quantity');
 
-        $this->disStock($order_product->product_id,$order_product->cant_unity);
+        $product_id = $request->input('product_id'); 
+        $quantity   = $request->input('quantity');
 
-        $order_product->save();
-        alert()->success('OK', '!!Producto Agregado con exito!!')->autoclose(3000);
-        return back();
+        $product = Product::findOrFail($product_id);
+
+        if($quantity > $product->unity){
+            alert()->error('error', '!! La cantidad  supera el stock!!')->autoclose(3000);
+            return back();
+        }else{
+
+            $order_product = new Order_Product();
+            $order_product->order_id = $request->input('id');
+            $order_product->product_id = $product_id; 
+            $order_product->cant_unity = $quantity;
+    
+            $this->disStock($product_id,$quantity);
+    
+            $order_product->save();
+            alert()->success('OK', '!!Producto Agregado con exito!!')->autoclose(3000);
+            return back();
+
+        }
     }
 
 
     // editar la cantidad de un producto de cierta orden
     public function EditDetailOrder(Request $request){
-        $order_product = Order_Product::findOrFail($request->id);
 
-        // $cant_anterior = $request->id_an;
+        
+        $order_product = Order_Product::findOrFail($request->id);
         $cant_nueva    = $request->cantProduct;
 
-        $order_product->cant_unity =  $order_product->cant_unity + $cant_nueva;
-        $order_product->save();
+        $total = $cant_nueva + $order_product->cant_unity;
 
         $product = Product::findOrFail($order_product->product_id);
 
-        // $stockAntiguo = $product->unity;
-
-        // $stockNuevo = $stockAntiguo + $cant_anterior - $cant_nueva;
-
-        $product->unity = $product->unity - $cant_nueva;
-
-        $product->save();
-        alert()->success('OK', '!!Cantidad Actualizada con exito!!')->autoclose(3000);
-        return back();
+        if($total > $product->unity){
+            alert()->error('error', '!! La cantidad  supera el stock!!')->autoclose(3000);
+            return back();
+        }else{
+            $order_product->cant_unity =  $order_product->cant_unity + $cant_nueva;
+            $order_product->save();
+    
+           // $product = Product::findOrFail($order_product->product_id);
+    
+            $product->unity = $product->unity - $cant_nueva;
+    
+            $product->save();
+            alert()->success('OK', '!!Cantidad Actualizada con exito!!')->autoclose(3000);
+            return back();
+        }
     }
 
     // cambiar de estado
-    public function Status($id){
-        $order          = Order::findOrFail($id);
+    public function Status(Request $request){
+        $order          = Order::findOrFail($request->id);
         $order->status  = '0';
         
         $order->save();
-        alert()->success('OK', '!!Estado Actualizado con exito!!')->autoclose(3000);
+        alert()->success('OK', '!!Orden Cerrada con exito!!')->autoclose(3000);
         return back();
     }
 
