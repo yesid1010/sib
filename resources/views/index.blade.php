@@ -14,7 +14,7 @@
         <!-- Main styles for this application -->
         <link href="vendors/css/style.css" rel="stylesheet">
         <!-- DataTables -->
-
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
         {{-- <link rel="stylesheet" href="plugins/buttons/css/buttons.bootstrap4.min.css"> --}}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -42,7 +42,7 @@
         <footer class="app-footer">
             <span class="ml-auto">Desarrollado por <a target="_blank" href="https://yesid1010.github.io/perfil/">Yesid Sánchez</a></span>
         </footer>
-    
+        @include('sweet::alert')
         <!-- Bootstrap and necessary plugins -->
         <script src="vendors/js/jquery.min.js"></script>
         <script src="vendors/js/popper.min.js"></script>

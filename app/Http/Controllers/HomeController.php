@@ -31,6 +31,7 @@ class HomeController extends Controller
         $kardexs = Kardex::all();
         $today =  Carbon::now()->format('Y-m-d');
         $last_state = $this->getUltimoKardex();
+        
         return view('home.index',['products'=>$products,
                                   'kardexs'=>$kardexs,
                                    'today'=>$today,

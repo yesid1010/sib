@@ -39,8 +39,8 @@ class ProductController extends Controller
         $product->category_id    = $request->input('category_id');
  
         $product->save();
-
-        return back()->with('mensajepro','!! Producto agregado con exito!!');
+        alert()->success('OK', '!!Producto Agregado con exito!!')->autoclose(3000);
+        return back();
     }
 
     public function update(Request $request)
@@ -56,8 +56,8 @@ class ProductController extends Controller
         $product->category_id    = $request->input('category_id');
 
         $product->save();
-
-        return back()->with('mensajepro','!! producto actualizado con exito!!');
+        alert()->success('OK', '!!Producto Actualizado con exito!!')->autoclose(3000);
+        return back();
 
     }
 
@@ -66,32 +66,20 @@ class ProductController extends Controller
         $product =  Product::findOrFail($request->id);
         $product->delete();
 
-        return back()->with('mensajepro','!! producto eliminado con exito!!');
+        alert()->success('OK', '!!Producto Eliminado con exito!!')->autoclose(3000);
+        return back();
     }
 
-    public function AddProduct(Request $request){
+    // generar pdf del stock de todos los productos
+    public function pdf(){
+        $products=Product::all();
 
-        $product                 = Product::findOrFail($request->id);
-        $product->unity          = $request->input('unity') + $product->unity;
-        // $product->three_quarters = $product->three_quarters;
-        // $product->half           = $product->half;
-        // $product->quater         = $product->quater;
-        $product->save();
-
-        return back()->with('mensajepro','!! cantidad agregada con exito!!');
+        $pdf = \PDF::setOptions([
+            'logOutputFile' => storage_path('logs/log.htm'),
+            'tempDir' => storage_path('logs/')
+            ])->loadView('pdf.products',['products'=>$products]);
+        return $pdf->stream('stock'.now().'.pdf');
     }
-
-
-        // generar pdf del stock de todos los productos
-        public function pdf(){
-            $products=Product::all();
-    
-            $pdf = \PDF::setOptions([
-                'logOutputFile' => storage_path('logs/log.htm'),
-                'tempDir' => storage_path('logs/')
-                ])->loadView('pdf.products',['products'=>$products]);
-            return $pdf->stream('stock'.now().'.pdf');
-        }
 
 
 

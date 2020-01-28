@@ -33,24 +33,6 @@
 
 </div>
 
-@if (session('mensaje'))
-    <div class="alert alert-success">
-        {{ session('mensaje') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-@endif
-
-@if (session('mensajeerror'))
-    <div class="alert alert-danger">
-        {{ session('mensajeerror') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-@endif
-
     <!--Inicio del modal agregar pedido-->
     <div class="modal fade" id="abrirmodalKardex" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-primary modal-lg" role="document">

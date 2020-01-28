@@ -1,7 +1,7 @@
 @extends('index')
 @section('content')
 
-    @if (session('mensajeok'))
+    {{-- @if (session('mensajeok'))
         <div class="alert alert-success">
             {{ session('mensajeok') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -17,7 +17,7 @@
                     </button>
             </div>
         @endif
-    @endif
+    @endif --}}
 
     <div class="card-header">     
         <h3 class="float-left">Perfil de Usuario</h3>    

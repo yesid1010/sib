@@ -4,16 +4,7 @@
     <div class="card-header">     
         <h3 class="float-left">Listado de Usuarios</h3>       
     </div>
-    @if(count($errors))
 
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{$error}}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
 
     <div class="card-body">
         <table id="tablaUsers" class="table table-bordered table-striped">

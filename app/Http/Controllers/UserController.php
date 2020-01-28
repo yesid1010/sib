@@ -40,8 +40,8 @@ class UserController extends Controller
         $user->role_id = $request->input('role_id');
         
         $user->save();
-
-        return back()->with('mensajesuser','!! Usuario Agregado con exito!!');
+        alert()->success('OK', '!!Usuario Agregado con exito!!')->autoclose(3000);
+        return back();
     }
 
     //editar un usuario
@@ -59,15 +59,16 @@ class UserController extends Controller
         }
         
         $user->save();
-
-        return back()->with('mensajesuser','!! Usuario actualizado con exito!!');
+        alert()->success('OK', '!!Usuario Actualizado con exito!!')->autoclose(3000);
+        return back();
     }
 
     //eliminar un usuario
     public function destroy(Request $request){
         $user =  User::findOrFail($request->id);
         $user->delete();
-        return back()->with('mensajesuser','!! Usuario eliminado con exito!!');
+        alert()->success('OK', '!!Usuario Eliminado con exito!!')->autoclose(3000);
+        return back();
     }
 
     // agregar contraseña a un usuario por parte del superadmin
@@ -75,7 +76,8 @@ class UserController extends Controller
         $user                 = User::findOrFail($request->id);
         $user->password       = bcrypt($request->input('password'));
         $user->save();
-        return back()->with('mensajesuser','!! Contraseña Agregada con exito!!');
+        alert()->success('OK', '!!Contraseña Agregada con exito!!')->autoclose(3000);
+        return back();
     }
 
     // ver perfil del  usuario autenticado 
@@ -92,10 +94,12 @@ class UserController extends Controller
         if (Hash::check($oldpassword,$user->password)){
             $user->password = bcrypt($request->input('newpassword'));
             $user->save();
-            return redirect('profile')->with('mensajeok', 'Contraseña Actualiza con exito!!!');
+            alert()->success('OK', '!!Contraseña Actualizada con exito!!')->autoclose(3000);
+            return back();
         }
         else{
-            return redirect('profile')->with('mensajeerror', 'Error al Cambiar contraseña!!');
+            alert()->error('OK', '!!Error al cambiar contraseña!!')->autoclose(3000);
+            return back();
         }
     }
 
@@ -113,7 +117,8 @@ class UserController extends Controller
             
         }
         $user->save();
-        return back()->with('mensajesuser','!! estado actualizado con exito!!');
+        alert()->success('OK', '!!Estado Actualizado con exito!!')->autoclose(3000);
+        return back();
     }
 
     public function barmans(){

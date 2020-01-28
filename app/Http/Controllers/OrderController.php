@@ -107,8 +107,8 @@ class OrderController extends Controller
             $cont++;
 
         }
-
-        return back()->with('mensajesorder','!! Orden Agregada con exito!!');
+        alert()->success('OK', '!!Orden Agregada con exito!!')->autoclose(3000);
+        return back();
     }
 
     // mostrar los detalles de una orden en especifico
@@ -138,8 +138,8 @@ class OrderController extends Controller
         $product->save();
         
         $order_product->delete();
-
-        return back()->with('mensajesorder','!! Producto eliminado con exito!!');
+        alert()->success('OK', '!!Producto  eliminado con exito!!')->autoclose(3000);
+        return back();
     }
 
 
@@ -152,7 +152,8 @@ class OrderController extends Controller
         $this->disStock($order_product->product_id,$order_product->cant_unity);
 
         $order_product->save();
-        return back()->with('mensajesorder','!! producto Agregado con exito!!');
+        alert()->success('OK', '!!Producto Agregado con exito!!')->autoclose(3000);
+        return back();
     }
 
 
@@ -175,8 +176,8 @@ class OrderController extends Controller
         $product->unity = $product->unity - $cant_nueva;
 
         $product->save();
-
-        return back()->with('mensajesorder','!! Cantidad actualizada con exito!!');
+        alert()->success('OK', '!!Cantidad Actualizada con exito!!')->autoclose(3000);
+        return back();
     }
 
     // cambiar de estado
@@ -185,7 +186,8 @@ class OrderController extends Controller
         $order->status  = '0';
         
         $order->save();
-        return back()->with('mensajesorder','!! Estado Actualizado con exito!!');
+        alert()->success('OK', '!!Estado Actualizado con exito!!')->autoclose(3000);
+        return back();
     }
 
     public function update(Request $request)
@@ -198,7 +200,8 @@ class OrderController extends Controller
 
         
         $order->save();
-        return back()->with('mensajesorder','!! Orden actualizada con exito!!');
+        alert()->success('OK', '!!Orden Actualizada con exito!!')->autoclose(3000);
+        return back();
     }
 
     // generar pdf de una orden 

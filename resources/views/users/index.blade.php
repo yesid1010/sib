@@ -8,14 +8,6 @@
         </button>
     </div>
 
-    @if (session('mensajesuser'))
-        <div class="alert alert-success">
-            {{ session('mensajesuser') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
     @if(count($errors))
 
     <div class="alert alert-danger">

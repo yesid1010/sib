@@ -31,7 +31,8 @@ class PubController extends Controller
         $pub->description = $request->input('description');
         $pub->category    = $request->input('category');
         $pub->save();
-        return back()->with('mensajepub','!! Bar agregado con exito!!');
+        alert()->success('OK', '!!Bar Agregado con exito!!')->autoclose(3000);
+        return back();
     }
 
 
@@ -48,14 +49,16 @@ class PubController extends Controller
         $pub->description = $request->input('description');
         $pub->category    = $request->input('category');
         $pub->save();
-        return back()->with('mensajepub','!! Bar actualizado con exito!!');
+        alert()->success('OK', '!!Bar Actualizado con exito!!')->autoclose(3000);
+        return back();
     }
 
     public function destroy( Request $request )
     {
         $pub =  Pub::findOrFail($request->id);
         $pub->delete();
-        return back()->with('mensajepub','!! Bar Eliminado con exito!!');
+        alert()->success('OK', '!!Bar Eliminado con exito!!')->autoclose(3000);
+        return back();
     }
 
     public function OrderPub(Request $request){

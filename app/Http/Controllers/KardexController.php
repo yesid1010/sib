@@ -37,7 +37,8 @@ class KardexController extends Controller
     {
         $kardex = $this->store(); 
         $this->detail($kardex->id);
-        return back()->with('mensaje','Kardex inicializado con exito');
+        alert()->success('OK', '!! Kardex inicializado con exito!!')->autoclose(3000);;
+        return back();
     }
 
     // funcion para crear un kardex
@@ -95,8 +96,8 @@ class KardexController extends Controller
 
             $kardex_product->save();
         }
-
-        return back()->with('mensaje','Kardex Cerrado con exito');
+        alert()->success('OK', '!! Kardex Cerrado con exito!!')->autoclose(3000);
+        return back();
     }
 
     //Obtener la cantidad total de cada producto vendido
@@ -142,8 +143,8 @@ class KardexController extends Controller
             $cont++;
 
         }
-
-       return back()->with('mensaje','pedido Guardado exitosamente');
+        alert()->success('OK', '!!pedido Guardado exitosamente!!')->autoclose(3000);
+       return back();
     }
 
    // metodo que llama a la funcion getDetalles() para mostrar

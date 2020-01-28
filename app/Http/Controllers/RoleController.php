@@ -28,7 +28,8 @@ class RoleController extends Controller
         $role->name        = $request->input('name');
         $role->description = $request->input('description');
         $role->save();
-        return back()->with('mensajesrol','!! Rol agregado con exito!!');
+        alert()->success('OK', '!!Rol Agregado con exito!!')->autoclose(3000);
+        return back();
     }
 
     public function update(Request $request)
@@ -38,13 +39,15 @@ class RoleController extends Controller
         $role->name        = $request->input('name');
         $role->description = $request->input('description');
         $role->save();
-        return back()->with('mensajesrol','!! Rol actualizado con exito!!');
+        alert()->success('OK', '!!Rol Actualizado con exito!!')->autoclose(3000);
+        return back();
     }
 
     public function destroy( Request $request  )
     {
         $role =  Role::findOrFail($request->id);
         $role->delete();
-        return back()->with('mensajesrol','!! Rol Eliminado con exito!!');
+        alert()->success('OK', '!!Rol Eliminado con exito!!')->autoclose(3000);
+        return back();
     }
 }

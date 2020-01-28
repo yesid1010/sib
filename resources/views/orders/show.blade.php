@@ -1,39 +1,26 @@
 @extends('index')
 @section('content')
 <div class="card-header text-center ">     
-
-
     <div class="row">
         <div class="col-md-2">
-        <a class="btn btn-success py-2 mt-1 float-left" href="{{URL::previous()}}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Atras</a>
+            <a class="btn btn-success py-2 mt-1 float-left" href="{{URL::previous()}}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Atras</a>
         </div>
         <div class="col-md-8">
             <h3 class="float-left mt-1">{{$pub->name}} &nbsp;&nbsp;{{$order->created_at}}</h3> 
         </div>
         @if($order->status == 1)
-        <button class="btn btn-primary float-right mt-1" data-id = "{{$order->id}}"type="button" data-toggle="modal" data-target="#abrirmodalaAddProductOrder">
-            <i class="fa fa-plus "></i>&nbsp;&nbsp; Agregar Producto
-        </button>
-    @endif
+            <button class="btn btn-primary float-right mt-1" data-id = "{{$order->id}}"type="button" data-toggle="modal" data-target="#abrirmodalaAddProductOrder">
+                <i class="fa fa-plus "></i>&nbsp;&nbsp; Agregar Producto
+            </button>
+        @endif
     </div>
-
-
-
-
 </div>
 <div class="row">
     <label class="form-control-label col-md-12 px-5 py-2">{{$order->description}}</label>
 </div>
 
 <hr>
-@if (session('mensajesorder'))
-<div class="alert alert-success">
-    {{ session('mensajesorder') }}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-@endif 
+
 <div class="card-body">
     <table class="table   table-striped" id="detalleorden" >
         <thead class=" bg-primary">

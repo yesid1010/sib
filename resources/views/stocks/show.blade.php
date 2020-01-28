@@ -14,14 +14,7 @@
         </button>
     </div> 
 </div>
-@if (session('mensajestock'))
-<div class="alert alert-success">
-    {{ session('mensajestock') }}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-@endif
+
 <br>
 <div class="card-body">
     <table class="table table-striped" id="detallestock" >

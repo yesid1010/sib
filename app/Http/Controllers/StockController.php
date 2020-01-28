@@ -60,8 +60,8 @@ class StockController extends Controller
             $product_stock->save();
             $cont++;
         }
-
-        return back()->with('mensajestock','!! Stock agregado con exito!!');
+        alert()->success('OK', '!!Stock Agregado con exito!!')->autoclose(3000);
+        return back();
     }
 
     // mostrar los detalles de un stock ideal de cierto bar
@@ -100,8 +100,8 @@ class StockController extends Controller
         $product_stock->cant_unity =  $request->input('cantProduct');
 
         $product_stock->save();
-
-       return back()->with('mensajestock','!! cantidad editada con exito!!');
+        alert()->success('OK', '!!Cantidad editada con exito!!')->autoclose(3000);
+       return back();
     
     }
 
@@ -111,8 +111,8 @@ class StockController extends Controller
 
         $stock = Stock::findOrFail($request->id);
         $stock->delete();
-
-        return back()->with('mensajestock','!! Stock Eliminado con exito!!');
+        alert()->success('OK', '!!Stock Eliminado con exito!!')->autoclose(3000);
+        return back();
     }
 
     
@@ -120,8 +120,8 @@ class StockController extends Controller
     public function destroyproduct(Request $request){
         $product_stock = Product_Stock::findOrFail($request->id);
         $product_stock->delete();
-
-        return back()->with('mensajestock','!! Producto Eliminado con exito!!');
+        alert()->success('OK', '!!Producto Eliminado con exito!!')->autoclose(3000);
+        return back();
     }
 
     public function addproduct(Request $request){
@@ -131,7 +131,8 @@ class StockController extends Controller
         $product_stock->cant_unity = $request->input('quantity'); 
 
         $product_stock->save();
-         return back()->with('mensajestock','!! Producto agregado con exito!!');
+        alert()->success('OK', '!!Producto Agregado con exito!!')->autoclose(3000);
+         return back();
     }
 
     public function update(Request $request)
@@ -141,8 +142,8 @@ class StockController extends Controller
         $stock->pub_id      = $request->input('pub_id');
         $stock->description = $request->input('description');
 
-        
         $stock->save();
-        return back()->with('mensajestock','!! Stock Actualizado con exito!!');
+        alert()->success('OK', '!!Stock Actualizado con exito!!')->autoclose(3000);
+        return back();
     }
 }
