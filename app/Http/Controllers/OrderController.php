@@ -26,7 +26,7 @@ class OrderController extends Controller
         $start_date = $request->start_date;
         $end_date = $request->end_date;
 
-        if($start_date == '' && $end_date == ''){
+        if($start_date == '' || $end_date == ''){
             $orders = DB::table('orders')
                     ->join('users','users.id','=','orders.user_id')
                     ->join('pubs','pubs.id','=','orders.pub_id')
@@ -290,19 +290,40 @@ class OrderController extends Controller
     }
 
     public function OrderBarman(Request $request){
-        $user = User::findOrFail($request->id);
-        $orders   = DB::table('orders')
-        ->join('users','users.id','=','orders.user_id')
-        ->join('pubs','pubs.id','=','orders.pub_id')
-        ->select('users.id as user_id','users.names as nameU',
-                 'pubs.name as nameP',
-                 'orders.id as id',
-                 'orders.description as description',
-                 'orders.status as status',
-                 'orders.created_at as created_at')
-        ->orderBy('id', 'desc')
-        ->where('user_id','=',$user->id)
-        ->get();
+        $user       = User::findOrFail($request->id);
+        $start_date = $request->start_date ;
+        $end_date   = $request->end_date;
+
+        if($start_date == '' || $end_date == ''){
+            $orders   = DB::table('orders')
+            ->join('users','users.id','=','orders.user_id')
+            ->join('pubs','pubs.id','=','orders.pub_id')
+            ->select('users.id as user_id','users.names as nameU',
+                    'pubs.name as nameP',
+                    'orders.id as id',
+                    'orders.description as description',
+                    'orders.status as status',
+                    'orders.created_at as created_at')
+            ->orderBy('id', 'desc')
+            ->where('user_id','=',$user->id)
+            ->get();
+        }else{
+            $orders   = DB::table('orders')
+            ->join('users','users.id','=','orders.user_id')
+            ->join('pubs','pubs.id','=','orders.pub_id')
+            ->join('kardexes','kardexes.id','=','orders.kardex_id')
+            ->select('users.id as user_id','users.names as nameU',
+                     'pubs.name as nameP',
+                     'orders.id as id',
+                     'orders.description as description',
+                     'orders.status as status',
+                     'orders.created_at as created_at')
+            ->whereBetween('kardexes.date', [$start_date, $end_date])
+            ->orderBy('id', 'desc')
+            ->where('user_id','=',$user->id)
+            ->get();
+            
+        }
         
         return view('users.barmans.orders',['orders'=>$orders,'user'=>$user]);
     }

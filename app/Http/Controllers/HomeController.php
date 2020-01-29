@@ -30,17 +30,36 @@ class HomeController extends Controller
         $products = Product::all();
         $kardexs = Kardex::all();
         $today =  Carbon::now()->format('Y-m-d');
+
+        $isfirst=false;
+
+        if(count($kardexs) <= 1){
+            $isfirst=true;
+        }
         $last_state = $this->getUltimoKardex();
+        
+
         
         return view('home.index',['products'=>$products,
                                   'kardexs'=>$kardexs,
                                    'today'=>$today,
-                                   'last_state'=>$last_state]);
+                                   'last_state'=>$last_state,
+                                   'isfirst'=>$isfirst]);
     }
 
     public function getUltimoKardex(){
-        $previous_date = new Carbon('yesterday') ;
-        $kardex = Kardex::where('date','=',$previous_date)->first();
+        $kardex = Kardex::all();
+
+        if(count($kardex) == 0 ){
+            return 2;
+        }else if(count($kardex) == 1){
+            $date = new Carbon('yesterday');
+        }else{
+            $date = new Carbon('yesterday');
+        }
+
+       // $previous_date = new Carbon('yesterday') ;
+        $kardex = Kardex::where('date','=',$date)->first();
         return $kardex->status;
     }
 }

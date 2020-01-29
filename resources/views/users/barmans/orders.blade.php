@@ -12,6 +12,25 @@
 </div>
 
 <div class="card-body">
+    <form  action="{{route('ordersbarman')}}" method="get">      
+        @csrf
+        <input type="hidden" value="{{$user->id}}" name="id">                         
+        <div class="row ">
+            <div class="col-md-4"> 
+                <input type="text" class="form-control col-md-10" name="start_date" id="start_date" placeholder="Fecha inicial" onfocus="(this.type='date')" onblur="(this.type='text')" >
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control col-md-10" name="end_date" id="end_date"placeholder="Fecha final" onfocus="(this.type='date')" onblur="(this.type='text')" >
+                
+            </div>
+            <div class="col-md-4">
+                <button class= "btn btn-danger" type="submit">
+                    Filtrar
+                </button>
+            </div>
+        </div>
+    </form>
+    <hr>
     <table id="tablaOrden" class="table table-bordered table-striped">
         <thead class="bg-primary">
             <tr>

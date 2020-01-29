@@ -78,6 +78,8 @@ class KardexController extends Controller
     //cerrar kardex
     public function edit()
     {
+        $kardex = Kardex::all();
+
         $previous_date = new Carbon('yesterday') ;
         $kardex = Kardex::where('date','=',$previous_date)->first();
         $kardex->status = '1';
