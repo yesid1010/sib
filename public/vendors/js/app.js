@@ -6,6 +6,7 @@ $(function () {
     $("#tablaCategorias").DataTable({
         "info"    : false,
         "ordering": false,
+      
         "language":{
             "search":"Buscar",
             "emptyTable":     "No hay datos disponibles en la tabla",
@@ -73,7 +74,7 @@ $(function () {
     //tabla bares
     $("#tablaBares").DataTable({
         "info"          : false,
-        //"lengthChange"  : false,
+        "lengthChange"  : false,
         "ordering": false,
        // "scrollY"       : 250,
         responsive: true,
@@ -126,6 +127,7 @@ $(function () {
     $("#tablaStocks").DataTable({
         "info"          : false,
         "ordering": false,
+        //"lengthChange"  : false,
         "language":{
             "search":"Buscar",
             "emptyTable":     "No hay datos disponibles en la tabla",

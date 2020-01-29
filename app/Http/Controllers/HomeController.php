@@ -32,10 +32,18 @@ class HomeController extends Controller
         $today =  Carbon::now()->format('Y-m-d');
 
         $isfirst=false;
+        $empty = false;
 
-        if(count($kardexs) <= 1){
+        if(count($kardexs) == 0){
+            $empty=true;
+        }
+
+        if(count($kardexs) == 1){
             $isfirst=true;
         }
+
+
+
         $last_state = $this->getUltimoKardex();
         
 
@@ -44,22 +52,40 @@ class HomeController extends Controller
                                   'kardexs'=>$kardexs,
                                    'today'=>$today,
                                    'last_state'=>$last_state,
-                                   'isfirst'=>$isfirst]);
+                                   'isfirst'=>$isfirst,
+                                   'empty'=>$empty]);
     }
 
     public function getUltimoKardex(){
-        $kardex = Kardex::all();
 
-        if(count($kardex) == 0 ){
+
+        $date = new Carbon('yesterday');
+        $kardex = Kardex::where('date','=',$date)->first();
+
+        if($kardex == null){
             return 2;
-        }else if(count($kardex) == 1){
-            $date = new Carbon('yesterday');
-        }else{
-            $date = new Carbon('yesterday');
+        }else {
+            return $kardex->status;
         }
 
-       // $previous_date = new Carbon('yesterday') ;
-        $kardex = Kardex::where('date','=',$date)->first();
-        return $kardex->status;
+       
+
+
+    //     $kardexs = Kardex::all();
+
+    //     $date = Carbon::now()->format('Y-m-d');
+    //     $kardex = Kardex::where('date','=',$date)->first();
+    //     if(count($kardexs) == 1 && $kardex != null ){
+    //         //$date = Carbon::now()->format('Y-m-d');
+    //         return 0;
+    //     }else{
+    //         // $date = new Carbon('yesterday');
+    //         return 1;
+    //     }
+
+
+    //    // $previous_date = new Carbon('yesterday') ;
+    //     // $kardex = Kardex::where('date','=',$date)->first();
+    //     // return $kardex->status;
     }
 }

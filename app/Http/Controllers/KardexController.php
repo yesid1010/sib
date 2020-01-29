@@ -20,8 +20,8 @@ class KardexController extends Controller
         $start_date = $request->start_date;
         $end_date = $request->end_date;
 
-        if($start_date == '' && $end_date == ''){
-            $kardexs = Kardex::where('status','1')->orderBy('id','desc')->get();
+        if($start_date == '' || $end_date == ''){
+            $kardexs = Kardex::where('status','0')->orderBy('id','desc')->get();
             return view('kardex.index',['kardexs'=>$kardexs]);
         }else{
             $kardexs = Kardex::where('status','1')
@@ -36,6 +36,11 @@ class KardexController extends Controller
     public function create()
     {
         $kardex = $this->store(); 
+
+        if($kardex == null){
+            alert()->error('error', '!! Aún no hay productos creados!!')->autoclose(3000);
+            return back();
+        }
         $this->detail($kardex->id);
         alert()->success('OK', '!! Kardex inicializado con exito!!')->autoclose(3000);;
         return back();
@@ -44,12 +49,18 @@ class KardexController extends Controller
     // funcion para crear un kardex
     public function store()
     {
-        $kardex = new Kardex();
-        $kardex->date = Carbon::now();
-        //$kardex->date = new Carbon('yesterday');
-        $kardex->save();
+        $products = Product::all();
 
-        return $kardex;
+        if(count($products)==0){
+            return null;
+        }else{
+            $kardex = new Kardex();
+            $kardex->date = Carbon::now();
+            //$kardex->date = new Carbon('yesterday');
+            $kardex->save();
+    
+            return $kardex;
+        }
        
     }
 
